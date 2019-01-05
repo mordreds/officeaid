@@ -18,8 +18,7 @@
     });</script>
     <!-- New Request Save -->
     <script type="text/javascript">
-      $("#new_request_submit").click(function(){
-        //$(".loading_screen").modal("show");
+      function formSubmit() {
         let formurl = "<?=base_url()?>access/save_request";
         let formData = {
           'department': $('[name="department"]').val(),
@@ -37,24 +36,28 @@
             data : formData,
             cache: false,
             beforeSend: function(){
-                $(".loading_screen").modal("show");
+              $(".loading_screen").modal("show");
             },
-            /*complete: function(){
+            complete: function(){
                 $(".loading_screen").modal("hide");
-            },*/
+            },
             success: function(response){
-              $(".loading_screen").hide();
               result = JSON.parse(response);
-              if(result.error != "") {
-                $(".loading_screen").modal("hide");
-                $('.ticketNo').html(result.error);
-              }
-              else 
-                $('.ticketNo').html("Ticket Submited Successfully..<br/> Ticket ID : " + result.ticketNo);
 
-              $('.ticket_result').modal("show");
+              if(result.ticketNo > 0) {
+                $('.ticketNo').html("Ticket Submited Successfully..<br/> Ticket ID : " + result.ticketNo);
+                $('.ticket_result').modal("show");
+              }
+              else {
+                $('.ticketNo').html(result.error);
+                $('.ticket_result').modal("show");
+              }
             }
         });
+      }
+
+      $('.close_ticket_modal').click(function(){
+        location.reload();
       });
     </script>
 	</body>

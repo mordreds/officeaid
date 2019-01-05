@@ -167,7 +167,7 @@ class Access extends MX_Controller
         $save_data = $this->model_insertion->datainsert($dbres,$tablename,$request_data);
   
         if(is_int($save_data)) 
-          $result = json_encode(array('ticketNo' => $save_data));
+          $result = json_encode(array('ticketNo' => str_pad($save_data, 7, 0,STR_PAD_LEFT)));
         
         else 
           $result = json_encode(array('error', 'Saving Data Failed'));
