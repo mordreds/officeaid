@@ -73,7 +73,6 @@
 	<div class="page"><!-- PAGE CONTENT WRAPPER -->
     <div class="page__content" id="page-content"><!-- PAGE CONTENT CONTAINER -->
       <div class="page-aside invert" id="page-aside">
-
         <div class="scroll" style="max-height: 100%">
           <div class="navigation" id="navigation-default">
             <div class="user user--bordered user--lg user--w-lineunder user--controls">
@@ -118,9 +117,23 @@
                 <a href="<?=base_url()?>access/member">
                   <span class="icon li-group-work"></span> 
                   <span class="text">Request History</span></a>
-                </li>
-                <li class="title">Repository</li>
-                <li ><a href="<?=base_url()?>access/confirm"><span class="icon li-pie-chart"></span> <span class="text">Send File</span></a></li>
-                <li ><a href="<?=base_url()?>access/receptionist"><span class="icon li-menu-square"></span> <span class="text">Receive</span></a>
-                </li>
-            </ul></div></div></div><!-- //END PAGE CONTENT CONTAINER --><!-- PAGE LOGIN CONTAINER -->
+              </li>
+              <li class="title">Repository</li>
+              <li ><a href="<?=base_url()?>access/confirm"><span class="icon li-pie-chart"></span> <span class="text">Send File</span></a></li>
+              <li ><a href="<?=base_url()?>access/receptionist"><span class="icon li-menu-square"></span> <span class="text">Receive</span></a>
+              </li>
+            </ul>
+           </div>
+          </div>
+        </div><!-- //END PAGE CONTENT CONTAINER --><!-- PAGE LOGIN CONTAINER -->
+        <div class="important-container login-container">
+          <div class="card-body">
+            <div class="page-heading">
+              <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+                  <li class="breadcrumb-item"><a href="#"><?=$pageName?></a></li>
+                </ol>
+              </nav>
+            </div>
+            <div class="divider"></div>

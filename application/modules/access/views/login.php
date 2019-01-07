@@ -39,7 +39,7 @@
           </a>
         </div>
         <div class="col-12 col-lg-6">
-          <a href="<?=base_url()?>access/member" style="text-decoration:white">
+          <a href="<?=base_url()?>access/allrequests" style="text-decoration:white">
           <div class="widget">
             <div class="widget__icon_layer widget__icon_layer--right">
               <span class="li-papers"></span>

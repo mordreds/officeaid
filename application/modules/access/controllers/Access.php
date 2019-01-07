@@ -63,54 +63,66 @@ class Access extends MX_Controller
     public function request() 
     {
       if(isset($_SESSION['user']['username']) && isset($_SESSION['user']['roles']))
-        redirect('dashboard');
+        redirect('access');
       else
       {
         # Loading Models
-        $dbres = self::$_Default_DB;
-        $tablename = "departments";
         $this->load->model("globals/model_retrieval");
 
+        $dbres = self::$_Default_DB;
+        $tablename = "departments";
         $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename); 
-        //print "<pre>"; print_r($data); print "</pre>"; exit;
         
         $title['title'] = "Request | OfficeAid"; 
+        $title['pageName'] = "New Request"; 
         $this->load->view('login_header',$title); 
-        $this->load->view('nav'); 
+        $this->load->view('nav',$title); 
         $this->load->view('enquire',$data); 
         $this->load->view('login_footer'); 
       }
     }
-     /*******************************
-      reception 
-    *******************************/
-    public function receptionist() 
-    {
-      if(isset($_SESSION['user']['username']) && isset($_SESSION['user']['roles']))
-        redirect('dashboard');
-      else
-      {
-        $title['title'] = "Receive | OfficeAid"; 
-        $this->load->view('login_header',$title); 
-        $this->load->view('receptionist'); 
-        $this->load->view('login_footer'); 
-      }
-    }
   /*******************************
-      Already loged 
-    *******************************/
-    public function member() 
+      All Requests
+  *******************************/
+  public function allrequests() 
+  {
+    if(isset($_SESSION['user']['username']) && isset($_SESSION['user']['roles']))
+      redirect('access');
+    else
     {
-      if(isset($_SESSION['user']['username']) && isset($_SESSION['user']['roles']))
-        redirect('dashboard');
-      else
-      {
-        $title['title'] = "History | OfficeAid"; 
-        $this->load->view('login_header',$title); 
-        $this->load->view('member'); 
-        $this->load->view('login_footer'); 
-      }
+      $title['title'] = "History | OfficeAid"; 
+      $title['pageName'] = "All Tickets"; 
+      $this->load->view('login_header',$title); 
+      $this->load->view('nav',$title); 
+      $this->load->view('allrequests'); 
+      $this->load->view('login_footer'); 
     }
+  }
+
+  /*******************************
+      All requests Json
+  *******************************/
+  public function allrequests_json() 
+  {
+    if(isset($_SESSION['user']['username']) && isset($_SESSION['user']['roles']))
+      redirect('access');
+    else
+    {
+      # Loading Models
+      $this->load->model('globals/model_retrieval');
+
+      $dbres = self::$_Default_DB;
+      $tablename = "vw_requests";
+      $condition = array(
+        'where_condition' => ['status' => "active"],
+        'orderby'=> ['id' => "Desc"]
+      );
+
+      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
+      print_r($query_result); 
+    }
+  }
+
    /*******************************
      confirm 
     *******************************/

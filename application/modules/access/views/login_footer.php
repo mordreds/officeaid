@@ -1,4 +1,3 @@
-    <script src="<?=base_url()?>resources/js/vendors/jquery/jquery.min.js"></script>
     <script src="<?=base_url()?>resources/js/vendors/maskedinput/jquery.maskedinput.min.js"></script>
     <script src="<?=base_url()?>resources/js/vendors/jquery/jquery-migrate.min.js"></script>
     <script src="<?=base_url()?>resources/js/vendors/bootstrap/bootstrap.bundle.min.js"></script>

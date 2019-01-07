@@ -1,15 +1,3 @@
-
-    <div class="important-container login-container">
-      <div class="card-body">
-        <div class="page-heading">
-          <nav aria-label="breadcrumb" role="navigation">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="#">New Request</a></li>
-            </ol>
-          </nav>
-        </div>
-        <div class="divider"></div>
         <form id="New_Request_Form" action="javascript:void(0);" onsubmit="formSubmit()">
           <div class="row">
             <div class="col-6">
@@ -22,7 +10,7 @@
                 </select>
               </div>
               <div class="form-control-element">
-                <input type="text" class="form-control margin-bottom-20" placeholder="Subject" name="subject" required>
+                <input type="text" class="form-control margin-bottom-20" placeholder="Subject" name="subject" maxlength="30" required>
                 <div class="form-control-element__box"><span class="fa fa-pencil"></span></div>
               </div>
               <div class="form-control-element">
