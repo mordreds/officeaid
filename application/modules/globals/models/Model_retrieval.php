@@ -18,7 +18,6 @@ class Model_retrieval extends CI_Model
   *******************************/
   public function retrieve_allinfo($dbres,$tablename,$condition=array(),$return_dataType="php_object") 
   {
-
     # Selecting Sepecific Fields  ==> $condition['fields'] = array('id','name') }
     $select_fields = (@$condition['fields']) ? @$condition['fields'] : array();
     if(!empty($select_fields))
@@ -78,7 +77,7 @@ class Model_retrieval extends CI_Model
   /*******************************
     Return Count of Result
   *******************************/
-  public function return_count($dbres,$tablename,$return_dataType="php_object",$where_condition=array()) 
+  public function return_count($dbres,$tablename,$where_condition=array(),$return_dataType="php_object") 
   {
     $dbres->where($where_condition); 
     $query_result = $dbres->get($tablename);

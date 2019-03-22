@@ -76,7 +76,7 @@
         <div class="scroll" style="max-height: 100%">
           <div class="navigation" id="navigation-default">
             <div class="user user--bordered user--lg user--w-lineunder user--controls">
-              <img src="assets/img/users/user_1.jpg">
+              <img src="<?=base_url().$companyinfo[0]->logo_path?>">
               <div class="user__name"><strong>OfficeAid</strong>
               	<br><span class="text-muted">Online</span>
                 <div class="user__controls"> </div>
@@ -131,7 +131,7 @@
             <div class="page-heading">
               <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+                  <li class="breadcrumb-item"><a href="<?=base_url()?>">Dashboard</a></li>
                   <li class="breadcrumb-item"><a href="#"><?=$pageName?></a></li>
                 </ol>
               </nav>

@@ -63,12 +63,15 @@
                   {data: "sender_name"},
                   {data: "assignee"},
                   {data: "status", render: function(data,type,row,meta) { 
-                    if(row.status == "active") {
+                    if(row.status == "completed") {
                       label_class = "label-success";
                     }
                     else if(row.status == "inactive"){
                       label_class = "label-danger";
                     }
+                    else if(row.status == "pending" || row.status == "processing")
+                      label_class = "label-warning";
+
                     user_status = row.status;
                     return '<span class="label '+label_class+'">'+row.status+'</span>';}
                   },

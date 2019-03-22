@@ -32,7 +32,7 @@
                 <div class="widget__subtitle">Issue Resolution</div>
               </div>
               <div class="widget__box widget__box--left">
-                <div class="widget__informer">1200 request</div>
+                <div class="widget__informer"><?=number_format($totalRequests)?> Pending Requests</div>
               </div>
             </div>
           </div>
@@ -111,24 +111,24 @@
                 
               </div><!-- PAGE LOGIN CONTAINER --><!-- PAGE CONTENT CONTAINER -->
               <div class="content d-none d-lg-block" id="content" style="background-color: #28abb061; background-size: 100% auto">
-                
-                    <p class="caption text-center margin-bottom-30" style="margin-top: 20%;color: #fff;font-size: 20px">COMPANY NAME</p>
+                <?php if(!empty($companyinfo)) : ?>
+                    <p class="caption text-center margin-bottom-30" style="margin-top: 20%;color: #fff;font-size: 20px"><?=$companyinfo[0]->name?></p>
                     <div class="divider"></div>
                     <CENTER>
-                     <img src="assets/img/users/user_1.jpg"style="padding: 25px"> 
+                     <img src="<?=base_url().$companyinfo[0]->logo_path?>"style="padding: 25px"> 
                     </CENTER>
                     <div class="divider"></div>
                     <ul class="nav navigation" style="color: #fff">
                     <!-- <li>Incooperation Date:<span class="text-muted text-regular "><b>21-10-2015</b> </span></li> -->
 
-                    <li>Postal Address:<span class="text-muted text-regular"><br><b>BOX K47, OFANKOR - ACCRA</b></span></li>
-                    <li>Residence Address:<span class="text-muted text-regular"><br><b>GROUND FLOOR - MR MEGA PLAZA. OFANKOR BARRIER - ACCRA.</b></span></li>
-                    <li>Email Address:<span class="text-muted text-regular"><br><b>bgslaundry@gmail.com</b></span></li>
-                    <li>Website Address:<span class="text-muted text-regular"><br><b>www.bgslaundry.com</b></span></li>
+                    <li>Postal Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->postal_address)?></b></span></li>
+                    <li>Residence Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->residence_address)?></b></span></li>
+                    <li>Email Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->email)?></b></span></li>
+                    <li>Website Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->website)?></b></span></li>
                     <div class="divider"></div>
                     <li>License :<span class="text-muted text-regular"><br><b><p id="demo"></p></b></span></li>
                   </ul>
-               
+               <?php endif; ?>
               </div><!-- //END PAGE CONTENT CONTAINER -->
 
             </div><!-- //END PAGE CONTENT -->

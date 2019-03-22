@@ -3,7 +3,7 @@
             <div class="col-6">
               <div class="form-control-element">
                 <select class="custom-select margin-bottom-20" name="department" required>
-                  <option value="">Select Department</option>
+                  <option value="" disabled selected>Select Department</option>
                   <?php if(!empty($departments)) : foreach($departments as $department) : ?>
                     <option value="<?=$department->id?>"> <?=$department->name?> </option>
                    <?php endforeach; endif; ?>
@@ -22,8 +22,8 @@
                 <div class="form-control-element__box"><span class="fa fa-phone"></span></div>
               </div>
               <div class="form-control-element">
-                <select class="custom-select margin-bottom-20" name="priority" required>
-                  <option value="">Priority</option>
+                <select class="custom-select margin-bottom-20" name="priority" placeholder= required>
+                  <option value="" disabled selected>Priority</option>
                   <option>Low</option>
                   <option>Medium</option>
                   <option>High</option>

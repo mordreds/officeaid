@@ -51,9 +51,22 @@ class Access extends MX_Controller
         redirect('dashboard');
       else
       {
+        # Retrieving Total Count of Requests
+        $dbres = self::$_Default_DB;
+        $this->load->model('globals/model_retrieval');
+
+        $tablename = "requests";
+        $where_condition = array('status' => "pending");
+        $data['totalRequests'] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+
+        # Retrieving Company Details
+        $tablename = "company_info";
+        $where_condition = ['where_condition' => array('id' => 1)];
+        $data['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+        
         $title['title'] = "OfficeAid"; 
         $this->load->view('login_header',$title); 
-        $this->load->view('login'); 
+        $this->load->view('login',$data); 
         $this->load->view('login_footer'); 
       }
     }
@@ -69,9 +82,15 @@ class Access extends MX_Controller
         # Loading Models
         $this->load->model("globals/model_retrieval");
 
+        # Retrieving All Departments
         $dbres = self::$_Default_DB;
         $tablename = "departments";
         $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename); 
+
+        # Retrieving Company Details
+        $tablename = "company_info";
+        $where_condition = ['where_condition' => array('id' => 1)];
+        $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
         
         $title['title'] = "Request | OfficeAid"; 
         $title['pageName'] = "New Request"; 
@@ -90,6 +109,19 @@ class Access extends MX_Controller
       redirect('access');
     else
     {
+      # Loading Models
+      $this->load->model("globals/model_retrieval");
+      $dbres = self::$_Default_DB;
+
+      # Retrieving Company Details
+      $tablename = "company_info";
+      $where_condition = ['where_condition' => array('id' => 1)];
+      $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
+      # Retrieving All Request
+      $tablename = "requests";
+      $where_condition = array('wherein_condition' => array('status' => "Pending,Processing"));
+
       $title['title'] = "History | OfficeAid"; 
       $title['pageName'] = "All Tickets"; 
       $this->load->view('login_header',$title); 
@@ -114,7 +146,7 @@ class Access extends MX_Controller
       $dbres = self::$_Default_DB;
       $tablename = "vw_requests";
       $condition = array(
-        'where_condition' => ['status' => "active"],
+        'wherein_condition' => ['status' => "pending,processing"],
         'orderby'=> ['id' => "Desc"]
       );
 
