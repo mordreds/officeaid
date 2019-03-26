@@ -16,7 +16,6 @@
             
           </a>-->
     <div class="row margin-bottom-20">
-      
         <div class="col-12 col-lg-6">
           <a href="<?=base_url()?>access/request" style="text-decoration:white">
           <div class="widget">
@@ -39,7 +38,7 @@
           </a>
         </div>
         <div class="col-12 col-lg-6">
-          <a href="<?=base_url()?>access/allrequests" style="text-decoration:white">
+          <a href="#" id="history_btn" style="text-decoration:white">
           <div class="widget">
             <div class="widget__icon_layer widget__icon_layer--right">
               <span class="li-papers"></span>
@@ -84,7 +83,7 @@
 
         </div>
         <div class="col-12 col-lg-6">
-          <a href=""data-toggle="modal" data-target=".bd-example-modal-sm" style="text-decoration: none">
+          <a href="" data-toggle="modal" data-target=".bd-example-modal-sm" style="text-decoration: none">
           <div class="widget">
             <div class="widget__icon_layer widget__icon_layer--right">
               <span class="li-library"></span>
@@ -133,37 +132,6 @@
 
             </div><!-- //END PAGE CONTENT -->
   </div><!-- //END PAGE WRAPPER --><!-- TEMPLATE SETTINGS -->
-
-  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="<?=base_url()?>dashboard/home">
-         <div class="form-control-element">
-                <input type="text" class="mask_phone form-control" placeholder="User Name" >
-                <div class="form-control-element__box"></div>
-              </div> 
-               <label></label>
-                <div class="form-control-element">
-                <input type="password" class="mask_phone form-control" placeholder="Password" >
-                <div class="form-control-element__box"></div>
-              </div> 
-               <label></label>
-
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
-        <button type="submit" class="btn btn-primary" >Login</button>
-      </form>
-    </div>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -195,6 +163,13 @@ var x = setInterval(function() {
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
 }, 1000);
+</script>
+
+<script type="text/javascript">
+  $('#history_btn').click(function(){
+    $('.bd-example-modal-sm').modal('show');
+    $('#login_redirect').val('access/allrequests');
+  });
 </script>
 
 

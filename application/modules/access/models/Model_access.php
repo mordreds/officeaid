@@ -9,7 +9,7 @@ class Model_Access extends CI_Model
 	************************************************/
 	public function sysaudit_record($dbres,$sysaudit_data)
 	{
-		$tablename	= "sysaudit";
+		$tablename	= "access_sysaudit";
 	  $query 			= $dbres->insert($tablename,$sysaudit_data);
 		$result 		= $dbres->affected_rows();			
 		return (($result) ? TRUE : FALSE );
@@ -89,7 +89,7 @@ class Model_Access extends CI_Model
 	{
 		if($condition['password_check']) {
 			# code...
-			$tablename = "successful_logins";
+			$tablename = "access_login_successful";
 			$query = $dbres->insert($tablename,$data);
 			$return_id = $dbres->insert_id();
 			
@@ -100,7 +100,7 @@ class Model_Access extends CI_Model
 
 		} else {
 			# code...
-			$tablename = "failed_logins";
+			$tablename = "access_login_failed";
 			$query = $dbres->insert($tablename,$data);
 			$return_id = $dbres->insert_id();
 
@@ -118,7 +118,7 @@ class Model_Access extends CI_Model
 	************************************************/
 	public function decrease_login_attempt($dbres,$user_id,$login_attempt) 
   {
-    $tablename = "users";
+    $tablename = "access_users";
 
     if($login_attempt > 0) {
       $attempt_left = $login_attempt - 1;
@@ -143,7 +143,7 @@ class Model_Access extends CI_Model
 
 	public function revert_login_attempt($dbres,$user_id) 
   {
-    $tablename = "users";
+    $tablename = "access_users";
     $dbres->set('login_attempt',"5");
 	  $dbres->where('id',$user_id);
 	  $query = $dbres->update($tablename);
@@ -155,7 +155,7 @@ class Model_Access extends CI_Model
 	************************************************/
 	public function change_account_status($dbres,$return_dataType="php_object",$where_condition,$status)
 	{
-		$tablename		= "users";
+		$tablename		= "access_users";
 		$dbres->set('status',$status);
 	  $dbres->where($where_condition);
 	  $query_result = $dbres->update($tablename); 
@@ -171,7 +171,7 @@ class Model_Access extends CI_Model
 	************************************************/
 	public function deactivate_account($dbres,$username,$user_id)
 	{
-		$tablename		= "users";
+		$tablename		= "access_users";
 		$dbres->set('status',"inactive");
 	  $dbres->where(array('username' => $username, 'id' => $user_id));
 	  $query_result = $dbres->update($tablename); 
@@ -183,7 +183,7 @@ class Model_Access extends CI_Model
 	************************************************/
 	public function activate_account($dbres,$username,$user_id)
 	{
-		$tablename		= "users";
+		$tablename		= "access_users";
 		$dbres->set('status',"active");
 	  $dbres->where(array('username' => $username, 'id' => $user_id));
 	  $query_result = $dbres->update($tablename); 
@@ -195,7 +195,7 @@ class Model_Access extends CI_Model
 	************************************************/
 	public function delete_account($dbres,$username,$user_id)
 	{
-		$tablename		= "users";
+		$tablename		= "access_users";
 		$dbres->set('status',"deleted");
 	  $dbres->where(array('username' => $username, 'id' => $user_id));
 	  $query_result = $dbres->update($tablename); 
@@ -207,7 +207,7 @@ class Model_Access extends CI_Model
 	************************************************/
 	public function Reset_Password($dbres,$user_id,$newpassword)
 	{
-		$tablename	= "users";
+		$tablename	= "access_users";
 		$dbres->set('passwd',$newpassword);
 		$dbres->where('id',$user_id);
 		$query_result = $dbres->update($tablename);
@@ -219,7 +219,7 @@ class Model_Access extends CI_Model
 	************************************************/
 	public function roles_priviledges_user($dbres,$user_id)
 	{
-		$tablename = 'roles_priviledges_user';
+		$tablename = 'access_roles_priviledges_user';
 		$where_clause = ['user_id' => $user_id, 'status' => "active"];
 		$dbres->where($where_clause);
 		$query = $dbres->get($tablename);
@@ -231,7 +231,7 @@ class Model_Access extends CI_Model
 	************************************************/
 	public function roles_priviledges_group($dbres,$group_id)
 	{
-		$tablename = 'roles_priviledges_group';
+		$tablename = 'access_roles_priviledges_group';
 		$where_clause = ['id' => $group_id, 'status' => "active"];
 		$dbres->where($where_clause);
 		$query = $dbres->get($tablename);
