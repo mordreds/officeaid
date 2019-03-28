@@ -167,8 +167,16 @@ var x = setInterval(function() {
 
 <script type="text/javascript">
   $('#history_btn').click(function(){
-    $('.bd-example-modal-sm').modal('show');
-    $('#login_redirect').val('access/allrequests');
+    let userid = <?php echo ($_SESSION['user']['id']) ?? 0?>;
+    let login_url = 'access/allrequests';
+
+    if(userid > 0) {
+      location.href = login_url;
+    }
+    else {
+      $('.bd-example-modal-sm').modal('show');
+      $('#login_redirect').val(login_url);
+    }
   });
 </script>
 

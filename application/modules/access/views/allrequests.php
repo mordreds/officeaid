@@ -76,7 +76,7 @@
                     return '<span class="label '+label_class+'">'+row.status+'</span>';}
                   },
                   {render: function(data,type,row,meta) {
-                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.sender_name+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.department_id+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
+                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.sender_name+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.department_name+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
                   }}
                 ],
               });
@@ -88,29 +88,3 @@
     </div><!-- PAGE LOGIN CONTAINER -->
   </div><!-- //END PAGE CONTENT -->
 </div>
-
-<div class="modal fade req_det" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Awaiting</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="loader" style="margin-left: 25%;"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-  $(document).on('click', '.view_req_det', function(event) {
-    event.preventDefault();
-    /* Act on the event */
-    $('.req_det').modal('show');
-  });;
-</script>
-
-

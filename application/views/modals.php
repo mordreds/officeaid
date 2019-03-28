@@ -1,4 +1,5 @@
  <!-- Login Modal -->
+ <?php if(!isset($_SESSION['user']['id'])) : ?>
  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -63,7 +64,100 @@
     });
   </script>
 
-<?php if(isset($_SESSION['user']['id'])) : ?>
+<?php endif;  if(isset($_SESSION['user']['id'])) : ?>
+
+<!-- ***************************** Request Details *********************************** -->
+
+<div class="modal fade req_det" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Request Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="New_Request_Form" action="javascript:void(0);" onsubmit="formSubmit()">
+          <div class="row">
+            <div class="col-6">
+              
+              <div class="form-control-element">
+                <input type="text" id="department_name" class="form-control margin-bottom-20" readonly>
+                <div class="form-control-element__box"><span class="fa fa-building"></span></div>
+              </div>
+              
+              <div class="form-control-element">
+                <input type="text" class="form-control margin-bottom-20" id="created_by" readonly>
+                <div class="form-control-element__box"><span class="fa fa-user-secret"></span></div>
+              </div>
+
+              <div class="form-control-element">
+                <input type="text" class="form-control margin-bottom-20" id="priority" readonly>
+                <div class="form-control-element__box"><span class="fa fa-user-secret"></span></div>
+              </div>
+
+              <div class="form-control-element">
+                <div class="form-control-element">
+                  <input type="test" class="form-control margin-bottom-20" id="date" readonly>
+                  <div class="form-control-element__box"><span class="fa fa-calendar"></span></div>
+                </div>
+              </div>
+
+              <div class="form-control-element">
+                <div class="form-control-element">
+                  <h3> Files </h3>
+                </div>
+              </div>
+            
+            </div>
+            
+            <div class="col-6">
+              
+              <div class="form-control-element">
+                <input type="text" class="form-control margin-bottom-20" id="subject" readonly>
+                <div class="form-control-element__box"><span class="fa fa-pencil"></span></div>
+              </div>
+
+              <div class="form-control-element">
+                <input type="text" class="form-control margin-bottom-20" id="phone_no" readonly>
+                <div class="form-control-element__box"><span class="fa fa-phone"></span></div>
+              </div>
+
+              <div class="form-control-element">
+                <textarea class="form-control" id="description" rows="7" style="resize: none;"></textarea>
+              </div>
+
+            </div>
+            
+            
+            <div class="divider"></div>
+          </div>
+          <button class="btn btn-primary btn-block" id="new_request_submit">Update Ticket</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).on('click', '.view_req_det', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('.req_det').modal('show');
+    $('#department_name').val($(this).data('dept'));
+    $('#created_by').val($(this).data('s_name'));
+    $('#priority').val($(this).data('priority'));
+    $('#subject').val($(this).data('sub'));
+    $('#phone_no').val($(this).data('s_contact'));
+    $('#date').val($(this).data('d_date'));
+    $('#description').html($(this).data('desc'));
+  });;
+</script>
+
+<!-- ***************************** Request Details *********************************** -->
+
+
 
 <!-- ***************************** Universal In System *********************************** -->
   <!-- *********** Delete Modal *********** -->
@@ -141,7 +235,7 @@
 <!-- ***************************** Universal In System *********************************** -->
 
 <!-- ***************************** Users Page ******************************************** -->
-  <?php if($controller_function == "users") : ?>
+  <?php if(false) : ?>
     <!-- *********** Reset Password ********* -->
       <script type="text/javascript">
         $('.table').on('click','#reset_password', function(){

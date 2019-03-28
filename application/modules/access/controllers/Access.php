@@ -73,30 +73,25 @@ class Access extends MX_Controller
     *******************************/
     public function request() 
     {
-      if(isset($_SESSION['user']['username']) && isset($_SESSION['user']['roles']))
-        redirect('access');
-      else
-      {
-        # Loading Models
-        $this->load->model("globals/model_retrieval");
+      # Loading Models
+      $this->load->model("globals/model_retrieval");
 
-        # Retrieving All Departments
-        $dbres = self::$_Default_DB;
-        $tablename = "departments";
-        $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename); 
+      # Retrieving All Departments
+      $dbres = self::$_Default_DB;
+      $tablename = "departments";
+      $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename); 
 
-        # Retrieving Company Details
-        $tablename = "company_info";
-        $where_condition = ['where_condition' => array('id' => 1)];
-        $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
-        
-        $title['title'] = "Request | OfficeAid"; 
-        $title['pageName'] = "New Request"; 
-        $this->load->view('login_header',$title); 
-        $this->load->view('nav',$title); 
-        $this->load->view('enquire',$data); 
-        $this->load->view('login_footer'); 
-      }
+      # Retrieving Company Details
+      $tablename = "company_info";
+      $where_condition = ['where_condition' => array('id' => 1)];
+      $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+      
+      $title['title'] = "Request | OfficeAid"; 
+      $title['pageName'] = "New Request"; 
+      $this->load->view('login_header',$title); 
+      $this->load->view('nav',$title); 
+      $this->load->view('enquire',$data); 
+      $this->load->view('login_footer'); 
     }
   /*******************************
       All Requests
@@ -125,6 +120,7 @@ class Access extends MX_Controller
       $this->load->view('login_header',$title); 
       $this->load->view('nav',$title); 
       $this->load->view('allrequests'); 
+      $this->load->view('modals'); 
       $this->load->view('login_footer'); 
     }
   }
