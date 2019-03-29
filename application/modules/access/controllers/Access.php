@@ -167,9 +167,7 @@ class Access extends MX_Controller
   /**************** Interface ********************/
 
   /**************** Insertions ********************/
-    /*******************************
-     confirm 
-    *******************************/
+    
     public function save_request() {
       $this->form_validation->set_rules('department','Department','trim|required');
       $this->form_validation->set_rules('subject','Subject','trim|required');
@@ -211,6 +209,37 @@ class Access extends MX_Controller
           $result = json_encode(array('error', 'Saving Data Failed'));
 
         print_r($result);
+        /******** Insertion Of New Data ***********/
+        
+      }
+    }
+
+    public function updaterequest() {
+      $this->form_validation->set_rules('id','Record','trim|required');
+      $this->form_validation->set_rules('description','Description','trim|required');
+
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        $result = json_encode(array('error' => $errors));
+        print_r($result); exit;
+      }
+      else {
+        $this->load->model('globals/model_update');
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "requests";
+        $update_data = [ 'description' => ucwords($this->input->post('description')) ];
+        $where_condition = ['id' => $this->input->post('id')];
+        /***** Data Definition *****/
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+
+        if($save_data) 
+          $this->session->set_flashdata('success', "Record Update Successful");
+        else
+          $this->session->set_flashdata('error', "Record Update Failed");
+
+        redirect('access/allrequests');
         /******** Insertion Of New Data ***********/
         
       }
