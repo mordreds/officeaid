@@ -13,11 +13,14 @@ class Dashboard extends MX_Controller
  /*******************************
       DASHBOAD 
     *******************************/
+    public function index() { $this->home();}
+  
     public function home() 
     {
       
         $title['title'] = "OfficeAid| Admin"; 
         $this->load->view('header',$title); 
+        $this->load->view('admin_nav',$title); 
         $this->load->view('dashboard'); 
         $this->load->view('footer'); 
       
@@ -42,6 +45,7 @@ class Dashboard extends MX_Controller
       
         $title['title'] = "OfficeAid| Controls"; 
         $this->load->view('header',$title); 
+        $this->load->view('admin_nav',$title);
         $this->load->view('control'); 
         $this->load->view('footer'); 
       
@@ -70,17 +74,80 @@ class Dashboard extends MX_Controller
     
   /**************** Interface ********************/
 }
+
 public function job()
-    {
+{
+      # Loading Models
+      $this->load->model("globals/model_retrieval");
+
+      # Retrieving All Request
+      $dbres = self::$_Default_DB;
+      $tablename = "requests";
+      $where_condition = array(
+        'wherein_condition' => array('status' => "Pending,Processing"),
+      );
+      $data['allrequests'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
+      $title['title'] = "OfficeAid| Assigned Jobs"; 
+      $this->load->view('header',$title); 
+      $this->load->view('admin_nav',$title);
+      $this->load->view('job',$data); 
+      $this->load->view('footer'); 
       
-        $title['title'] = "OfficeAid| Assigned Jobs"; 
-        $this->load->view('header',$title); 
-        $this->load->view('job'); 
-        $this->load->view('footer'); 
-      
-    
-  /**************** Interface ********************/
 }
+
+  /*******************************
+      All requests Json
+  *******************************/
+  public function allrequests_json() 
+  {
+    if(!isset($_SESSION['user']['username']) && !isset($_SESSION['user']['roles']))
+      redirect('access');
+    else
+    {
+      # Loading Models
+      $this->load->model('globals/model_retrieval');
+
+      $dbres = self::$_Default_DB;
+      $tablename = "vw_requests";
+      $condition = array(
+        'where_condition' => ['email' => $_SESSION['user']['username']],
+        'wherein_condition' => [
+          'status' => "pending,processing",
+        ],
+        'orderby'=> ['id' => "Desc"]
+      );
+
+      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
+      print_r($query_result); 
+    }
+  }
+
+  public function alldepartmentusers_json() 
+  {
+    if(!isset($_SESSION['user']['username']) && !isset($_SESSION['user']['roles']))
+      redirect('access');
+    else
+    {
+      # Loading Models
+      $this->load->model('globals/model_retrieval');
+
+      $dbres = self::$_Default_DB;
+      $tablename = "vw_user_details";
+      $condition = array(
+        'where_condition' => ['department_id' => $_SESSION['user']['department_id']],
+        'orderby'=> ['id' => "Desc"]
+      );
+
+      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
+      foreach ($query_result as $key => $value) {
+        # code...
+        
+      }
+      print_r($query_result); 
+    }
+  }
+
 public function stationary()
     {
       

@@ -1,3 +1,45 @@
+ 
+<!-- *****************************  Download File *********************************** -->
+  <div class="modal fade verifyfilecode" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Enter File Code </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="" >
+              <input type="hidden" id="_redirect" name="redirect">
+              <div class="form-control-element">
+                <input id="_password" type="password" class="form-control" placeholder="Password" >
+                  <div class="form-control-element__box"></div>
+                </div> 
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+            <button id="_submit" type="button" class="btn btn-primary" >Verify</button>
+          </form>
+        </div>
+      </div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).on('click', '.verify_file', function(event) {
+      
+      /* Act on the event */
+      let stats = $(this).data('stats');
+
+      if(stats == "public")
+        alert(stats);
+      else
+        $('.verifyfilecode').modal('show');
+    });;
+  </script>
+<!-- ***************************** Download File *********************************** -->
+
+
  <!-- ***************************** Login Modal *********************************** -->
    <?php if(!isset($_SESSION['user']['id'])) : ?>
    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -166,8 +208,6 @@
     });;
   </script>
 <!-- ***************************** Request Details *********************************** -->
-
-
 
 <!-- ***************************** Universal In System *********************************** -->
   <!-- *********** Delete Modal *********** -->

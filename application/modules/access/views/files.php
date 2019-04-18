@@ -1,15 +1,16 @@
-   
-        <table id="dt-example-responsive" class="table table-bordered" >
+<div class="card-body">
+  <a href="" class="btn btn-primary btn-xs">Add New</a>
+  <div class="divider"></div>
+</div>
+<table id="dt-example-responsive" class="table table-bordered" >
           <thead>
             <tr>
-              <th>No #</th>
-              <th>Subject</th>
-              <!-- <th>Description</th> -->
+              <th>id</th>
               <th>CreatedBy</th>
-              <th>AssignedTo</th>
-              <th>Priority</th>
+              <th>Subject</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>File Type</th>
+              <th>File</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -44,39 +45,46 @@
                 "order": [[ 0, "desc" ]],
                 ajax: {
                   type : 'GET',
-                  url : '<?= base_url()?>access/allrequests_json',
+                  url : '<?= base_url()?>access/allfiles_json',
                   dataSrc: '',
                   error: function() {
                     alert("error retrieving list");
                   }
                 },
                 columns: [
-                  {data: "id",render: function(data,type,row,meta) {
-                    return row.id
-                  }},
+                  {data: "id", visible: false},
+                  {data: "fullname"},
                   {data: "subject"},
-                  /*{data: "description",render: function(data,type,row,meta) { 
-                    let desc = row.description.substring(0,20);
-                    return desc;
-                  }},*/
-                  {data: "email"},
-                  {data: "assignee"},
-                  {data: "priority"},
                   {data: "status", render: function(data,type,row,meta) { 
-                    if(row.status == "completed") {
-                      label_class = "label-success";
-                    }
-                    else if(row.status == "inactive"){
-                      label_class = "label-danger";
-                    }
-                    else if(row.status == "pending" || row.status == "processing")
-                      label_class = "label-warning";
-
-                    user_status = row.status;
-                    return '<span class="label '+label_class+'">'+row.status+'</span>';}
-                  },
+                    if(row.status == "public") 
+                      return '<div class="btn btn-outline-success btn-block disabled btn-sm">'+row.status+'</div>';
+                    
+                    else if(row.status == "private")
+                      return '<div class="btn btn-outline-danger btn-block disabled btn-sm">'+row.status+'</div>'
+                  }},
+                  {data: "filetype"},
                   {render: function(data,type,row,meta) {
-                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.sender_name+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.department_name+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
+                    if(row.status == "public") 
+                      color = "color: #428c01";
+                    else if(row.status == "private")
+                      color = "color: #ff2d2d";
+
+                    if(row.filetype == "document") 
+                      fileicon = 'fa fa-file-word-o';
+                    
+                    else if(row.filetype == "image")
+                      fileicon = "fa fa-file-image-o";
+                    
+                    else if(row.filetype == "pdf")
+                      fileicon = "fa fa-file-pdf-o";
+                    
+                    else if(row.filetype == "excel")
+                      fileicon = "fa fa-file-excel-o";
+                    
+                    else
+                      fileicon = "fa fa-file-text-o";
+
+                    return '<a href="#" class="verify_file" style="'+color+'" data-id="'+window.btoa(row.id)+'" data-stats="'+row.status+'"><span class="fa '+fileicon+' fa-2x"></span></a>'
                   }}
                 ],
               });

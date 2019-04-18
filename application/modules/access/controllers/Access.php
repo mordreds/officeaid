@@ -47,20 +47,26 @@ class Access extends MX_Controller
     *******************************/
     public function login() 
     {
-      
       # Retrieving Total Count of Requests
       $dbres = self::$_Default_DB;
       $this->load->model('globals/model_retrieval');
 
+      # Getting all count of pending requests
       $tablename = "requests";
       $where_condition = array('status' => "pending");
       $data['totalRequests'] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+
+      # Getting count of all completed requests
+      $tablename = "requests";
+      $where_condition = [
+        'email' => @$_SESSION['user']['username']
+      ];
+      $data['totalRequestsCompleted'] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
 
       # Retrieving Company Details
       $tablename = "company_info";
       $where_condition = ['where_condition' => array('id' => 1)];
       $data['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
-      
       $title['title'] = "OfficeAid"; 
       $this->load->view('login_header',$title); 
       $this->load->view('login',$data); 
@@ -140,7 +146,10 @@ class Access extends MX_Controller
       $dbres = self::$_Default_DB;
       $tablename = "vw_requests";
       $condition = array(
-        'wherein_condition' => ['status' => "pending,processing"],
+        'where_condition' => ['email' => $_SESSION['user']['username']],
+        'wherein_condition' => [
+          'status' => "pending,processing",
+        ],
         'orderby'=> ['id' => "Desc"]
       );
 
@@ -149,18 +158,47 @@ class Access extends MX_Controller
     }
   }
 
+  /*******************************
+      All Files Json
+  *******************************/
+  public function allfiles_json() 
+  {
+    # Loading Models
+    $this->load->model('globals/model_retrieval');
+
+    $dbres = self::$_Default_DB;
+    $tablename = "vw_files";
+    $condition = array();
+
+    $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
+    print_r($query_result); 
+    
+  }
+
    /*******************************
      confirm 
     *******************************/
-    public function confirm() 
+    public function files() 
     {
       if(isset($_SESSION['user']['username']) && isset($_SESSION['user']['roles']))
         redirect('dashboard');
       else
       {
+        # Loading Models
+        $this->load->model('globals/model_retrieval');
+
+        # Retrieving Company Details
+        $tablename = "company_info";
+        $dbres = self::$_Default_DB;
+        $where_condition = ['where_condition' => array('id' => 1)];
+        $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
         $title['title'] = "Send | OfficeAid"; 
+        $title['pageName'] = "All Files"; 
         $this->load->view('login_header',$title); 
-        $this->load->view('confirm'); 
+        $this->load->view('nav',$title); 
+        $this->load->view('files'); 
+        $this->load->view('modals'); 
         $this->load->view('login_footer'); 
       }
     }
@@ -169,13 +207,12 @@ class Access extends MX_Controller
   /**************** Insertions ********************/
     
     public function save_request() {
-      $this->form_validation->set_rules('department','Department','trim|required');
       $this->form_validation->set_rules('subject','Subject','trim|required');
       $this->form_validation->set_rules('description','Description','trim|required');
-      $this->form_validation->set_rules('creator_name','Your Name','trim|required');
+      $this->form_validation->set_rules('email','Email','trim|required');
       $this->form_validation->set_rules('creator_contact','Your Contact','trim|required');
       $this->form_validation->set_rules('priority','Priority','trim|required');
-      $this->form_validation->set_rules('date','Date','trim|required');
+      /*$this->form_validation->set_rules('date','Date','trim|required');*/
 
       if($this->form_validation->run() === FALSE) {
         $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
@@ -188,14 +225,14 @@ class Access extends MX_Controller
         $dbres = self::$_Default_DB;
         $tablename = "requests";
         $request_data = [
-          'sender_name' => ucwords($this->input->post('creator_name')),
+          'email' => ucwords($this->input->post('email')),
           'sender_contact' => ucwords($this->input->post('creator_contact')),
           'subject' => ucwords($this->input->post('subject')),
           'description' => ucwords($this->input->post('description')),
           'priority' => ucwords($this->input->post('priority')),
           'file_id' => 0,
-          'due_date' => ucwords($this->input->post('date')),
-          'department_id' => ucwords($this->input->post('department')),
+          /*'due_date' => ucwords($this->input->post('date')),
+          'department_id' => ucwords($this->input->post('department')),*/
         ];
         //print_r($request_data); exit;
         /***** Data Definition *****/
@@ -452,6 +489,7 @@ class Access extends MX_Controller
                     $session_array['user']['login_id'] = $result['login_id'];
                     $session_array['user']['login_attempt'] = $result['login_attempt'];
                     $session_array['user']['fullname'] = $user->fullname;
+                    $session_array['user']['department_id'] = $user->department_id;
                     $this->session->set_userdata($session_array);
                     # Checking for company info
                     if(empty(@$redirect)) {

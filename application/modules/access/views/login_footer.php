@@ -20,13 +20,11 @@
       function formSubmit() {
         let formurl = "<?=base_url()?>access/save_request";
         let formData = {
-          'department': $('[name="department"]').val(),
           'subject' : $('[name="subject"]').val(),
           'description': $('[name="description"]').val(),
-          'creator_name': $('[name="creator_name"]').val(),
+          'email': $('[name="email"]').val(),
           'creator_contact': $('[name="creator_contact"]').val(),
-          'priority': $('[name="priority"]').val(),
-          'date': $('[name="date"]').val()
+          'priority': $('[name="priority"]').val()
         };
         
         $.ajax({

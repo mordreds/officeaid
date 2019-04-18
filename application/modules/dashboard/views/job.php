@@ -1,3 +1,4 @@
+<?php print_r($_SESSION['user']); ?>
 <div class="page__content page-aside--hidden" id="page-content"><!-- PAGE ASIDE PANEL -->
   <div class="page-aside page-aside--hidden invert" id="page-aside">
     <div class="scroll" style="max-height: 100%">
@@ -25,107 +26,86 @@
   </div><!-- //END PAGE HEADING -->
   <div class="container-fluid">
    <div class="card">
-    <div class="card-container">
-    <div class="dropdown">
-        <div class="rw-btn rw-btn--card" data-toggle="dropdown">
-      <div>
-                                                                
-  </div></div><div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item" data-demo-action="update">Update</a> <a href="#" class="dropdown-item" data-demo-action="expand">Expand</a> <a href="#" class="dropdown-item" data-demo-action="invert">Invert style</a><div class="dropdown-divider"></div><a href="#" class="dropdown-item" data-demo-action="remove">Remove card</a></div></div></div>
     <div class="card-body">
-        <table id="dt-example-responsive" class="table table-bordered" cellspacing="0" width="100%">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Department</th>
-          <th>Category</th>
-          <th>Subject</th>
-          <th>Priority</th>
-          <th>Date Issued</th>
-          <th>Status</th>
-          <th>Attached</th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th>ID</th>
-          <th>Department</th>
-          <th>Category</th>
-          <th>Subject</th>
-          <th>Priority</th>
-          <th>Date Issued</th>
-          <th>Status</th>
-          <th>Attached</th>
-            </tr>
-          </tfoot>
-          <tbody>
+
+        <table id="dt-example-responsive" class="table table-bordered" >
+          <thead>
             <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>Higher</td>
-              <td>2011/04/25</td>
-              <td>
-               <div class="form-control-element">
-                  <select class="custom-select margin-bottom-20" id="rw_settings_layout">
-                    <option value="default">Open </option>
-                    <option value="boxed">Pending</option>
-                    <option value="indent">Excalated</option>
-                    <option value="indent">Resolved</option>
-                    <option value="indent">Closed</option>
-              </div>  
-        </td>
-        <td><span class="icon li-document"></span></td>
+              <th>No #</th>
+              <th>Subject</th>
+              <th>CreatedBy</th>
+              <th>Department</th>
+              <th>Priority</th>
+              <th>AssignedTo</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
-            <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-               <td>Normal</td>
-              <td>2011/04/25</td>
-              
-              <td><div class="form-control-element">
-                  <select class="custom-select margin-bottom-20" id="rw_settings_layout">
-                    <option value="default">Open </option>
-                    <option value="boxed">Pending</option>
-                    <option value="indent">Excalated</option>
-                    <option value="indent">Resolved</option>
-                    <option value="indent">Closed</option>
-              </div> </td>
-               <td><span class="icon li-document"></span></td>
-            </tr>
-            <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-               <td>Higher</td>
-              <td>2011/04/25</td>
-              <td><div class="form-control-element">
-                  <select class="custom-select margin-bottom-20" id="rw_settings_layout">
-                    <option value="default">Open </option>
-                    <option value="boxed">Pending</option>
-                    <option value="indent">Excalated</option>
-                    <option value="indent">Resolved</option>
-                    <option value="indent">Closed</option>
-              </div> </td>
-               <td><span class="icon li-document"></span></td>
-            </tr>
-            
-              </tbody>
-              </table>
-              <script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
-                                        app._loading.show($("#dt-ext-responsive"),{spinner: true});
-                                        $("#dt-example-responsive").DataTable({
-                                            "responsive": true,
-                                            "initComplete": function(settings, json) {
-                                                setTimeout(function(){
-                                                    app._loading.hide($("#dt-ext-responsive"));
-                                                },1000);
-                                            }
-                                        });
-                                    });</script>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            /************** Default Settings **************/
+              $.extend( $.fn.dataTable.defaults, {
+                autoWidth: false,
+                responsive: true,
+                columnDefs: [{ 
+                    orderable: false,
+                    width: '100px',
+                }],
+                dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
+                language: {
+                  search: '<span>Filter:</span> _INPUT_',
+                  lengthMenu: '<span>Show:</span> _MENU_',
+                  paginate: { 'first': 'First', 'last': 'Last', 'next': ' Next &rarr;', 'previous': '&larr; Preview ' }
+                },
+                drawCallback: function () {
+                  $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+                },
+                preDrawCallback: function() {
+                  $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+                }
+              });
+            /************** Default Settings **************/
+
+            /********** Activated Accounts ************/
+              $('#dt-example-responsive').dataTable({
+                "order": [[ 0, "desc" ]],
+                ajax: {
+                  type : 'GET',
+                  url : '<?= base_url()?>dashboard/allrequests_json',
+                  dataSrc: '',
+                  error: function() {
+                    alert("error retrieving list");
+                  }
+                },
+                columns: [
+                  {data: "id",render: function(data,type,row,meta) {
+                    return row.id
+                  }},
+                  {data: "subject"},
+                  /*{data: "description",render: function(data,type,row,meta) { 
+                    let desc = row.description.substring(0,20);
+                    return desc;
+                  }},*/
+                  {data: "email"},
+                  {data: "department"},
+                  {data: "priority"},
+                  {data: "status", render: function(data,type,row,meta) { 
+                    return '<div class="form-control-element"><select class="custom-select margin-bottom-20" id="rw_settings_layout" style="margin-bottom: 0px!important;padding: 0px 0px 0px 0px !important;"><option value="default">Open </option><option value="boxed">Pending</option><option value="indent">Excalated</option><option value="indent">Resolved</option><option value="indent">Closed</option></select></div>';
+                  }},
+                  {data: "status", render: function(data,type,row,meta) { 
+                    return '<div class="form-control-element"><select class="custom-select margin-bottom-20" id="rw_settings_layout" style="margin-bottom: 0px!important;padding: 0px 0px 0px 0px !important;"><option value="default">Open </option><option value="boxed">Pending</option><option value="indent">Excalated</option><option value="indent">Resolved</option><option value="indent">Closed</option></select></div>';
+                  }},
+                  {render: function(data,type,row,meta) {
+                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.sender_name+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.department_name+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
+                  }}
+                ],
+              });
+            /********** Activated Accounts ************/
+          });
+          //$("#dt-example-responsive").DataTable();
+        </script>
     </div>
                                       
                             

@@ -80,6 +80,7 @@ class Model_retrieval extends CI_Model
   public function return_count($dbres,$tablename,$where_condition=array(),$return_dataType="php_object") 
   {
     $dbres->where($where_condition); 
+    //print $dbres->get_compiled_select($tablename);
     $query_result = $dbres->get($tablename);
     
     if($query_result) 

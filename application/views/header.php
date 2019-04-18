@@ -8,5 +8,7 @@
 	<link rel="shortcut icon" href="<?=base_url()?>resources/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="<?=base_url()?>resources/img/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="<?=base_url()?>resources/css/styles2c70.css?v=1.0.3">
+	
+    <script src="<?=base_url()?>resources/js/vendors/jquery/jquery.min.js"></script>
 </head>
 <body>

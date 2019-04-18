@@ -1,5 +1,5 @@
   <!-- PAGE WRAPPER -->
-  <div class="page">
+  <div class="page"> <?php //print "<pre>"; print_r($_SESSION); print "</pre>"; ?>
     <!-- PAGE CONTENT WRAPPER -->
     <div class="page__content" id="page-content">
       <!-- PAGE LOGIN CONTAINER -->
@@ -15,7 +15,7 @@
         <!--  <a href="index.html" class="logo-holder logo-holder--lg logo-holder--wide">
             
           </a>-->
-    <div class="row margin-bottom-20">
+      <div class="row margin-bottom-20">
         <div class="col-12 col-lg-6">
           <a href="<?=base_url()?>access/request" style="text-decoration:white">
           <div class="widget">
@@ -47,11 +47,18 @@
                 <div class="widget__icon">
                   <span class="li-papers"></span>
                 </div>
-                <div class="widget__title">Your History</div>
+                <div class="widget__title">History</div>
                 <div class="widget__subtitle">orders to be moved</div>
               </div>
               <div class="widget__box widget__box--left">
-                <div class="widget__informer">284 orders</div>
+                <div class="widget__informer">
+                  <?php 
+                    if(isset($_SESSION['user']['id']))
+                      print number_format($totalRequestsCompleted)." orders";
+                    else
+                      print "Login Required";
+                  ?> 
+                </div>
               </div>
             </div>
           </div>
@@ -61,7 +68,7 @@
       <div class="row margin-bottom-20">
       
         <div class="col-12 col-lg-6">
-          <a href="<?=base_url()?>access/confirm" style="text-decoration:white">          
+          <a href="<?=base_url()?>access/files" style="text-decoration:white">          
             <div class="widget">
             <div class="widget__icon_layer widget__icon_layer--right">
               <span class="li-lan"></span>
@@ -83,7 +90,7 @@
 
         </div>
         <div class="col-12 col-lg-6">
-          <a href="" data-toggle="modal" data-target=".bd-example-modal-sm" style="text-decoration: none">
+          <a href="#" id="report_btn" style="text-decoration: none">
           <div class="widget">
             <div class="widget__icon_layer widget__icon_layer--right">
               <span class="li-library"></span>
@@ -96,7 +103,14 @@
                 <div class="widget__subtitle">All Activities</div>
               </div>
               <div class="widget__box widget__box--left">
-                <div class="widget__informer">All Department</div>
+                <div class="widget__informer">
+                  <?php 
+                    if(isset($_SESSION['user']['id']))
+                      print "Access Granted";
+                    else
+                      print "Login Required";
+                  ?>
+                </div>
               </div>
             </div>
           </div>
@@ -166,9 +180,24 @@ var x = setInterval(function() {
 </script>
 
 <script type="text/javascript">
+  /* History Btn Click*/
   $('#history_btn').click(function(){
     let userid = <?php echo ($_SESSION['user']['id']) ?? 0?>;
     let login_url = 'access/allrequests';
+
+    if(userid > 0) {
+      location.href = login_url;
+    }
+    else {
+      $('.bd-example-modal-sm').modal('show');
+      $('#login_redirect').val(login_url);
+    }
+  });
+
+  /* Report Btn Click*/
+  $('#report_btn').click(function(){
+    let userid = <?php echo ($_SESSION['user']['id']) ?? 0?>;
+    let login_url = 'dashboard/home';
 
     if(userid > 0) {
       location.href = login_url;
