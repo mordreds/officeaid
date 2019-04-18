@@ -174,6 +174,34 @@ class Access extends MX_Controller
     print_r($query_result); 
     
   }
+   /*******************************
+     confirm 
+    *******************************/
+    public function ftp() 
+    {
+      if(isset($_SESSION['user']['username']) && isset($_SESSION['user']['roles']))
+        redirect('dashboard');
+      else
+      {
+        # Loading Models
+        $this->load->model('globals/model_retrieval');
+
+        # Retrieving Company Details
+        $tablename = "company_info";
+        $dbres = self::$_Default_DB;
+        $where_condition = ['where_condition' => array('id' => 1)];
+        $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
+        $title['title'] = "Send | OfficeAid"; 
+        $title['pageName'] = "All Files"; 
+        $this->load->view('login_header',$title); 
+        $this->load->view('nav',$title); 
+        $this->load->view('ftp'); 
+        $this->load->view('modals'); 
+        $this->load->view('login_footer'); 
+      }
+    }
+  /**************** Interface ********************/
 
    /*******************************
      confirm 
