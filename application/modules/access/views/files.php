@@ -1,11 +1,39 @@
 <div class="card-body">
-  <a href="<?=base_url()?>access/ftp" class="btn btn-primary btn-xs">Send a new File</a>
+
+<div class="row">
+  <?php if(!empty($alldepartments)) : foreach($alldepartments as $key=>$dept) : ?>
+    <div class="col-6 col-lg-4">
+      <a href="#" class="department" data-id="<?=$dept->id?>" style="text-decoration:white">          
+        <div class="widget" style="margin-bottom: 10px; !important">
+          <div class="widget__icon_layer widget__icon_layer--right">
+            <span class="li-lan"></span>
+          </div>
+          <div class="widget__container">
+            <div class="widget__line">
+              <div class="widget__icon">
+                <span class="li-lan"></span>
+              </div>
+              <div class="widget__title"><?=$dept->name?></div>
+              <div class="widget__subtitle">All Files</div>
+            </div>
+            <div class="widget__box widget__box--left">
+              <div class="widget__informer"><?=number_format($dept->filescount)?> file(s)</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+<?php endforeach; endif; ?>
+    </div>
+
+<div class="divider"></div>
+  <a href="http://officeaid.io/access/ftp" class="btn btn-primary btn-xs">Send a new File</a>
 </div>
 <table id="dt-example-responsive" class="table table-bordered" >
   <thead>
     <tr>
       <th>id</th>
-      <th>CreatedBy</th>
+      <th>Created By</th>
       <th>Subject</th>
       <th>Status</th>
       <th>File Type</th>
@@ -40,11 +68,14 @@
     /************** Default Settings **************/
 
     /********** Activated Accounts ************/
-      $('#dt-example-responsive').dataTable({
+    function create_datatable(tableid,departmentid) {
+      let table = $('#'+tableid).dataTable();
+      table.fnDestroy();
+      $('#'+tableid).dataTable({
         "order": [[ 0, "desc" ]],
         ajax: {
           type : 'GET',
-          url : '<?= base_url()?>access/allfiles_json',
+          url : '<?= base_url()?>access/allfiles_json/'+departmentid,
           dataSrc: '',
           error: function() {
             alert("error retrieving list");
@@ -87,7 +118,16 @@
           }}
         ],
       });
+    }
     /********** Activated Accounts ************/
+    
+    /************** department files *************** */
+    $(".department").click(function () {
+      let departmentid = $(this).data('id');
+      let tableid = "dt-example-responsive";
+      create_datatable(tableid,departmentid)
+    });
+    /************** department files *************** */
   });
         </script>
       </div>

@@ -77,12 +77,17 @@ class Dashboard extends MX_Controller
 
 public function job()
 {
-      # Loading Models
-      $title['title'] = "OfficeAid| Assigned Jobs"; 
-      $this->load->view('header',$title); 
-      $this->load->view('admin_nav',$title);
-      $this->load->view('job'); 
-      $this->load->view('footer'); 
+  if(!isset($_SESSION['user']['username']) && !isset($_SESSION['user']['roles']))
+    redirect('access');
+  else
+  {
+    # Loading Models
+    $title['title'] = "OfficeAid| Assigned Jobs"; 
+    $this->load->view('header',$title); 
+    $this->load->view('admin_nav',$title);
+    $this->load->view('job'); 
+    $this->load->view('footer'); 
+  }
       
 }
 

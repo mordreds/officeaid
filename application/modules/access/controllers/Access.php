@@ -158,14 +158,16 @@ class Access extends MX_Controller
   /*******************************
       All Files Json
   *******************************/
-  public function allfiles_json() 
+  public function allfiles_json($deparmtent = 1) 
   {
     # Loading Models
     $this->load->model('globals/model_retrieval');
 
     $dbres = self::$_Default_DB;
     $tablename = "vw_files";
-    $condition = array();
+    $condition = array(
+      'where_condition' => array('department_id' => $deparmtent)
+    );
 
     $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
     print_r($query_result); 
@@ -217,12 +219,31 @@ class Access extends MX_Controller
         $dbres = self::$_Default_DB;
         $where_condition = ['where_condition' => array('id' => 1)];
         $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
-
+        
+        # retrieving all departments
+        $tablename = "departments";
+        $condition = array(
+          'where_condition' => ['status' => "active"],
+          'orderby'=> ['id' => "Desc"]
+        );
+        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+        if(!empty($query_result)) : 
+          foreach($query_result as $key => $val) : 
+            # retrieving department's count 
+              $tablename = "files";
+              $where_condition = [
+                'department_id' => $val->id
+              ];
+              $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+          endforeach;
+        endif;
+        $data['alldepartments'] = $query_result;
+        //print_r($data); exit;
         $title['title'] = "Send | OfficeAid"; 
         $title['pageName'] = "All Files"; 
         $this->load->view('login_header',$title); 
         $this->load->view('nav',$title); 
-        $this->load->view('files'); 
+        $this->load->view('files',$data); 
         $this->load->view('modals'); 
         $this->load->view('login_footer'); 
       }
