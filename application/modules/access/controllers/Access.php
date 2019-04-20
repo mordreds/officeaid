@@ -117,12 +117,9 @@ class Access extends MX_Controller
       $where_condition = ['where_condition' => array('id' => 1)];
       $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
 
-      # Retrieving All Request
-      $tablename = "requests";
-      $where_condition = array('wherein_condition' => array('status' => "Pending,Processing"));
-
       $title['title'] = "History | OfficeAid"; 
       $title['pageName'] = "All Tickets"; 
+      
       $this->load->view('login_header',$title); 
       $this->load->view('nav',$title); 
       $this->load->view('allrequests'); 
@@ -146,7 +143,7 @@ class Access extends MX_Controller
       $dbres = self::$_Default_DB;
       $tablename = "vw_requests";
       $condition = array(
-        'where_condition' => ['email' => $_SESSION['user']['username']],
+        'where_condition' => array('assigned_to' => $_SESSION['user']['id']),
         'wherein_condition' => [
           'status' => "pending,processing",
         ],
@@ -459,6 +456,15 @@ class Access extends MX_Controller
                     # Merging Emploee Data with client
                       unset($user->group_description,$user->group_roles,$user->group_privileges,$user->group_status,$user->passwd);
                       $session_array['user'] = array_merge((array)$user,$user_roles,$user_privileges);
+
+                      $getAllUsers = $this->model_retrieval->all_info_return_result(self::$_Default_DB,VIEW_USER_TABLE);
+                      if(!empty($getAllUsers)) { 
+                        $session_array['allusers'] = '<option value="" disabled selected>Select One</option>';
+                        foreach ($getAllUsers as $key => $value) {
+                          # code...
+                          $session_array['allusers'] .=  '<option value="'.base64_encode($value->id).'">'.$value->fullname."</option>";
+                        }
+                      }
 
                     /*$employee_data = $this->model_retrieval->all_info_return_row(self::$_Default_DB,"",$user->employee_id); 
                     

@@ -32,7 +32,7 @@
 						</li>
 						</ul>
 					</div></div>
-					<a class="btn btn-light btn-icon float-left" href="<?=base_url()?>access/login">
+					<a class="btn btn-light btn-icon float-left" href="<?=base_url()?>access/logout">
 						<span class="li-power-switch"></span>
 					</a> 
 				</div>
@@ -48,8 +48,12 @@
 	  	</li>
 	  	<li class="title">Interface</li>
 	  </li>
-	  <li class="openable"><a href="<?=base_url()?>dashboard/job"><span class="icon li-feather3"></span> <span class="text">Assigned</span></a>
-	      		</li>
+		<?php if(in_array('AssignTicket',$_SESSION['user']['roles'])) : ?>
+	  	<li class="openable"><a href="<?=base_url()?>dashboard/job">
+				<span class="icon li-feather3"></span> 
+				<span class="text">Assigned</span></a>
+	    </li>
+		<?php endif; ?>
 	  <li class="openable"><a href="<?=base_url()?>dashboard/control"><span class="icon li-ellipsis"></span> <span class="text">Controls</span></a>
 	      		</li>
 

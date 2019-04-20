@@ -22,7 +22,7 @@ class Model_retrieval extends CI_Model
     $select_fields = (@$condition['fields']) ? @$condition['fields'] : array();
     if(!empty($select_fields))
       $dbres->select(implode(",", @$select_fields));
-    
+   
     # Retrieving Data By Condition
     $where_condition = (@$condition['where_condition']) ? @$condition['where_condition'] : array();
     if(!empty($where_condition))

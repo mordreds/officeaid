@@ -128,7 +128,7 @@
                     <p class="caption text-center margin-bottom-30" style="margin-top: 20%;color: #fff;font-size: 20px"><?=$companyinfo[0]->name?></p>
                     <div class="divider"></div>
                     <CENTER>
-                     <img src="<?=base_url().$companyinfo[0]->logo_path?>"style="padding: 25px"> 
+                     <img src="<?=base_url().$companyinfo[0]->logo_path?>"style="padding: 25px" width="270px" height="270px"> 
                     </CENTER>
                     <div class="divider"></div>
                     <ul class="nav navigation" style="color: #fff">

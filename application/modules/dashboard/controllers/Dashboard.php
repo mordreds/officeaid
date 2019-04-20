@@ -17,7 +17,7 @@ class Dashboard extends MX_Controller
   
     public function home() 
     {
-      
+      //print "<pre>"; print_r($_SESSION['user']); 
         $title['title'] = "OfficeAid| Admin"; 
         $this->load->view('header',$title); 
         $this->load->view('admin_nav',$title); 
@@ -78,20 +78,10 @@ class Dashboard extends MX_Controller
 public function job()
 {
       # Loading Models
-      $this->load->model("globals/model_retrieval");
-
-      # Retrieving All Request
-      $dbres = self::$_Default_DB;
-      $tablename = "requests";
-      $where_condition = array(
-        'wherein_condition' => array('status' => "Pending,Processing"),
-      );
-      $data['allrequests'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
-
       $title['title'] = "OfficeAid| Assigned Jobs"; 
       $this->load->view('header',$title); 
       $this->load->view('admin_nav',$title);
-      $this->load->view('job',$data); 
+      $this->load->view('job'); 
       $this->load->view('footer'); 
       
 }
@@ -111,7 +101,6 @@ public function job()
       $dbres = self::$_Default_DB;
       $tablename = "vw_requests";
       $condition = array(
-        'where_condition' => ['email' => $_SESSION['user']['username']],
         'wherein_condition' => [
           'status' => "pending,processing",
         ],
@@ -159,4 +148,86 @@ public function stationary()
     
   /**************** Interface ********************/
 }
+
+public function updaterequest() {
+  $this->form_validation->set_rules('ticketid','Ticket ID','trim|required');
+  $this->form_validation->set_rules('status','Description','trim|required');
+
+  if($this->form_validation->run() === FALSE) {
+    $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+    $result = json_encode(array('status' => ERROR,'error' => $errors));
+    print_r($result); exit;
+  }
+  else {
+    $this->load->model('globals/model_update');
+    /***** Data Definition *****/
+    $dbres = self::$_Default_DB;
+    $tablename = "requests";
+    $update_data = [ 'status' => $this->input->post('status') ];
+    $where_condition = ['id' => base64_decode($this->input->post('ticketid'))];
+    /***** Data Definition *****/
+    /******** Insertion Of New Data ***********/
+    $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+    if($save_data) 
+      $reponseData = [
+        'status' => SUCCESSFUL,
+        'message' => "Successful"
+      ];
+    else
+      $reponseData = [
+        'status' => ERROR,
+        'error' => "Update Failed"
+      ];
+
+      print_r(json_encode($reponseData));
+    /******** Insertion Of New Data ***********/
+    
+  }
+}
+
+public function assignedto() {
+  $this->form_validation->set_rules('ticketid','Ticket ID','trim|required');
+  $this->form_validation->set_rules('assignedto','Assigned To','trim|required');
+
+  if($this->form_validation->run() === FALSE) {
+    $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+    $result = json_encode(array('status' => ERROR,'error' => $errors));
+    print_r($result); exit;
+  }
+  else {
+    $this->load->model('globals/model_update');
+    /***** Data Definition *****/
+    $dbres = self::$_Default_DB;
+    $tablename = "requests";
+    $update_data = ['assigned_to' => base64_decode($this->input->post('assignedto')) ];
+    $where_condition = ['id' => base64_decode($this->input->post('ticketid'))];
+    /***** Data Definition *****/
+    /******** Insertion Of New Data ***********/
+    $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+    if($save_data) 
+      $reponseData = [
+        'status' => SUCCESSFUL,
+        'message' => "Successful"
+      ];
+    else
+      $reponseData = [
+        'status' => ERROR,
+        'error' => "Assignment Failed"
+      ];
+
+      print_r(json_encode($reponseData));
+    /******** Insertion Of New Data ***********/
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
 }//End of Class

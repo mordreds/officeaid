@@ -1,4 +1,3 @@
-<?php print_r($_SESSION['user']); ?>
 <div class="page__content page-aside--hidden" id="page-content"><!-- PAGE ASIDE PANEL -->
   <div class="page-aside page-aside--hidden invert" id="page-aside">
     <div class="scroll" style="max-height: 100%">
@@ -18,11 +17,6 @@
    
    </div></div></div><!-- //END PAGE ASIDE PANEL --><!-- PAGE CONTENT CONTAINER --><div class="content" id="content"><!-- PAGE HEADING --><div class="page-heading"><div class="page-heading__container"><div class="icon"><span class="li-feather3"></span></div>
   <h1 class="title">Assigned Job</h1><p class="caption">OfficeAid</p></div><div class="page-heading__container float-right d-none d-sm-block"></div>
-  <nav aria-label="breadcrumb" role="navigation">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-    </ol>
-    </nav>
   </div><!-- //END PAGE HEADING -->
   <div class="container-fluid">
    <div class="card">
@@ -43,6 +37,8 @@
           </thead>
           <tbody></tbody>
         </table>
+
+
         <script type="text/javascript">
           $(document).ready(function(){
             /************** Default Settings **************/
@@ -84,18 +80,30 @@
                     return row.id
                   }},
                   {data: "subject"},
-                  /*{data: "description",render: function(data,type,row,meta) { 
-                    let desc = row.description.substring(0,20);
-                    return desc;
-                  }},*/
                   {data: "email"},
                   {data: "department"},
                   {data: "priority"},
-                  {data: "status", render: function(data,type,row,meta) { 
-                    return '<div class="form-control-element"><select class="custom-select margin-bottom-20" id="rw_settings_layout" style="margin-bottom: 0px!important;padding: 0px 0px 0px 0px !important;"><option value="default">Open </option><option value="boxed">Pending</option><option value="indent">Excalated</option><option value="indent">Resolved</option><option value="indent">Closed</option></select></div>';
+                  {render: function(data,type,row,meta) { 
+                    return '<div class="form-control-element"><select class="custom-select margin-bottom-20 assigntouser" id="rw_settings_layout" style="margin-bottom: 0px!important;padding: 0px 0px 0px 5px !important;" data-id='+window.btoa(row.id)+'><?=$_SESSION['allusers']?></select></div>';
                   }},
                   {data: "status", render: function(data,type,row,meta) { 
-                    return '<div class="form-control-element"><select class="custom-select margin-bottom-20" id="rw_settings_layout" style="margin-bottom: 0px!important;padding: 0px 0px 0px 0px !important;"><option value="default">Open </option><option value="boxed">Pending</option><option value="indent">Excalated</option><option value="indent">Resolved</option><option value="indent">Closed</option></select></div>';
+                    let status = row.status;
+                    if(status == 'pending')
+                      pending = "selected";
+                    else
+                    pending = "";
+
+                    if(status == 'processing')
+                      processing = "selected";
+                    else
+                    processing = "";
+
+                    if(status == 'resolved')
+                      processed = "selected";
+                    else
+                    processed = "";
+
+                    return '<div class="form-control-element"><select class="custom-select margin-bottom-20 changestatus" id="rw_settings_layout" style="margin-bottom: 0px!important;padding: 0px 0px 0px 5px !important;" data-id='+window.btoa(row.id)+'><option value="boxed" '+pending+'>Pending</option><option value="indent" '+processing+'>Processing</option><option value="indent" '+processed+'>Resolved</option></select></div>';
                   }},
                   {render: function(data,type,row,meta) {
                     return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.sender_name+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.department_name+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
@@ -106,14 +114,67 @@
           });
           //$("#dt-example-responsive").DataTable();
         </script>
+
+        <!-- Updating Status of Ticket -->
+        <script type="text/javascript">
+          $(document).on("change",".changestatus",function(){
+            let formData = { 
+              'ticketid': $(this).data('id'),
+              'status': $(this).children('option:selected').text()
+            };
+            
+            $.ajax({
+              type : 'POST',
+              url : '<?= base_url()?>dashboard/updaterequest',
+              data : formData,
+              success: function(response) {
+                let responseData = JSON.parse(response);
+                if(responseData['status'] == 203) {
+                  alert(responseData['error']);
+                }
+                else if(responseData['status'] == 200) {
+                  alert(responseData['message'])
+                }
+                //console.log(responseData);
+              },
+              error: function() {
+                alert("Error Transmitting Data")
+              }
+            });
+          });
+        </script>
+        <!-- Updating Status of Ticket -->
+
+        <!-- Assignment of Ticket -->
+        <script type="text/javascript">
+          $(document).on("change",".assigntouser",function(){
+            let formData = { 
+              'ticketid': $(this).data('id'),
+              'assignedto': $(this).children('option:selected').val()
+            };
+            //console.log(formData);
+            $.ajax({
+              type : 'POST',
+              url : '<?= base_url()?>dashboard/assignedto',
+              data : formData,
+              success: function(response) {
+                let responseData = JSON.parse(response);
+                if(responseData['status'] == 203) {
+                  alert(responseData['error']);
+                }
+                else if(responseData['status'] == 200) {
+                  alert(responseData['message'])
+                }
+                //console.log(responseData);
+              },
+              error: function() {
+                alert("Error Transmitting Data")
+              }
+            });
+          });
+        </script>
+        <!-- Assignment of Ticket -->
     </div>
-                                      
-                            
-
 </div>
- 
-
-
-
 </div>
 </div><!-- //END PAGE CONTENT CONTAINER --></div><!-- //END PAGE CONTENT --></div><!-- //END PAGE WRAPPER --><!-- TEMPLATE SETTINGS -->

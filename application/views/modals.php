@@ -1,6 +1,74 @@
- 
+ <!-- ***************************** Login Modal *********************************** -->
+   <?php if(!isset($_SESSION['user']['id'])) : ?>
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Login to your account </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="" >
+                <input type="hidden" id="login_redirect" name="redirect">
+                <div class="text-center">
+                    <h5 id="login_error_content" class="content-group" style="display: none;"></h5>
+                  </div>
+                <div class="form-control-element">
+                  <input id="username" type="text" class="form-control" placeholder="Username" name="username" required>
+                  <div class="form-control-element__box"><i class="fa fa-user"></i></div>
+                </div> 
+                <label></label>
+                <div class="form-control-element">
+                  <input id="password" type="password" class="form-control" placeholder="Password" >
+                    <div class="form-control-element__box"><i class="fa fa-key"></i></div>
+                  </div> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+              <button id="login_submit" type="button" class="btn btn-primary" >Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Login Modal -->
+
+      <script type="text/javascript">
+        $(document).on("click","#login_submit",function(){
+          let formData = { 
+            'username': $('#username').val(),
+            'password': $('#password').val()
+          };
+          $.ajax({
+            type : 'POST',
+            url : '<?= base_url()?>access/login_validation',
+            data : formData,
+            success: function(response) {
+              let responseData = JSON.parse(response);
+              if(responseData['status'] == 203) {
+                $('#login_error_content').html(responseData['error']);
+                $('#login_error_content').attr('style', "display: block");
+                $('#login_error_content').attr('style', "color: red");
+              }
+              else if(responseData['status'] == 200) {
+                let redirect_url = $('#login_redirect').val();
+                //alert(redirect_url);
+                location.href = redirect_url;
+              }
+            },
+            error: function() {
+              alert("Error Transmitting Data")
+            }
+          });
+        });
+      </script>
+
+  <?php endif;  if(isset($_SESSION['user']['id'])) : ?>
+
+<!-- ***************************** Login Modal *********************************** -->
 <!-- *****************************  Download File *********************************** -->
-  <div class="modal fade verifyfilecode" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade verifyfilecode" tabindex="-1" role="dialog" aria-labelledby="mySmallodalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
@@ -38,78 +106,6 @@
     });;
   </script>
 <!-- ***************************** Download File *********************************** -->
-
-
- <!-- ***************************** Login Modal *********************************** -->
-   <?php if(!isset($_SESSION['user']['id'])) : ?>
-   <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Login to your account </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form action="" >
-              <input type="hidden" id="login_redirect" name="redirect">
-              <div class="text-center">
-                  <h5 id="login_error_content" class="content-group" style="display: none;"></h5>
-                </div>
-              <div class="form-control-element">
-                <input id="username" type="text" class="form-control" placeholder="Username" name="username" required>
-                <div class="form-control-element__box"></div>
-              </div> 
-              <label></label>
-              <div class="form-control-element">
-                <input id="password" type="password" class="form-control" placeholder="Password" >
-                  <div class="form-control-element__box"></div>
-                </div> 
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
-            <button id="login_submit" type="button" class="btn btn-primary" >Login</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Login Modal -->
-
-    <script type="text/javascript">
-      $(document).on("click","#login_submit",function(){
-        let formData = { 
-          'username': $('#username').val(),
-          'password': $('#password').val()
-        };
-        $.ajax({
-          type : 'POST',
-          url : '<?= base_url()?>access/login_validation',
-          data : formData,
-          success: function(response) {
-            let responseData = JSON.parse(response);
-            if(responseData['status'] == 203) {
-              $('#login_error_content').html(responseData['error']);
-              $('#login_error_content').attr('style', "display: block");
-              $('#login_error_content').attr('style', "color: red");
-            }
-            else if(responseData['status'] == 200) {
-              let redirect_url = $('#login_redirect').val();
-              //alert(redirect_url);
-              location.href = redirect_url;
-            }
-          },
-          error: function() {
-            alert("Error Transmitting Data")
-          }
-        });
-      });
-    </script>
-
-  <?php endif;  if(isset($_SESSION['user']['id'])) : ?>
-
-<!-- ***************************** Login Modal *********************************** -->
-
 <!-- *****************************  Request Details *********************************** -->
   <div class="modal fade req_det" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
