@@ -13,7 +13,7 @@
           
             <div class="divider"></div>
             <div class="form-control-element ">
-              <select class="custom-select margin-bottom-20" id="rw_settings_layout" name="accesstype">
+              <select class="custom-select margin-bottom-20" id="accesstype" name="accesstype">
                 <option value="" disabled selected>Access Type</option>
                 <option>Public</option>
                 <option>Private</option>
@@ -43,6 +43,10 @@
               <input type="file" class="form-control" name="file"  />
               <div class="form-control-element__box"><span class="fa fa-file"></span></div>
             </div>
+            <div id="filecode" class="form-control-element">
+              <input type="text" class="form-control" name="filecode" placeholder="Enter File Access Code" />
+              <div class="form-control-element__box"><span class="fa fa-file"></span></div>
+            </div>
               
           <div class="divider"></div>
 
@@ -63,18 +67,18 @@
 </div>
 
 <script type="text/javascript">var editor = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {
-                lineNumbers: true,
-                matchBrackets: true,
-                mode: "application/x-httpd-php",
-                indentUnit: 4,
-                indentWithTabs: true,
-                enterMode: "keep",
-                tabMode: "shift"                                                
-            });
-            editor.setSize('100%','70px');</script>
-            <script type="text/javascript" src="<?=base_url()?>resources/js/vendors/summernote/summernote-bs4.min.js"></script>
-            <script type="text/javascript">$('#summernote').summernote({
-                placeholder: 'Type in your text',
-                tabsize: 2,
-                height: 70
-            });</script>
+    lineNumbers: true,
+    matchBrackets: true,
+    mode: "application/x-httpd-php",
+    indentUnit: 4,
+    indentWithTabs: true,
+    enterMode: "keep",
+    tabMode: "shift"                                                
+});
+editor.setSize('100%','70px');</script>
+<script type="text/javascript" src="<?=base_url()?>resources/js/vendors/summernote/summernote-bs4.min.js"></script>
+<script type="text/javascript">$('#summernote').summernote({
+    placeholder: 'Type in your text',
+    tabsize: 2,
+    height: 70
+});</script>

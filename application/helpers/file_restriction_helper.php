@@ -16,7 +16,7 @@
 
         if( in_array($extension,$supported_images) ) 
         {
-          if( $file_array['size'] > 0 && $file_array['size'] < 2000000 ) 
+          if( $file_array['size'] > 0 && $file_array['size'] < 20000000 ) 
           {
             # Taret Directory
             if( $img_type == "logo" )
@@ -75,7 +75,7 @@
 
       if( in_array($extension,$supported_extension) ) 
       {
-        if( $file_array['size'] > 0 && $file_array['size'] < 2000000 ) 
+        if( $file_array['size'] > 0 && $file_array['size'] < 20000000 ) 
         {
           $project_name = str_replace(' ', '', $project_name);
 

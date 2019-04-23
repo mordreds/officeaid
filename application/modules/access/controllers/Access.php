@@ -347,7 +347,7 @@ class Access extends MX_Controller
         $target_dir = "uploads/";
         $fileresponse = doc_restriction($file_array,$project_name,$target_dir);
         //print_r($fileresponse); exit;
-        if($fileresponse['error']) {
+        if(@$fileresponse['error']) {
           $this->session->set_flashdata('error', $fileresponse['error']);
           redirect('access/ftp');
         }
