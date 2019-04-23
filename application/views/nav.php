@@ -119,9 +119,172 @@
                   <span class="text">Request History</span></a>
               </li>
               <li class="title">Repository</li>
-              <li ><a href="<?=base_url()?>access/confirm"><span class="icon li-pie-chart"></span> <span class="text">Send File</span></a></li>
-              <li ><a href="<?=base_url()?>access/receptionist"><span class="icon li-menu-square"></span> <span class="text">Receive</span></a>
+              <li >
+                <li class="folder">
+                      <a href="#">
+                        <span class="icon li-layers"></span>
+                        <span class="text">Departments</span></a>
+                        <ul>
+                          <?php if(!empty($alldepartments)) : foreach($alldepartments as $key=>$dept) : ?>
+                          <li class="folder ">
+
+                            <a  href="#" class="department" data-id="<?=$dept->id?>" >
+                              <span class="icon fa fa-folder-o"></span>
+                              <span class="text"><?=$dept->name?></span></a>
+                              <div class="widget__informer"><?=number_format($dept->filescount)?> file(s)</div>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                      </ul>
+
+                                    </li>
+                                    <?php endforeach; endif; ?>
+                                  </ul>
+                                </li>
               </li>
+              <li >
+                <li class="folder">
+                      <a href="#">
+                        <span class="icon li-pie-chart"></span>
+                        <span class="text">Branches</span></a>
+                        <ul>
+                          <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKH</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                      </ul>
+                                    </li>
+                                       <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKW</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                       
+                                      </ul>
+                                    </li>
+                                    <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKG</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                       
+                                      </ul>
+                                    </li>
+                                    <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKT</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                       
+                                      </ul>
+                                    </li>
+                                      <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKB</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                       
+                                      </ul>
+                                    </li>
+                                    <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKF</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                        
+                                      </ul>
+                                    </li>
+                                    <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKS</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                        
+                                      </ul>
+                                    </li>
+                                    <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKA</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                        
+                                      </ul>
+                                    </li>
+                                      <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKP</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                        
+                                      </ul>
+                                    </li>
+                                    <li class="folder ">
+                            <a href="#"><span class="icon fa fa-folder-o"></span>
+                              <span class="text">OKK</span></a>
+                              <ul>
+                                <li>
+                                  <a href="#"><span class="icon fa fa-file-o"></span>
+                                    <span class="text">In</span></a></li>
+                                    <li>
+                                      <a href="#"><span class="icon fa fa-file-o"></span>
+                                        <span class="text">Out</span></a></li>
+                                        
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+              </li>
+              
             </ul>
            </div>
           </div>
