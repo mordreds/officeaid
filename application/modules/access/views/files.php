@@ -27,7 +27,7 @@
     </div>
 
 <div class="divider"></div>
-  <a href="<?=base_url()?>/access/ftp" class="btn btn-primary btn-xs">Send a new File</a>
+  <a href="<?=base_url()?>access/ftp" class="btn btn-primary btn-xs">Send a new File</a>
 </div>
 <table id="dt-example-responsive" class="table table-bordered" >
   <thead>
