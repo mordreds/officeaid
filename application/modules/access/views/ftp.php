@@ -42,8 +42,8 @@
             <div class="form-control-element">
               <input type="file" class="form-control" name="file"  />
               <div class="form-control-element__box"><span class="fa fa-file"></span></div>
-            </div>
-            <div id="filecode" class="form-control-element">
+            </div><br/>
+            <div id="filecode" class="form-control-element" style="display:none">
               <input type="text" class="form-control" name="filecode" placeholder="Enter File Access Code" />
               <div class="form-control-element__box"><span class="fa fa-file"></span></div>
             </div>
@@ -82,3 +82,13 @@ editor.setSize('100%','70px');</script>
     tabsize: 2,
     height: 70
 });</script>
+
+<script type="text/javascript">
+  $('#accesstype').change(function(){
+    let accesstype = $('#accesstype option:selected').text();
+    if(accesstype == "Private")
+      $('#filecode').attr('style','display:block');
+    else
+      $('#filecode').attr('style','display:none')
+  });
+</script>
