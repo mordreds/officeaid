@@ -191,11 +191,21 @@ class Access extends MX_Controller
         $where_condition = ['where_condition' => array('id' => 1)];
         $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
 
+        # Retrieving All Departments
+        $tablename = "departments";
+        $where_condition = array('status' => "active");
+        $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
+
+        # Retrieving All Users
+        $tablename = "access_users";
+        $where_condition = array('status' => "active");
+        $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
+        
         $title['title'] = "Send | OfficeAid"; 
         $title['pageName'] = "All Files"; 
         $this->load->view('login_header',$title); 
         $this->load->view('nav',$title); 
-        $this->load->view('ftp'); 
+        $this->load->view('ftp',$data); 
         $this->load->view('modals'); 
         $this->load->view('login_footer'); 
       }
@@ -292,6 +302,68 @@ class Access extends MX_Controller
           $result = json_encode(array('error', 'Saving Data Failed'));
 
         print_r($result);
+        /******** Insertion Of New Data ***********/
+        
+      }
+    }
+
+    public function savefile() {
+      $this->form_validation->set_rules('accesstype','Accesstype','trim|required');
+      $this->form_validation->set_rules('filecode','Private Pin','trim|');
+      $this->form_validation->set_rules('department','Department','trim|required');
+      $this->form_validation->set_rules('createdby','Email','trim|required');
+      $this->form_validation->set_rules('subject','Your Subject','trim|required');
+
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        $this->session->set_flashdata('error',$errors);
+        redirect('access/ftp');
+      }
+      else {
+        $this->load->model('globals/model_insertion');
+        $this->load->helper('file_restriction');
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "files";
+        $request_data = [
+          'status' => $this->input->post('accesstype'),
+          'filecode' => $this->input->post('filecode'),
+          'department_id' => $this->input->post('department'),
+          'createdby' => $this->input->post('createdby'),
+          'subject' => ucwords($this->input->post('subject'))
+        ];
+
+        # Checking ofnr private files
+        if($request_data['status'] == "Private") {
+          if(empty($request_data['filecode'])) {
+            $this->session->set_flashdata('error',"File Code Required");
+            redirect('access/ftp');
+          }
+        }
+
+        # uploading File
+        $file_array = $_FILES['file'];
+        $project_name = $request_data['createdby']."_".gmdate('Y_m_d_H_i_s');
+        $target_dir = "uploads/";
+        $fileresponse = doc_restriction($file_array,$project_name,$target_dir);
+        //print_r($fileresponse); exit;
+        if($fileresponse['error']) {
+          $this->session->set_flashdata('error', $fileresponse['error']);
+          redirect('access/ftp');
+        }
+        else {
+          $request_data['filetype'] = $fileresponse['extension'];
+          $request_data['filepath'] = $fileresponse['imgpath'];
+        }
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_insertion->datainsert($dbres,$tablename,$request_data);
+  
+        if($save_data) 
+          $this->session->set_flashdata('success', 'Saving Data Successful');
+        else 
+          $this->session->set_flashdata('error', 'Saving Data Failed');
+
+        redirect('access/ftp');
         /******** Insertion Of New Data ***********/
         
       }

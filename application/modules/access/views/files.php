@@ -86,20 +86,20 @@
           {data: "fullname"},
           {data: "subject"},
           {data: "status", render: function(data,type,row,meta) { 
-            if(row.status == "public") 
+            if(row.status == "Public") 
               return '<div class="btn btn-outline-success btn-block disabled btn-sm">'+row.status+'</div>';
             
-            else if(row.status == "private")
+            else if(row.status == "Private")
               return '<div class="btn btn-outline-danger btn-block disabled btn-sm">'+row.status+'</div>'
           }},
           {data: "filetype"},
           {render: function(data,type,row,meta) {
-            if(row.status == "public") 
+            if(row.status == "Public") 
               color = "color: #428c01";
-            else if(row.status == "private")
+            else if(row.status == "Private")
               color = "color: #ff2d2d";
 
-            if(row.filetype == "document") 
+            if(row.filetype == "doc" || row.filetype == "docx") 
               fileicon = 'fa fa-file-word-o';
             
             else if(row.filetype == "image")
@@ -108,13 +108,16 @@
             else if(row.filetype == "pdf")
               fileicon = "fa fa-file-pdf-o";
             
-            else if(row.filetype == "excel")
+            else if(row.filetype == "xls" || row.filetype == "xlsx")
               fileicon = "fa fa-file-excel-o";
             
             else
               fileicon = "fa fa-file-text-o";
 
-            return '<a href="#" class="verify_file" style="'+color+'" data-id="'+window.btoa(row.id)+'" data-stats="'+row.status+'"><span class="fa '+fileicon+' fa-2x"></span></a>'
+            if(row.status == "Public")
+              return '<a href="<?=base_url()?>'+row.filepath+'" style="'+color+'" data-id="'+window.btoa(row.id)+'" data-stats="'+row.status+'"><span class="fa '+fileicon+' fa-2x"></span></a>'
+            else
+              return '<a href="#" class="verify_file" style="'+color+'" data-id="'+window.btoa(row.id)+'" data-stats="'+row.status+'"><span class="fa '+fileicon+' fa-2x"></span></a>'
           }}
         ],
       });

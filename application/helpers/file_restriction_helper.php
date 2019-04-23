@@ -64,51 +64,47 @@
   /***********************************************
     Document Restriction Function
   ************************************************/
-  function doc_restriction($file_array,$project_name,$target_dir,$error_url) 
+  function doc_restriction($file_array,$project_name,$target_dir) 
   {
-    if($_SESSION['username'])
+    if(!empty($file_array))
     {
-      if(!empty($file_array))
+      # File Upload Restrictions
+      $supported_extension = array('doc','docx','pdf','xls','xlsx');
+      
+      $extension = strtolower(pathinfo($file_array['name'], PATHINFO_EXTENSION));
+
+      if( in_array($extension,$supported_extension) ) 
       {
-        # File Upload Restrictions
-        $supported_extension = array('doc','docx');
-        
-        $extension = strtolower(pathinfo($file_array['name'], PATHINFO_EXTENSION));
-
-        if( in_array($extension,$supported_extension) ) 
+        if( $file_array['size'] > 0 && $file_array['size'] < 2000000 ) 
         {
-          if( $file_array['size'] > 0 && $file_array['size'] < 2000000 ) 
-          {
-            $project_name = str_replace(' ', '', $project_name);
+          $project_name = str_replace(' ', '', $project_name);
 
-            $full_img_name = $target_dir. $project_name. ".". $extension;
+          $full_img_name = $target_dir. $project_name. ".". $extension;
 
-            $full_img_path = strtolower($full_img_name);
+          $full_img_path = strtolower($full_img_name);
 
-            if( !file_exists($target_dir) )
-              mkdir($target_dir,0755,TRUE);
-
-            return $full_img_path;
-          } 
+          if( !file_exists($target_dir) )
+            mkdir($target_dir,0755,TRUE);
+          
+          if(!move_uploaded_file($file_array['tmp_name'], $full_img_path))
+            $response['error'] = "Error uploading file - check destination directory is writeable OR created.')";
           else 
-          {
-            $_SESSION['error'] = "File Size Too Large.<br>Please Check File Again";
-            redirect($error_url);
-          }
+            $response = [
+              'imgpath' => $full_img_path,
+              'extension' => $extension
+            ];
         } 
         else 
-        {
-          $_SESSION['error'] = "File Type Not Supported.<br>Please Upload a Document File";
-          redirect($error_url);
-        }
-      }
-      else
-        return  FALSE;
+          $response['error'] = "File Size Too Large.<br>Please Check File Again";
+      } 
+      else 
+        $response['error'] = "File Type Not Supported.<br>Please Upload a Document File";
+      
     }
     else
-    {
-      redirect('Access');
-    }                    
+      $response['error'] = "File Array Empty";       
+      
+      return $response;
   }
 
   /***********************************************
