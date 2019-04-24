@@ -254,7 +254,6 @@ class Access extends MX_Controller
         $this->load->view('login_header',$title); 
         $this->load->view('nav',$title); 
         $this->load->view('files',$data); 
-        $this->load->view('modals'); 
         $this->load->view('login_footer'); 
       }
     }
@@ -309,7 +308,7 @@ class Access extends MX_Controller
 
     public function savefile() {
       $this->form_validation->set_rules('accesstype','Accesstype','trim|required');
-      $this->form_validation->set_rules('filecode','Private Pin','trim|');
+      $this->form_validation->set_rules('filecode','Private Pin','trim');
       $this->form_validation->set_rules('department','Department','trim|required');
       $this->form_validation->set_rules('createdby','Email','trim|required');
       $this->form_validation->set_rules('subject','Your Subject','trim|required');
@@ -364,6 +363,43 @@ class Access extends MX_Controller
           $this->session->set_flashdata('error', 'Saving Data Failed');
 
         redirect('access/ftp');
+        /******** Insertion Of New Data ***********/
+        
+      }
+    }
+
+    public function verifycode() {
+      $this->form_validation->set_rules('filecode','File Code','trim|required');
+
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        $result = json_encode(array('status' => ERROR,'error' => $errors));
+        print_r($result); exit;
+      }
+      else {
+        $this->load->model('globals/model_retrieval');
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "files";
+        $where_condition = [
+          'where_condition' => ['filecode' => $this->input->post('filecode')]
+        ];
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+        
+        if(!empty($save_data)) 
+          $responseData = [
+            'status' => SUCCESSFUL, 
+            'message' => '<a href="'.base_url().$save_data[0]->filepath.'" target="_blank" class="btn btn-primary btn--icon btn--icon-stacked btn--anon d-none d-lg-block"><span class="text"></span> Download Now</a>'
+          ];
+
+        else
+          $responseData = [
+            'status' => ERROR, 
+            'error' => "Invalid File Code. Try Again"
+          ];
+
+        print_r(json_encode($responseData));
         /******** Insertion Of New Data ***********/
         
       }

@@ -86,9 +86,13 @@ editor.setSize('100%','70px');</script>
 <script type="text/javascript">
   $('#accesstype').change(function(){
     let accesstype = $('#accesstype option:selected').text();
-    if(accesstype == "Private")
-      $('#filecode').attr('style','display:block');
-    else
-      $('#filecode').attr('style','display:none')
+    if(accesstype == "Private") {
+      $('#filecode').show(700);
+      $('[name=filecode]').attr('required',"required");
+    }
+    else {
+      $('[name=filecode]').attr('required');
+      $('#filecode').hide(700);
+    }
   });
 </script>
