@@ -69,7 +69,7 @@
     if(!empty($file_array))
     {
       # File Upload Restrictions
-      $supported_extension = array('doc','docx','pdf','xls','xlsx','txt','zip');
+      $supported_extension = array('doc','docx','pdf','xls','xlsx','txt','zip','.exe');
       $extension = strtolower(pathinfo($file_array['name'], PATHINFO_EXTENSION));
 
       if( in_array($extension,$supported_extension) ) 
