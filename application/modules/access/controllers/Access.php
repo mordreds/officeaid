@@ -58,10 +58,13 @@ class Access extends MX_Controller
 
       # Getting count of all completed requests
       $tablename = "requests";
-      $where_condition = [
-        'email' => @$_SESSION['user']['username']
-      ];
+      $where_condition = ['email' => @$_SESSION['user']['username']];
       $data['totalRequestsCompleted'] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+
+      # Getting count of all files
+      $tablename = "files";
+      $where_condition = ['status' => "active"];
+      $data['totalfiles'] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
 
       # Retrieving Company Details
       $tablename = "company_info";

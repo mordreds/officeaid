@@ -82,7 +82,7 @@
                 <div class="widget__subtitle">Send or Upload a File</div>
               </div>
               <div class="widget__box widget__box--left">
-                <div class="widget__informer">1200 orders</div>
+                <div class="widget__informer"><?=number_format($totalfiles)?> File(s) Uploaded</div>
               </div>
             </div>
           </div>
