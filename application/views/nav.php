@@ -125,13 +125,13 @@
                         <span class="icon li-layers"></span>
                         <span class="text">Departments</span></a>
                         <ul>
-                          <?php if(!empty($alldepartments)) : foreach($alldepartments as $key=>$dept) : ?>
+
+                          <!--sub folder-->
                           <li class="folder ">
 
-                            <a  href="#" class="department" data-id="<?=$dept->id?>" >
+                            <a href="#">
                               <span class="icon fa fa-folder-o"></span>
-                              <span class="text"><?=$dept->name?></span></a>
-                              <div class="widget__informer"><?=number_format($dept->filescount)?> file(s)</div>
+                              <span class="text">Humna Resource</span></a>
                               <ul>
                                 <li>
                                   <a href="#"><span class="icon fa fa-file-o"></span>
@@ -142,7 +142,7 @@
                                       </ul>
 
                                     </li>
-                                    <?php endforeach; endif; ?>
+                                    <!--end of sub folder-->
                                   </ul>
                                 </li>
               </li>
