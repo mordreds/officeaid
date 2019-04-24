@@ -82,7 +82,7 @@
                 <div class="widget__subtitle">Send or Upload a File</div>
               </div>
               <div class="widget__box widget__box--left">
-                <div class="widget__informer">1200 orders</div>
+                <div class="widget__informer"><?=number_format($totalfiles)?> File(s) Uploaded</div>
               </div>
             </div>
           </div>
@@ -139,7 +139,7 @@
                     <li>Email Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->email)?></b></span></li>
                     <li>Website Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->website)?></b></span></li>
                     <div class="divider"></div>
-                    <li>License :<span class="text-muted text-regular"><br><b><p id="demo"></p></b></span></li>
+                    <!-- <li>License :<span class="text-muted text-regular"><br><b><p id="demo"></p></b></span></li> -->
                   </ul>
                <?php endif; ?>
               </div><!-- //END PAGE CONTENT CONTAINER -->

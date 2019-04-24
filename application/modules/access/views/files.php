@@ -42,6 +42,37 @@
   </thead>
   <tbody></tbody>
 </table>
+
+<!-- *****************************  Download File *********************************** -->
+  <div class="modal fade verifyfilecode" tabindex="-1" role="dialog" aria-labelledby="mySmallodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter File Code </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="verifymodal_body">
+          <form action="" >
+            <div class="text-center">
+              <h5 id="login_error_content" class="content-group" style="display: none;"></h5>
+            </div>
+            <div class="form-control-element">
+              <input id="filecode" type="text" class="form-control" placeholder="Enter File Code" name="filecode" required>
+              <div class="form-control-element__box"><i class="fa fa-user"></i></div>
+            </div> 
+            <label></label>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button> 
+              <button id="filecode_verifyBtn" type="button" class="btn btn-primary" >Verify</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- ***************************** Download File *********************************** -->
 <script type="text/javascript">
   $(document).ready(function(){
     /************** Default Settings **************/
@@ -111,6 +142,9 @@
             else if(row.filetype == "xls" || row.filetype == "xlsx")
               fileicon = "fa fa-file-excel-o";
             
+            else if(row.filetype == "zip" || row.filetype == "rar")
+              fileicon = "fa fa-file-archive-o";
+            
             else
               fileicon = "fa fa-file-text-o";
 
@@ -132,8 +166,43 @@
     });
     /************** department files *************** */
   });
-        </script>
-      </div>
-    </div><!-- PAGE LOGIN CONTAINER -->
-  </div><!-- //END PAGE CONTENT -->
+</script>
+
+<script type="text/javascript">
+    /************** private files *************** */
+    $(document).on('click','.verify_file', function(){
+      $('.verifyfilecode').modal('show');
+    });
+
+    $('#filecode_verifyBtn').click(function(){
+      let formData = { 
+        'filecode': $('[name="filecode"]').val()
+      };
+      $.ajax({
+        type : 'POST',
+        url : '<?= base_url()?>access/verifycode',
+        data : formData,
+        success: function(response) {
+          let responseData = JSON.parse(response);
+          if(responseData['status'] == 203) {
+            $('#login_error_content').html(responseData['error']);
+            $('#login_error_content').attr('style', "display: block");
+            $('#login_error_content').attr('style', "color: red");
+          }
+          else if(responseData['status'] == 200) {
+            $('#verifymodal_body').html(responseData['message']);
+          }
+        },
+        error: function() {
+          alert("Error Transmitting Data")
+        }
+      });
+    })
+    /************** private files *************** */
+</script>
+
+
+</div>
+</div><!-- PAGE LOGIN CONTAINER -->
+</div><!-- //END PAGE CONTENT -->
 </div>
