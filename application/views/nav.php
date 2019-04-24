@@ -119,32 +119,23 @@
                   <span class="text">Request History</span></a>
               </li>
               <li class="title">Repository</li>
-              <li >
-                <li class="folder">
-                      <a href="#">
-                        <span class="icon li-layers"></span>
-                        <span class="text">Departments</span></a>
-                        <ul>
-
-                          <!--sub folder-->
+              <li>
+                  <li class="folder">
+                    <a href="#">
+                      <span class="icon li-layers"></span>
+                      <span class="text">Departments</span></a>
+                      <ul>
+                        <?php if(!empty($alldepartments)) : foreach($alldepartments as $key=>$dept) : ?>
                           <li class="folder ">
-
-                            <a href="#">
+                            <a href="#" class="department" data-id="<?=$dept->id?>">
                               <span class="icon fa fa-folder-o"></span>
-                              <span class="text">Humna Resource</span></a>
-                              <ul>
-                                <li>
-                                  <a href="#"><span class="icon fa fa-file-o"></span>
-                                    <span class="text">In</span></a></li>
-                                    <li>
-                                      <a href="#"><span class="icon fa fa-file-o"></span>
-                                        <span class="text">Out</span></a></li>
-                                      </ul>
-
-                                    </li>
-                                    <!--end of sub folder-->
-                                  </ul>
-                                </li>
+                              <span class="text"><?=$dept->name?></span>
+                            </a>
+                          </li>
+                        <?php endforeach; endif; ?>
+                      </ul>
+                    </a>
+                  </li>
               </li>
               <li >
                 <li class="folder">

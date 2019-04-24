@@ -1,7 +1,7 @@
 <div class="card-body">
 
 <div class="row">
-  <?php if(!empty($alldepartments)) : foreach($alldepartments as $key=>$dept) : ?>
+  <?php /*if(!empty($alldepartments)) : foreach($alldepartments as $key=>$dept) : ?>
     <div class="col-6 col-lg-4">
       <a href="#" class="department" data-id="<?=$dept->id?>" style="text-decoration:white">          
         <div class="widget" style="margin-bottom: 10px; !important">
@@ -23,7 +23,7 @@
         </div>
       </a>
     </div>
-<?php endforeach; endif; ?>
+<?php endforeach; endif; */?>
     </div>
 
 <div class="divider"></div>

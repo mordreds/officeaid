@@ -251,6 +251,7 @@ class Access extends MX_Controller
           endforeach;
         endif;
         $data['alldepartments'] = $query_result;
+        $title['alldepartments'] = $query_result;
         //print_r($data); exit;
         $title['title'] = "Send | OfficeAid"; 
         $title['pageName'] = "All Files"; 
