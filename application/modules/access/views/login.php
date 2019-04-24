@@ -134,8 +134,8 @@
                     <ul class="nav navigation" style="color: #fff">
                     <!-- <li>Incooperation Date:<span class="text-muted text-regular "><b>21-10-2015</b> </span></li> -->
 
-                    <li>Postal Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->postal_address)?></b></span></li>
-                    <li>Residence Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->residence_address)?></b></span></li>
+                  <!--  <li>Postal Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->postal_address)?></b></span></li>
+                    <li>Residence Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->residence_address)?></b></span></li> -->
                     <li>Email Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->email)?></b></span></li>
                     <li>Website Address:<span class="text-muted text-regular"><br><b><?=strtoupper($companyinfo[0]->website)?></b></span></li>
                     <div class="divider"></div>

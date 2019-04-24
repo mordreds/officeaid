@@ -107,7 +107,7 @@
                   <span class="text">Dashboards</span>
                 </a>
               </li>
-              <li>
+            <!--  <li>
                 <a href="<?=base_url()?>access/request">
                   <span class="icon li-document"></span> 
                   <span class="text">New Request</span>
@@ -117,7 +117,7 @@
                 <a href="<?=base_url()?>access/member">
                   <span class="icon li-group-work"></span> 
                   <span class="text">Request History</span></a>
-              </li>
+              </li>-->
               <li class="title">Repository</li>
               <li>
                   <li class="folder">
