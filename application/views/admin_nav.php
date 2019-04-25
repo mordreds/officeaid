@@ -60,14 +60,15 @@
 	      		<li class="openable"><a href="<?=base_url()?>dashboard/report"><span class="icon li-layers"></span> <span class="text">Report</span></a>
 	      		</li>
 	      				<li class="title">Template options</li>
-	  <li class="openable"><a href="#"><span class="icon li-wallet"></span>
-	  <span class="text">User Profile</span></a>
-	  <ul>
-	  	<li class="openable"><a href="<?=base_url()?>dashboard/users" class="no-icon"><span class="text"> Users</span></a>
-	  </li><li class="openable"><a href="<?=base_url()?>dashboard/privillage" class="no-icon"><span class="text">Privillages</span></a>
-	  </li>
-	</ul>
-</li>
+		<?php if(in_array('UserMgmt',$_SESSION['user']['roles'])) : ?>
+			<li class="openable"><a href="#"><span class="icon li-wallet"></span>
+					<span class="text">User Profile</span></a>
+					<ul>
+						<li class="openable"><a href="<?=base_url()?>dashboard/users" class="no-icon"><span class="text"> Users</span></a></li>
+						<li class="openable"><a href="<?=base_url()?>dashboard/privillage" class="no-icon"><span class="text">Privillages</span></a></li>
+				</ul>
+			</li>
+		<?php endif; ?>
 <li class="openable"><a href="<?=base_url()?>dashboard/stationary"><span class="icon li-library"></span> <span class="text">Stationary</span></a>
 	      		</li>
 	  

@@ -10,5 +10,7 @@
 	<link rel="stylesheet" href="<?=base_url()?>resources/css/styles2c70.css?v=1.0.3">
 	
     <script src="<?=base_url()?>resources/js/vendors/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="<?=base_url()?>resources/js/vendors/datatables/datatables.min.js"></script>
+  <script type="text/javascript" src="<?=base_url()?>resources/js/vendors/datatables/extensions/dataTables.buttons.min.js"></script>
 </head>
 <body>

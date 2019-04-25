@@ -121,7 +121,7 @@
               <li class="title">Repository</li>
               <li>
                   <li class="folder">
-                    <a href="#">
+                    <a href="<?=base_url()?>access/files">
                       <span class="icon li-layers"></span>
                       <span class="text">Departments</span></a>
                       <ul>

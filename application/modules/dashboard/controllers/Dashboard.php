@@ -52,16 +52,24 @@ class Dashboard extends MX_Controller
     
   /**************** Interface ********************/
 }
-  public function users()
-    {
-      
-        $title['title'] = "OfficeAid| Users"; 
-        $this->load->view('header',$title); 
-        $this->load->view('users'); 
-        $this->load->view('footer'); 
-      
-    
-  /**************** Interface ********************/
+  public function users() 
+  {
+    if(in_array('UserMgmt',$_SESSION['user']['roles'])) :
+      # Loading Models
+      $this->load->model("globals/model_retrieval");
+
+      # Retrieving All Departments
+      $dbres = self::$_Default_DB;
+      $tablename = "departments";
+      $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename);
+
+      $title['title'] = "OfficeAid| Users"; 
+      $this->load->view('header',$title); 
+      $this->load->view('users',$data); 
+      $this->load->view('footer'); 
+    else :
+      redirect('dashboard/','refresh');
+    endif;
 }
   public function privillage()
     {
@@ -225,6 +233,82 @@ public function assignedto() {
     
   }
 }
+
+/********** User Management **********/
+  /**************************
+    Saving New User
+  **************************/
+  public function save_user() {
+    if(in_array('UserMgmt',$_SESSION['user']['roles'])) :
+      $this->form_validation->set_rules('fullname','Ticket ID','trim|required');
+      $this->form_validation->set_rules('email','Email','trim|required');
+      $this->form_validation->set_rules('phone_number','Phone Number','trim|required');
+      $this->form_validation->set_rules('department','Department','trim|required');
+      $this->form_validation->set_rules('password','Password','trim|required');
+
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        $this->session->set_flashdata('error', $errors);
+        redirect('dashboard/users');
+      }
+      else {
+        # Loading Models 
+        $this->load->model('globals/model_insertion');
+
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "access_users";
+        $request_data = [
+          'fullname'  => ucwords($this->input->post('fullname')),
+          'username'  => $this->input->post('email'),
+          'passwd'  => password_hash($this->input->post('fullname'), PASSWORD_DEFAULT),
+          'department_id' => $this->input->post('department'),
+          'phone_number' => ucwords($this->input->post('phone_number')),
+          'created_by' => $_SESSION['user']['id']
+        ];
+        /***** Data Definition *****/
+
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_insertion->datainsert($dbres,$tablename,$request_data);
+
+        if($save_data) 
+          $this->session->set_flashdata('success', 'Saving User Successful');
+        else 
+          $this->session->set_flashdata('error', 'Saving User Failed');
+
+        redirect('dashboard/users');
+        /******** Insertion Of New Data ***********/
+      }
+      else :
+        $this->session->set_flashdata('error', 'Saving User Failed');
+        redirect('dashboard/');
+
+      endif;
+  }
+
+  /**************************
+    Get All Users => Datatable
+  **************************/
+  public function getallusers_json() 
+    {
+      if(!isset($_SESSION['user']['username']) && in_array('UserMgmt',$_SESSION['user']['roles']))
+        redirect('access');
+      else
+      {
+        # Loading Models
+        $this->load->model('globals/model_retrieval');
+
+        $dbres = self::$_Default_DB;
+        $tablename = "vw_user_details";
+        $condition = array(
+          'orderby'=> ['id' => "Desc"]
+        );
+
+        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
+        print_r($query_result); 
+      }
+    }
+  /********** User Management **********/
 
 
 
