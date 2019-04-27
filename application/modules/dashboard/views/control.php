@@ -36,8 +36,8 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>Type</th>
           <th>Department</th>
-          <th>Category</th>
           <th>Subject</th>
           <th>Priority</th>
           <th>Date Issued</th>
@@ -49,57 +49,70 @@
         <tfoot>
           <tr>
             <th>ID</th>
+          <th>Type</th>
           <th>Department</th>
-          <th>Category</th>
           <th>Subject</th>
           <th>Priority</th>
           <th>Date Issued</th>
           <th>Status</th>
           <th>Assigned To</th>
-          <th>Attached</th>
+          <th>Action</th>
             </tr>
           </tfoot>
           <tbody>
             <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
+              <td>1</td>
+              <td>Task</td>
+              <td>Credit</td>
+              <td>Can't query report on t24</td>
               <td>Higher</td>
-              <td>2011/04/25</td>
-              <td>Open</td>
+              <td>2011/04/20</td>
               <td>
                <div class="form-control-element">
                   <select class="custom-select margin-bottom-20" id="rw_settings_layout">
-                    <option value="default">Name </option>
-                    <option value="boxed"></option>
-                    <option value="indent"></option>
+                    <option value="default">Pending </option>
+                    <option value="boxed">Processing</option>
+                    <option value="indent">Resolved</option>
               </div>  
         </td>
+        <td>Bismark</td>
         <td><span class="icon li-document"></span></td>
             </tr>
-            <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-               <td>Normal</td>
-              <td>2011/04/25</td>
-              <td>Pending</td>
-              
-              <td>$320,800</td>
-               <td><span class="icon li-document"></span></td>
+             <tr>
+              <td>2</td>
+              <td>Ticket</td>
+              <td>Credit</td>
+              <td>Can't query report on t24</td>
+              <td>Higher</td>
+              <td>2011/04/20</td>
+              <td>
+               <div class="form-control-element">
+                  <select class="custom-select margin-bottom-20" id="rw_settings_layout">
+                    <option value="default">Pending </option>
+                    <option value="boxed">Processing</option>
+                    <option value="indent">Resolved</option>
+              </div>  
+        </td>
+        <td>Bismark</td>
+        <td><span class="icon li-document"></span></td>
             </tr>
-            <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-               <td>Higher</td>
-              <td>2011/04/25</td>
-              <td>Excalated</td>
-              <td>$320,800</td>
-               <td><span class="icon li-document"></span></td>
+              <tr>
+              <td>3</td>
+              <td>Ticket</td>
+              <td>Credit</td>
+              <td>Can't query report on t24</td>
+              <td>Higher</td>
+              <td>2011/04/20</td>
+              <td>
+               <div class="form-control-element">
+                  <select class="custom-select margin-bottom-20" id="rw_settings_layout">
+                    <option value="default">Pending </option>
+                    <option value="boxed">Processing</option>
+                    <option value="indent">Resolved</option>
+              </div>  
+        </td>
+        <td>Bismark</td>
+        <td><span class="icon li-document"></span></td>
             </tr>
             
               </tbody>

@@ -69,7 +69,7 @@
 				</ul>
 			</li>
 		<?php endif; ?>
-<li class="openable"><a href="<?=base_url()?>dashboard/stationary"><span class="icon li-library"></span> <span class="text">Stationary</span></a>
+<li class="openable"><a href="<?=base_url()?>dashboard/stationary"><span class="icon li-clipboard-pencil"></span> <span class="text">Task</span></a>
 	      		</li>
 	  
 	</ul>
