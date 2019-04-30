@@ -33,6 +33,7 @@ class Dashboard extends MX_Controller
       if(isset($_SESSION['user'])) : 
         $title['title'] = "OfficeAid| Reports"; 
         $this->load->view('header',$title); 
+        $this->load->view('admin_nav',$title);
         $this->load->view('report'); 
         $this->load->view('footer'); 
       else : 
@@ -155,6 +156,7 @@ public function stationary()
       
         $title['title'] = "OfficeAid| Assigned Jobs"; 
         $this->load->view('header',$title); 
+        $this->load->view('admin_nav',$title);
         $this->load->view('stationary'); 
         $this->load->view('footer'); 
       
