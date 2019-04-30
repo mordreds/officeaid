@@ -218,6 +218,7 @@ class Model_retrieval extends CI_Model
     {
       $this->db->select($FieldName);
 
+      $this->db->order_by('id',"DESC");
       $query = $this->db->get($TableName);
         
       return ( ($query->num_rows() > 0) ? $query->row(0) : FALSE );

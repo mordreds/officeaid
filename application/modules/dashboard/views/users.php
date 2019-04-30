@@ -151,11 +151,11 @@
               }},
               {render: function(data,type,row,meta){
                 if(row.status == "active")
-                  button = '<button type="button" class="btn btn-primary btn-xs">De-activate</button> ';
+                  button = '<a href="<?=base_url()?>dashboard/userstatus/inactive/'+row.id+'" type="button" class="btn btn-warning btn-xs">Suspend</a> ';
                 else if(row.status == "inactive")
-                  button = '<button type="button" class="btn btn-success btn-xs">Activate</button> ';
+                  button = '<a href="<?=base_url()?>dashboard/userstatus/active/'+row.id+'" type="button" class="btn btn-success btn-xs">Activate</a> ';
 
-                button += ' <button type="button" class="btn btn-danger btn-xs">Delete</button>'
+                button += ' <a href="<?=base_url()?>dashboard/userstatus/deleted/'+row.id+'" type="button" class="btn btn-danger btn-xs">Delete</a>'
 
                 return button;
               }}

@@ -17,27 +17,27 @@ class Dashboard extends MX_Controller
   
     public function home() 
     {
-      //print "<pre>"; print_r($_SESSION['user']); 
+      if(isset($_SESSION['user'])) : 
         $title['title'] = "OfficeAid| Admin"; 
         $this->load->view('header',$title); 
         $this->load->view('admin_nav',$title); 
         $this->load->view('dashboard'); 
-        $this->load->view('footer'); 
-      
-    
-	/**************** Interface ********************/
+        $this->load->view('footer');
+      else : 
+        redirect('access');
+      endif;
    } 
 
       public function report() 
     {
-      
+      if(isset($_SESSION['user'])) : 
         $title['title'] = "OfficeAid| Reports"; 
         $this->load->view('header',$title); 
         $this->load->view('report'); 
         $this->load->view('footer'); 
-      
-    
-  /**************** Interface ********************/
+      else : 
+        redirect('access');
+      endif;
    }
 
      public function control()
@@ -287,27 +287,61 @@ public function assignedto() {
   }
 
   /**************************
+    Saving New User
+  **************************/
+  public function userstatus($status,$userid) {
+    if(in_array('UserMgmt',$_SESSION['user']['roles'])) :
+        # Loading Models 
+        $this->load->model('globals/model_update');
+
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "access_users";
+        $where_condition = ['id' => $userid];
+        $update_data = [ 'status'  => $status ];
+        /***** Data Definition *****/
+
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+
+        if($save_data) 
+          $this->session->set_flashdata('success', "Status Change Successful");
+        else
+          $this->session->set_flashdata('error', "Status Change Failed");
+
+        redirect('dashboard/users');
+        /******** Insertion Of New Data ***********/
+      
+      else :
+        $this->session->set_flashdata('error', 'Updating User Failed');
+        redirect('dashboard/');
+
+      endif;
+  }
+
+  /**************************
     Get All Users => Datatable
   **************************/
   public function getallusers_json() 
+  {
+    if(!isset($_SESSION['user']['username']) && in_array('UserMgmt',$_SESSION['user']['roles']))
+      redirect('access');
+    else
     {
-      if(!isset($_SESSION['user']['username']) && in_array('UserMgmt',$_SESSION['user']['roles']))
-        redirect('access');
-      else
-      {
-        # Loading Models
-        $this->load->model('globals/model_retrieval');
+      # Loading Models
+      $this->load->model('globals/model_retrieval');
 
-        $dbres = self::$_Default_DB;
-        $tablename = "vw_user_details";
-        $condition = array(
-          'orderby'=> ['id' => "Desc"]
-        );
+      $dbres = self::$_Default_DB;
+      $tablename = "vw_user_details";
+      $condition = array(
+        'where_condition' => ['status !=' => "deleted"],
+        'orderby'=> ['id' => "Desc"]
+      );
 
-        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
-        print_r($query_result); 
-      }
+      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
+      print_r($query_result); 
     }
+  }
   /********** User Management **********/
 
 

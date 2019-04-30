@@ -112,7 +112,7 @@
         },
         columns: [
           {data: "id", visible: false},
-          {data: "fullname"},
+          {data: "createdby"},
           {data: "subject"},
           {data: "status", render: function(data,type,row,meta) { 
             if(row.status == "Public") 
@@ -122,7 +122,8 @@
               return '<div class="btn btn-outline-danger btn-block disabled btn-sm">'+row.status+'</div>'
           }},
           {data: "filetype"},
-          {render: function(data,type,row,meta) {
+          {data:"filepath"/*, render: function(data,type,row,meta) {
+            
             if(row.status == "Public") 
               color = "color: #428c01";
             else if(row.status == "Private")
@@ -150,7 +151,7 @@
               return '<a href="<?=base_url()?>'+row.filepath+'" style="'+color+'" data-id="'+window.btoa(row.id)+'" data-stats="'+row.status+'"><span class="fa '+fileicon+' fa-2x"></span></a>'
             else
               return '<a href="#" class="verify_file" style="'+color+'" data-id="'+window.btoa(row.id)+'" data-stats="'+row.status+'"><span class="fa '+fileicon+' fa-2x"></span></a>'
-          }}
+          }*/}
         ],
       });
     }

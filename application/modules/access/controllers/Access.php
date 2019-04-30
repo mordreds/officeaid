@@ -165,15 +165,75 @@ class Access extends MX_Controller
   {
     # Loading Models
     $this->load->model('globals/model_retrieval');
+    $files_icons = [
+      'doc' => "fa fa-file-word-o",
+      'docx' => "fa fa-file-word-o",
+      'pdf' => "fa fa-file-pdf-o",
+      'txt' => "fa fa-file-text-o",
 
+      'image' => "fa fa-file-image-o",
+
+      'xls' => "fa fa-file-excel-o",
+      'xlsx' => "fa fa-file-excel-o",
+
+      'zip' => "fa fa-file-archive-o",
+      'rar' => "fa fa-file-archive-o"
+    ];
+
+    $response_data = array();
     $dbres = self::$_Default_DB;
     $tablename = "vw_files";
     $condition = array(
       'where_condition' => array('department_id' => $deparmtent)
     );
 
-    $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
-    print_r($query_result); 
+    $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+    
+    if(!empty($query_result)) {
+
+      foreach ($query_result as $key => $value) {
+        # building display array
+        if($value->status == "Public") 
+          $color = "color: #428c01";
+        else
+          $color = "color: #ff2d2d";
+
+        $fileicon = $files_icons[$value->filetype];
+        if($value->status == "Private")
+          $filepath = '<a href="#" class="verify_file" style="'.$color.'" data-id="'.base64_encode($value->id).'" data-stats="'.$value->status.'"><span class="fa '.$fileicon.' fa-2x"></span></a>';
+        else
+          $filepath = '<a href="'.base_url().$value->filepath.'" style="'. $color .'" data-id="'.base64_encode($value->id).'" data-stats="'.$value->status.'"><span class=" '.$fileicon.' fa-2x"></span></a>';
+        //print "<pre>"; print_r($filepath); print "</pre>"; continue;
+        $response_data[$key] = [
+          'id' => $value->id,
+          'subject' => $value->subject,
+          'createdby' => $value->fullname,
+          'filetype' => $value->filetype,
+          'filepath' => $filepath,
+          'status' => $value->status
+        ];
+
+        # Retrieving group files
+        $tablename = "files_additions";
+        $condition = ['where_condition' => ['file_id' => $value->id]];
+        $query = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+        
+        if(!empty($query)) {
+          foreach ($query as $otherfiles) {
+            # code...
+            $fileicon = $files_icons[$otherfiles->filetype];
+            if($value->status == "Private")
+              $filepath = ' <a href="#" class="verify_file" style="'. $color .'" data-id="'.base64_encode($value->id).'" data-stats="'.$value->status.'"><span class="fa '.$fileicon.' fa-2x"></span></a>';
+            else
+              $filepath = ' <a href="'.base_url().$value->filepath.'" style="'. $color .'" data-id="'.base64_encode($value->id).'" data-stats="'.$value->status.'"><span class=" '.$fileicon.' fa-2x"></span></a>';
+            @$response_data[$key]['filepath'] .= $filepath;
+          }
+        }
+
+      }
+    }
+    
+    print_r(json_encode($response_data));
     
   }
    /*******************************
@@ -199,6 +259,44 @@ class Access extends MX_Controller
         $where_condition = array('status' => "active");
         $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
 
+        # retrieving all departments
+        $tablename = "departments";
+        $condition = array(
+          'where_condition' => ['status' => "active", 'type' => 1],
+          'orderby'=> ['id' => "Desc"]
+        );
+        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+        if(!empty($query_result)) : 
+          foreach($query_result as $key => $val) : 
+            # retrieving department's count 
+              $tablename = "files";
+              $where_condition = [
+                'department_id' => $val->id
+              ];
+              $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+          endforeach;
+        endif;
+        $title['alldepartments'] = $query_result;
+
+        # retrieving all branches
+        $tablename = "departments";
+        $condition = array(
+          'where_condition' => ['status' => "active", 'type' => 2],
+          'orderby'=> ['id' => "Desc"]
+        );
+        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+        if(!empty($query_result)) : 
+          foreach($query_result as $key => $val) : 
+            # retrieving department's count 
+              $tablename = "files";
+              $where_condition = [
+                'department_id' => $val->id
+              ];
+              $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+          endforeach;
+        endif;
+        $title['allbranches'] = $query_result;
+
         # Retrieving All Users
         $tablename = "access_users";
         $where_condition = array('status' => "active");
@@ -206,6 +304,7 @@ class Access extends MX_Controller
         
         $title['title'] = "Send | OfficeAid"; 
         $title['pageName'] = "All Files"; 
+
         $this->load->view('login_header',$title); 
         $this->load->view('nav',$title); 
         $this->load->view('ftp',$data); 
@@ -236,7 +335,7 @@ class Access extends MX_Controller
         # retrieving all departments
         $tablename = "departments";
         $condition = array(
-          'where_condition' => ['status' => "active"],
+          'where_condition' => ['status' => "active",  'type' => 1],
           'orderby'=> ['id' => "Desc"]
         );
         $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
@@ -252,7 +351,27 @@ class Access extends MX_Controller
         endif;
         $data['alldepartments'] = $query_result;
         $title['alldepartments'] = $query_result;
-        //print_r($data); exit;
+
+        # retrieving all branches
+        $tablename = "departments";
+        $condition = array(
+          'where_condition' => ['status' => "active", 'type' => 2],
+          'orderby'=> ['id' => "Desc"]
+        );
+        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+        if(!empty($query_result)) : 
+          foreach($query_result as $key => $val) : 
+            # retrieving department's count 
+              $tablename = "files";
+              $where_condition = [
+                'department_id' => $val->id
+              ];
+              $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+          endforeach;
+        endif;
+        $title['allbranches'] = $query_result;
+
+        
         $title['title'] = "Send | OfficeAid"; 
         $title['pageName'] = "All Files"; 
         $this->load->view('login_header',$title); 
@@ -323,11 +442,19 @@ class Access extends MX_Controller
         redirect('access/ftp');
       }
       else {
+        /***** Data Definition *****/
         $this->load->model('globals/model_insertion');
+        $this->load->model('globals/model_retrieval');
         $this->load->helper('file_restriction');
         /***** Data Definition *****/
         $dbres = self::$_Default_DB;
         $tablename = "files";
+
+        # uploading File
+        $fileArray = reArrayFiles($_FILES['file']);
+        $counter = $lastinsertid = 0;
+        
+        # variable defintion
         $request_data = [
           'status' => $this->input->post('accesstype'),
           'filecode' => $this->input->post('filecode'),
@@ -336,7 +463,8 @@ class Access extends MX_Controller
           'subject' => ucwords($this->input->post('subject'))
         ];
 
-        # Checking ofnr private files
+      # Single File Upload
+        # Checking for private files
         if($request_data['status'] == "Private") {
           if(empty($request_data['filecode'])) {
             $this->session->set_flashdata('error',"File Code Required");
@@ -344,12 +472,11 @@ class Access extends MX_Controller
           }
         }
 
-        # uploading File
-        $file_array = $_FILES['file'];
-        $project_name = $request_data['createdby']."_".gmdate('Y_m_d_H_i_s');
+        $project_name = $request_data['createdby']."-".date('Y-m-d-H-i-s')."-".rand(1111111,9999999);
         $target_dir = "uploads/";
-        $fileresponse = doc_restriction($file_array,$project_name,$target_dir);
-        //print_r($fileresponse); exit;
+        //print "<pre>"; print_r($file); print "<pre>"; exit;
+        $fileresponse = doc_restriction($fileArray[0],$project_name,$target_dir);
+
         if(@$fileresponse['error']) {
           $this->session->set_flashdata('error', $fileresponse['error']);
           redirect('access/ftp');
@@ -358,9 +485,47 @@ class Access extends MX_Controller
           $request_data['filetype'] = $fileresponse['extension'];
           $request_data['filepath'] = $fileresponse['imgpath'];
         }
-        /******** Insertion Of New Data ***********/
+
         $save_data = $this->model_insertion->datainsert($dbres,$tablename,$request_data);
-  
+        
+        # Multiple Uploads
+        if(sizeof($fileArray) > 1) {
+          # Removing first element off the array
+          $lastinsertid = $save_data;
+          array_shift($fileArray);
+          $request_data = array();
+
+          foreach ($fileArray as $key => $file_array) {
+            # variable defintion
+            $tablename = "files_additions";
+            $request_data[$key] = [
+              'status' => $this->input->post('accesstype'),
+              'filecode' => $this->input->post('filecode'),
+              'department_id' => $this->input->post('department'),
+              'createdby' => $this->input->post('createdby'),
+              'subject' => ucwords($this->input->post('subject')),
+              'file_id' => $lastinsertid
+            ];
+
+            $project_name = $request_data[$key]['createdby']."-".date('Y-m-d-H-i-s')."-".rand(1111111,9999999);
+            $target_dir = "uploads/";
+            $fileresponse = doc_restriction($file_array,$project_name,$target_dir);
+
+            if(@$fileresponse['error']) {
+              $this->session->set_flashdata('error', $fileresponse['error']);
+              redirect('access/ftp');
+            }
+            else {
+              $request_data[$key]['filetype'] = $fileresponse['extension'];
+              $request_data[$key]['filepath'] = $fileresponse['imgpath'];
+            }
+          }
+
+          //print "<pre>"; print_r($request_data); print "<pre>"; exit;
+          $save_data = $this->model_insertion->batchinsert($dbres,$tablename,$request_data);
+        }
+        
+        /******** Insertion Of New Data ***********/
         if($save_data) 
           $this->session->set_flashdata('success', 'Saving Data Successful');
         else 
@@ -368,7 +533,6 @@ class Access extends MX_Controller
 
         redirect('access/ftp');
         /******** Insertion Of New Data ***********/
-        
       }
     }
 

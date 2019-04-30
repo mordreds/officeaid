@@ -40,7 +40,7 @@
               <div class="form-control-element__box"><span class="fa fa-pencil"></span></div>
             </div><br/>
             <div class="form-control-element">
-              <input type="file" class="form-control" name="file"  />
+              <input type="file" class="form-control" name="file[]" multiple />
               <div class="form-control-element__box"><span class="fa fa-file"></span></div>
             </div><br/>
             <div id="filecode" class="form-control-element" style="display:none">

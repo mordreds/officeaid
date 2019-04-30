@@ -16,6 +16,18 @@ class Model_insertion extends CI_Model
         
     return(($result > 0) ? $dbres->insert_id() : FALSE);
 	}
+
+	/***********************************************
+			New Supplier 
+	************************************************/
+	public function batchinsert($dbres,$tablename,$data) 
+	{
+    $query = $dbres->insert_batch($tablename,$data);
+        
+    $result = $dbres->affected_rows(); 
+        
+    return(($result > 0) ? $dbres->insert_id() : FALSE);
+	}
     
     /***********************************************
 			Stored Procedure Calling 

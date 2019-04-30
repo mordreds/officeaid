@@ -86,7 +86,7 @@
             mkdir($target_dir,0755,TRUE);
           
           if(!move_uploaded_file($file_array['tmp_name'], $full_img_path))
-            $response['error'] = "Error uploading file - check destination directory is writeable OR created.')";
+            $response['error'] = "Error uploading file - check destination directory is writeable OR created.";
           else 
             $response = [
               'imgpath' => $full_img_path,
@@ -94,10 +94,10 @@
             ];
         } 
         else 
-          $response['error'] = "File Size Too Large.<br>Please Check File Again";
+          $response['error'] = "File Size - ".$file_array['name']." - Too Large.<br>Please Check File Again";
       } 
       else 
-        $response['error'] = "File Type Not Supported.<br>Please Upload a Document File";
+        $response['error'] = "File Type of - ".$file_array['name']." -  Not Supported.<br>Please Upload a Document File";
       
     }
     else
