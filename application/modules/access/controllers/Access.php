@@ -53,7 +53,7 @@ class Access extends MX_Controller
 
       # Getting all count of pending requests
       $tablename = "requests";
-      $where_condition = array('status' => "pending");
+      $where_condition = array('status' => "pending", 'type' => "ticket");
       $data['totalRequests'] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
 
       # Getting count of all completed requests
@@ -63,9 +63,9 @@ class Access extends MX_Controller
 
       # Getting count of all files
       $tablename = "files";
-      $where_condition = ['status' => "active"];
+      $where_condition = [];
       $data['totalfiles'] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
-
+      
       # Retrieving Company Details
       $tablename = "company_info";
       $where_condition = ['where_condition' => array('id' => 1)];
@@ -146,10 +146,10 @@ class Access extends MX_Controller
       $dbres = self::$_Default_DB;
       $tablename = "vw_requests";
       $condition = array(
-        'where_condition' => array('assigned_to' => $_SESSION['user']['id']),
-        'wherein_condition' => [
+        'where_condition' => array('email' => $_SESSION['user']['username'], 'status !=' => "closed"),
+        /*'wherein_condition' => [
           'status' => "pending,processing",
-        ],
+        ],*/
         'orderby'=> ['id' => "Desc"]
       );
 
@@ -426,6 +426,45 @@ class Access extends MX_Controller
         print_r($result);
         /******** Insertion Of New Data ***********/
         
+      }
+    }
+
+    public function save_task() {
+      $this->form_validation->set_rules('subject','Subject','trim|required');
+      $this->form_validation->set_rules('description','Description','trim|required');
+      $this->form_validation->set_rules('assignedto','User','trim|required');
+      $this->form_validation->set_rules('duedate','Date','trim|required');
+      /*$this->form_validation->set_rules('date','Date','trim|required');*/
+
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        $this->session->set_flashdata('error', $errors);
+        redirect('dashboard/task');
+      }
+      else {
+        $this->load->model('globals/model_insertion');
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "requests";
+        $request_data = [
+          'email' => $_SESSION['user']['username'],
+          'subject' => ucwords($this->input->post('subject')),
+          'description' => ucwords($this->input->post('description')),
+          'assigned_to' => ucwords($this->input->post('assignedto')),
+          'duedate' => date('Y-m-d', strtotime($this->input->post('duedate'))),
+          'type' => "task"
+        ];
+        /***** Data Definition *****/
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_insertion->datainsert($dbres,$tablename,$request_data);
+  
+        if(is_int($save_data)) 
+          $this->session->set_flashdata('success', "Saving Task Successful");
+        else 
+          $this->session->set_flashdata('error', 'Saving Task Failed');
+
+        redirect('dashboard/task');
+        /******** Insertion Of New Data ***********/
       }
     }
 

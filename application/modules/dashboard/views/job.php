@@ -21,7 +21,6 @@
   <div class="container-fluid">
    <div class="card">
     <div class="card-body">
-
         <table id="dt-example-responsive" class="table table-bordered" >
           <thead>
             <tr>
@@ -83,9 +82,7 @@
                   {data: "email"},
                   {data: "department"},
                   {data: "priority"},
-                  {render: function(data,type,row,meta) { 
-                    return '<div class="form-control-element"><select class="custom-select margin-bottom-20 assigntouser" id="rw_settings_layout" style="margin-bottom: 0px!important;padding: 0px 0px 0px 5px !important;" data-id='+window.btoa(row.id)+'><?=$_SESSION['allusers']?></select></div>';
-                  }},
+                  {data: "assigned_to"},
                   {data: "status", render: function(data,type,row,meta) { 
                     let status = row.status;
                     if(status == 'pending')
@@ -103,7 +100,7 @@
                     else
                     processed = "";
 
-                    return '<div class="form-control-element"><select class="custom-select margin-bottom-20 changestatus" id="rw_settings_layout" style="margin-bottom: 0px!important;padding: 0px 0px 0px 5px !important;" data-id='+window.btoa(row.id)+'><option value="boxed" '+pending+'>Pending</option><option value="indent" '+processing+'>Processing</option><option value="indent" '+processed+'>Resolved</option></select></div>';
+                    return '<div class="form-control-element"><select class="custom-select changestatus" data-id='+window.btoa(row.id)+'><option '+pending+'>Pending</option><option '+processing+'>Processing</option><option '+processed+'>Resolved</option><option>Closed</option></select></div>';
                   }},
                   {render: function(data,type,row,meta) {
                     return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.sender_name+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.department_name+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"

@@ -48,12 +48,12 @@
 	  	</li>
 	  	<li class="title">Interface</li>
 	  </li>
-		<?php if(in_array('AssignTicket',$_SESSION['user']['roles'])) : ?>
+		<?php if(isset($_SESSION['user']['id'])) : if(in_array('AssignTicket',$_SESSION['user']['roles'])) : ?>
 	  	<li class="openable"><a href="<?=base_url()?>dashboard/job">
 				<span class="icon li-feather3"></span> 
 				<span class="text">Assigned</span></a>
 	    </li>
-		<?php endif; ?>
+		<?php endif; else : redirect('access'); endif; ?>
 	  <li class="openable"><a href="<?=base_url()?>dashboard/control"><span class="icon li-ellipsis"></span> <span class="text">Controls</span></a>
 	      		</li>
 
@@ -69,7 +69,7 @@
 				</ul>
 			</li>
 		<?php endif; ?>
-<li class="openable"><a href="<?=base_url()?>dashboard/stationary"><span class="icon li-clipboard-pencil"></span> <span class="text">Task</span></a>
+<li class="openable"><a href="<?=base_url()?>dashboard/task"><span class="icon li-clipboard-pencil"></span> <span class="text">Task</span></a>
 	      		</li>
 	  
 	</ul>

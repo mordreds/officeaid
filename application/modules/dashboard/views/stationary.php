@@ -22,7 +22,7 @@
       <li class="breadcrumb-item"><a href="">Dashboard</a></li>
     </ol>
     </nav>
-  </div><!-- //END PAGE HEADING -->
+  </div><!-- //END PAGE HEADING -->-
   <div class="container-fluid">
   <div class="card">
     <div class="card-container">
@@ -32,15 +32,22 @@
                                                                 
   </div></div><div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item" data-demo-action="update">Update</a> <a href="#" class="dropdown-item" data-demo-action="expand">Expand</a> <a href="#" class="dropdown-item" data-demo-action="invert">Invert style</a><div class="dropdown-divider"></div><a href="#" class="dropdown-item" data-demo-action="remove">Remove card</a></div></div></div>
     <div class="card-body">
-
-      <form id="New_Request_Form" action="javascript:void(0);" onsubmit="formSubmit()">
+      <?php if($this->session->flashdata('success')) : ?>
+            <div class="alert alert-success" role="alert"><strong>Success!</strong> <?=$this->session->flashdata('success')?></div>
+          <?php elseif($this->session->flashdata('error')) : ?>
+            <div class="alert alert-danger" role="alert"><strong><?=$this->session->flashdata('error')?> !</strong>  </div>
+          <?php endif; ?>
+          
+            <div class="divider"></div>
+      <form id="New_Request_Form" action="<?=base_url()?>access/save_task" method="post">
           <div class="row">
             <div class="col-6">
               <div class="form-control-element">
-                <select class="custom-select margin-bottom-20" name="priority" placeholder= required>
+                <select class="custom-select margin-bottom-20" name="assignedto"  required>
                   <option value="" disabled selected> Select Staff</option>
-                  <option>Bismark</option>
-                  <option>Osborn</option>
+                  <?php if(!empty($allusers)) : foreach($allusers as $user) : ?>
+                  <option value="<?=$user->id?>"><?=$user->fullname?></option>
+                <?php endforeach; endif; ?>
                 </select>
               </div>
               <!-- <div class="form-control-element">
@@ -57,7 +64,7 @@
                 <div class="form-control-element__box"><span class="fa fa-pencil"></span></div>
               </div>
               <div class="form-control-element">
-                <input type="Date" class="form-control margin-bottom-20" placeholder="Scheduled Date" name="Date" required>
+                <input type="Date" class="form-control margin-bottom-20" placeholder="Scheduled Date" name="duedate" required>
                 <div class="form-control-element__box"><span class="fa fa-time"></span></div>
               </div>
               
@@ -69,7 +76,7 @@
               </div> -->
             </div>
             <div class="col-6" style="margin-top: 38px">
-              <div class="form-group row"><label class="col-sm-2 col-form-label">Assignment</label><div class="col-sm-10"><textarea class="form-control" rows="5"></textarea></div></div>
+              <div class="form-group row"><label class="col-sm-2 col-form-label">Assignment</label><div class="col-sm-10"><textarea class="form-control" rows="5" name="description"></textarea></div></div>
             </div>
             <div class="divider"></div>
           </div>

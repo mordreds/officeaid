@@ -112,17 +112,63 @@ public function job()
       # Loading Models
       $this->load->model('globals/model_retrieval');
 
+      # retrieving all requests
       $dbres = self::$_Default_DB;
       $tablename = "vw_requests";
       $condition = array(
         'wherein_condition' => [
-          'status' => "pending,processing",
+          'status' => "pending,processing,resolved",
         ],
         'orderby'=> ['id' => "Desc"]
       );
+      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
 
-      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
-      print_r($query_result); 
+      # retrieving all users
+      $tablename = "vw_user_details";
+      $condition = array(
+        'where_condition' => [
+          'status' => "active",
+        ],
+        'orderby'=> ['id' => "Desc"]
+      );
+      
+      
+      $dropdown_temp = $allready_selected = "";
+      $allusers = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+
+      # creating user dropdown
+      foreach ($query_result as $key => $record) {
+        # code...
+        $users_dropdown = '<select class="custom-select assigntouser" data-id="'.base64_encode($record->id).'">';
+
+        foreach ($allusers as $user) {
+          # code...
+          if($record->assigned_to == $user->id) {
+            $selected = "selected";
+            $allready_selected = "Yes";
+          }
+          else
+            $selected = "";
+
+          $dropdown_temp .= "<option value=".base64_encode($user->id)." {$selected}>".$user->fullname."</option>";
+          $selected = "";
+        }
+
+        # Checking if any user wwas selected
+        if($allready_selected == "Yes")
+          $option_1 = '<option value="" disabled>Select One</option>';
+        else
+          $option_1 = '<option value="" disabled selected>Select One</option>';
+
+        $users_dropdown .= $option_1.$dropdown_temp."</select>";
+        # resetting variable 
+        $allready_selected = $dropdown_temp = "";
+
+
+        $query_result[$key]->assigned_to = $users_dropdown;
+      }
+       
+      print_r(json_encode($query_result)); 
     }
   }
 
@@ -151,14 +197,60 @@ public function job()
     }
   }
 
-public function stationary()
+  /*******************************
+      All requests Json
+  *******************************/
+  public function allassignments_json() 
+  {
+    if(!isset($_SESSION['user']['username']) && !isset($_SESSION['user']['roles']))
+      redirect('access');
+    else
     {
+      # Loading Models
+      $this->load->model('globals/model_retrieval');
+
+      $dbres = self::$_Default_DB;
+      $tablename = "vw_requests";
+      $condition = array(
+        'where_condition' => array('assigned_to' => $_SESSION['user']['id'], 'status !=' => "closed"),
+        'orderby'=> ['id' => "Desc"]
+      );
+
+      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+
+      # Formatting Data 
+      foreach ($query_result as $key => $value) {
+        # code...
+        if($value->type == "task")
+          $color_code = "warning";
+        else
+          $color_code = "success";
+        $query_result[$key]->type = '<div class="btn btn-outline-'.$color_code.' btn-block disabled btn-sm">'.ucwords($value->type).'</div>';
+        $query_result[$key]->duedate = date('Y-m-d', strtotime($value->duedate));
+        $query_result[$key]->subject = ucwords($value->subject);
+        $query_result[$key]->priority = ucwords($value->priority);
+      }
+      print_r(json_encode($query_result)); 
+    }
+  }
+
+public function task()
+    {
+      #loadming model 
+      $this->load->model('globals/model_retrieval');
+
+      # Getting All Users
+      $dbres = self::$_Default_DB;
+      $tablename = "access_users";
+      $where_condition = array('status' => "active");
       
-        $title['title'] = "OfficeAid| Assigned Jobs"; 
-        $this->load->view('header',$title); 
-        $this->load->view('admin_nav',$title);
-        $this->load->view('stationary'); 
-        $this->load->view('footer'); 
+      $title['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
+      $title['title'] = "OfficeAid| Assigned Jobs"; 
+
+      $this->load->view('header',$title); 
+      $this->load->view('admin_nav',$title);
+      $this->load->view('stationary'); 
+      $this->load->view('footer'); 
       
     
   /**************** Interface ********************/

@@ -51,9 +51,7 @@
                   }
                 },
                 columns: [
-                  {data: "id",render: function(data,type,row,meta) {
-                    return row.id
-                  }},
+                  {data: "id", visible: false},
                   {data: "subject"},
                   /*{data: "description",render: function(data,type,row,meta) { 
                     let desc = row.description.substring(0,20);
