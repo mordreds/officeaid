@@ -66,6 +66,7 @@ class Dashboard extends MX_Controller
 
       $title['title'] = "OfficeAid| Users"; 
       $this->load->view('header',$title); 
+      $this->load->view('admin_nav',$title); 
       $this->load->view('users',$data); 
       $this->load->view('footer'); 
     else :
@@ -76,7 +77,8 @@ class Dashboard extends MX_Controller
     {
       
         $title['title'] = "OfficeAid| Set Privillages"; 
-        $this->load->view('header',$title); 
+        $this->load->view('header',$title);
+        $this->load->view('admin_nav',$title);  
         $this->load->view('privillage'); 
         $this->load->view('footer'); 
       

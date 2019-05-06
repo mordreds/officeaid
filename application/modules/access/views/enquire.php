@@ -1,14 +1,14 @@
         <form id="New_Request_Form" action="javascript:void(0);" onsubmit="formSubmit()">
           <div class="row">
             <div class="col-6">
-              <!-- <div class="form-control-element">
+               <div class="form-control-element">
                 <select class="custom-select margin-bottom-20" name="department" required>
-                  <option value="" disabled selected>Select Department</option>
+                  <option value="" disabled selected>Select Issue Type</option>
                   <?php if(!empty($departments)) : foreach($departments as $department) : ?>
                     <option value="<?=$department->id?>"> <?=$department->name?> </option>
                    <?php endforeach; endif; ?>
                 </select>
-              </div> -->
+              </div> 
               <div class="form-control-element">
                 <input type="email" class="form-control margin-bottom-20" placeholder="Enter Your Email" name="email" required>
                 <div class="form-control-element__box"><span class="fa fa-envelope"></span></div>

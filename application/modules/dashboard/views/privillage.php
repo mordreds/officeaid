@@ -10,7 +10,7 @@
                     <li>Postal Address:<span class="text-muted text-regular"><br><b>MARKSBON SYSTEMS</b></BR><b>BOX TA353, TAIFA - ACCRA</b></span></li>
                     <li>Website Address:<span class="text-muted text-regular"><br><b>www.markcbon.com</b></span></li>
                     <div class="divider"></div>
-                    <li>License :<span class="text-muted text-regular"><br><b>PAID</b></span></li>
+                    <li>License :<span class="text-muted text-regular"><br><b>Demo</b></span></li>
                   </ul>
            </div>
          </div>
@@ -40,7 +40,7 @@
      <label></label>
                  <div class="form-control-element">
                   <select class="custom-select margin-bottom-20" id="rw_settings_layout">
-                    <option value="default">Users </option>
+                    <option value="default">All Users </option>
                     <option value="boxed">Disabled</option>
                     <option value="indent">Delete</option>
              </select> 
@@ -53,34 +53,75 @@
   <div class="col-7">
     <div class="card-body">
       <div class="row">
-      <div class="col-6">
-        <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="rw_settings_nav_minimized">
-        <label class="custom-control-label" for="rw_settings_nav_minimized">Dashboard</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="rw_settings_nav_minimized">
-        <label class="custom-control-label" for="rw_settings_nav_minimized">Assigned</label>
-      </div>
-        <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="rw_settings_nav_minimized">
-        <label class="custom-control-label" for="rw_settings_nav_minimized">Control</label>
-      </div>
-    </div>
+      
        
-      <div class="col-6">
-        <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="rw_settings_nav_minimized">
-        <label class="custom-control-label" for="rw_settings_nav_minimized">Report</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="rw_settings_nav_minimized">
-        <label class="custom-control-label" for="rw_settings_nav_minimized">Stationary</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="rw_settings_nav_minimized">
-        <label class="custom-control-label" for="rw_settings_nav_minimized">User Profile</label>
-      </div>
+      <div class="col-10">
+        <div class="card-body padding-top-10 padding-bottom-10">
+          <div class="table-responsive">
+            <table class="table table-indent-rows margin-bottom-0">
+              <tbody>
+                <tr>
+                  <td width="40">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_0"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
+                    </td>
+                      <td width="180"><span class="text-muted">New Request, History ,</span><span class="text-muted">Directory</span>
+                      </td>
+                      
+                      <td width="150"><div class="btn btn-outline-success btn-block disabled btn-sm">End Users</div>
+                      </td>
+                      <td width="40"><button class="btn btn-light btn-sm btn-icon"><span class="fa fa-pencil"></span></button>
+                      </td>
+                    </tr>
+                    <tr>
+                  <td width="40">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_0"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
+                    </td>
+                      <td width="180"><span class="text-muted">New Request,History ,</span>
+                        <span class="text-muted">Directory, Report ,</span><span class="text-muted"> Controls</span>
+                      </td>
+                      
+                      <td width="150"><div class="btn btn-outline-success btn-block disabled btn-sm">Assignees</div>
+                      </td>
+                      <td width="40"><button class="btn btn-light btn-sm btn-icon"><span class="fa fa-pencil"></span></button>
+                      </td>
+                    </tr>
+                   <tr>
+                  <td width="40">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_0"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
+                    </td>
+                      <td width="180"><span class="text-muted">New Request,History ,</span>
+                        <span class="text-muted">Directory, Report ,</span><span class="text-muted">Task, Assigned</span>
+                      </td>
+                      
+                      <td width="150"><div class="btn btn-outline-success btn-block disabled btn-sm">Manager</div>
+                      </td>
+                      <td width="40"><button class="btn btn-light btn-sm btn-icon"><span class="fa fa-pencil"></span></button>
+                      </td>
+                    </tr>
+                     <tr>
+                  <td width="40">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_0"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
+                    </td>
+                      <td width="180"><span class="text-muted">New Request,History ,</span>
+                        <span class="text-muted">Directory, Report ,</span><span class="text-muted">Task, Assigned ,</span><span class="text-muted">Users, Previllages</span>
+                      </td>
+                      
+                      <td width="150"><div class="btn btn-outline-success btn-block disabled btn-sm">Administrator</div>
+                      </td>
+                      <td width="40"><button class="btn btn-light btn-sm btn-icon"><span class="fa fa-pencil"></span></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+    </div>
+    <div class="col-2">
+        
     </div>
       </div>
     </div>
