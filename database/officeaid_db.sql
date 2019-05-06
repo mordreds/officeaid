@@ -11,6 +11,11 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Dumping database structure for officeaid_db
+CREATE DATABASE IF NOT EXISTS `officeaid_db` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `officeaid_db`;
+
 -- Dumping structure for table officeaid_db.access_login_failed
 CREATE TABLE IF NOT EXISTS `access_login_failed` (
   `id` int(20) NOT NULL AUTO_INCREMENT COMMENT 'auto',
@@ -45,9 +50,9 @@ CREATE TABLE IF NOT EXISTS `access_login_successful` (
   `city_region` text COMMENT 'city & region of the user at the time of system access',
   `country` varchar(255) DEFAULT NULL COMMENT 'country of the user at the time of system access',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.access_login_successful: 46 rows
+-- Dumping data for table officeaid_db.access_login_successful: 53 rows
 /*!40000 ALTER TABLE `access_login_successful` DISABLE KEYS */;
 INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `online`, `user_agent`, `ipaddress`, `hostname`, `city_region`, `country`) VALUES
   (1, 1, '2019-03-26 00:38:11', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
@@ -95,7 +100,14 @@ INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `
   (43, 1, '2019-04-25 04:10:50', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (44, 1, '2019-04-27 00:22:15', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (45, 1, '2019-04-27 07:08:10', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (46, 1, '2019-04-27 11:01:35', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL);
+  (46, 1, '2019-04-27 11:01:35', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (47, 1, '2019-04-30 16:10:22', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (48, 1, '2019-05-01 02:34:10', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (49, 1, '2019-05-01 13:26:36', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (50, 1, '2019-05-02 13:11:15', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (51, 1, '2019-05-02 13:11:26', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (52, 1, '2019-05-02 16:34:02', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (53, 1, '2019-05-04 00:29:44', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
 /*!40000 ALTER TABLE `access_login_successful` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_password_reset_requests
@@ -176,7 +188,7 @@ INSERT INTO `access_users` (`id`, `username`, `passwd`, `fullname`, `phone_numbe
   (2, 'bismark@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Bismark Offei', '0244626487', 2, 5, 'active', 0, '2019-04-23 07:01:28'),
   (3, 'ike@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Isaac Gyasi', '0244626488', 2, 5, 'active', 0, '2019-04-23 07:01:28'),
   (4, 'evans@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Evans Owusu', '0244626488', 1, 5, 'active', 0, '2019-04-23 07:01:28'),
-  (5, 'peter@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Adjei Peter', '0244626488', 1, 5, 'active', 0, '2019-04-23 07:01:28'),
+  (5, 'peter@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Adjei Peter', '0244626488', 10, 5, 'active', 0, '2019-04-23 07:01:28'),
   (6, 'aware@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Aware Guy Guy', '0244626488', 3, 5, 'inactive', 0, '2019-04-23 07:01:28'),
   (7, 'waasty@okomfoanokyeruralbank.com', '$2y$10$yE24j7T8J/OSH9HX/OfVoeZVHuDSprfo0ggo9r08an2wD0u8RldzS', 'Diego De-Asanbujah', '0244176440', 1, 5, 'active', 0, '2019-04-25 04:53:58'),
   (8, 'gyamfi@yahoo.com', '$2y$10$d1Dww7xFJ8couw28r86JEeEvEqQv9LYsxhEhPZdKnPOSC42idR/0u', 'Sammy Gyamfi', '0544786254', 3, 5, 'deleted', 1, '2019-04-27 00:23:58');
@@ -219,10 +231,10 @@ CREATE TABLE IF NOT EXISTS `departments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.departments: ~15 rows (approximately)
+-- Dumping data for table officeaid_db.departments: ~14 rows (approximately)
 /*!40000 ALTER TABLE `departments` DISABLE KEYS */;
 INSERT INTO `departments` (`id`, `name`, `description`, `type`, `status`, `date_created`) VALUES
-  (1, 'Information Technology (IT)', 'Information Technology', 1, 'active', '2018-12-30 13:53:15'),
+  (1, 'Info. Tech. (IT)', 'Information Technology', 1, 'active', '2018-12-30 13:53:15'),
   (2, 'Client Service', 'Clients service', 1, 'active', '2018-12-30 13:53:15'),
   (3, 'Operations', '', 1, 'active', '2018-12-30 13:53:15'),
   (4, 'Finance', '', 1, 'active', '2018-12-30 13:53:15'),
@@ -291,10 +303,12 @@ CREATE TABLE IF NOT EXISTS `files` (
   `filecode` varchar(255) DEFAULT NULL,
   `filepath` varchar(191) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table officeaid_db.files: ~0 rows (approximately)
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
+INSERT INTO `files` (`id`, `subject`, `createdby`, `filetype`, `department_id`, `status`, `filecode`, `filepath`) VALUES
+  (1, 'Priinter Issue', 1, 'zip', 1, 'Public', '', 'uploads/1-2019-04-30-18-08-55-1816015.zip');
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.files_additions
@@ -378,25 +392,30 @@ CREATE TABLE IF NOT EXISTS `requests` (
   `subject` varchar(255) NOT NULL,
   `description` mediumtext NOT NULL,
   `priority` enum('low','medium','high','urgent') NOT NULL DEFAULT 'low',
+  `type` varchar(50) NOT NULL DEFAULT 'ticket',
+  `duedate` date NOT NULL,
   `file_id` bigint(20) NOT NULL,
   `department_id` bigint(20) NOT NULL,
   `updated_by` bigint(20) NOT NULL,
   `updated_at` bigint(20) NOT NULL,
   `assigned_to` bigint(20) NOT NULL,
   `date_solved` datetime NOT NULL,
-  `status` enum('pending','processing','resolved','declined','deleted') NOT NULL DEFAULT 'pending',
+  `status` enum('pending','processing','resolved','declined','deleted','closed') NOT NULL DEFAULT 'pending',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.requests: ~5 rows (approximately)
+-- Dumping data for table officeaid_db.requests: ~8 rows (approximately)
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
-INSERT INTO `requests` (`id`, `email`, `sender_contact`, `subject`, `description`, `priority`, `file_id`, `department_id`, `updated_by`, `updated_at`, `assigned_to`, `date_solved`, `status`, `date_created`) VALUES
-  (1, 'marksbonapps@gmail.com', '+23356967555', 'Priinter Issue', '<p>test</p>', 'medium', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-04-11 20:51:03'),
-  (2, 'marksbonapps@gmail.com', '+23356967555', 'Testing Again', '<p>testing Qwertyu</p>', 'medium', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'processing', '2019-04-12 09:42:32'),
-  (3, 'marksbonapps@gmail.com', '+23356967555', 'Priinter Issue', '<p>This Is Tm;;l======================================he Description&nbsp;</p>', 'medium', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-04-12 23:07:25'),
-  (4, 'Florence@okomfoanokyeruralbank.com', '0244445669', 'Mouse Not Working', '<p>My Mouse Has Stop Working&nbsp;</p>', 'urgent', 0, 0, 0, 0, 1, '0000-00-00 00:00:00', 'processing', '2019-04-19 23:02:19'),
-  (5, 'Serwaa@okomfoanokyeruralbank.com', '0244445668', 'Not Seeing My Keyboard Oooo', 'Bismark, I Cant Find My Keyboard Oooooo', 'urgent', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'resolved', '2019-04-19 23:06:41');
+INSERT INTO `requests` (`id`, `email`, `sender_contact`, `subject`, `description`, `priority`, `type`, `duedate`, `file_id`, `department_id`, `updated_by`, `updated_at`, `assigned_to`, `date_solved`, `status`, `date_created`) VALUES
+  (1, 'marksbonapps@gmail.com', '+23356967555', 'Priinter Issue', '<p>test</p>', 'medium', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-04-11 20:51:03'),
+  (2, 'marksbonapps@gmail.com', '+23356967555', 'Testing Again', '<p>testing Qwertyu</p>', 'medium', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'processing', '2019-04-12 09:42:32'),
+  (3, 'marksbonapps@gmail.com', '+23356967555', 'Priinter Issue', '<p>This Is Tm;;l======================================he Description&nbsp;</p>', 'medium', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-04-12 23:07:25'),
+  (4, 'peter@gmail.com', '0244445669', 'Mouse Not Working', '<p>My Mouse Has Stop Working&nbsp;</p>', 'urgent', 'ticket', '0000-00-00', 0, 0, 0, 0, 1, '0000-00-00 00:00:00', 'processing', '2019-04-19 23:02:19'),
+  (5, 'Serwaa@okomfoanokyeruralbank.com', '0244445668', 'Not Seeing My Keyboard Oooo', 'Bismark, I Cant Find My Keyboard Oooooo', 'urgent', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'resolved', '2019-04-19 23:06:41'),
+  (6, 'Osborne.mordred@gmail.com', '+23356967555', 'Public Keys', '<p>desc</p>', 'low', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-01 02:33:59'),
+  (7, 'marksbonapps@gmail.com', '', 'Priinter Issuessss', 'Assignment', 'low', 'task', '2019-05-17', 0, 0, 0, 0, 1, '0000-00-00 00:00:00', 'closed', '2019-05-01 15:17:12'),
+  (8, 'marksbonapps@gmail.com', '', 'Trdy', 'Description', 'low', 'task', '2019-05-10', 0, 0, 0, 0, 4, '0000-00-00 00:00:00', 'pending', '2019-05-02 13:11:44');
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 
 -- Dumping structure for view officeaid_db.vw_company_info
@@ -437,16 +456,22 @@ CREATE TABLE `vw_files` (
 CREATE TABLE `vw_requests` (
   `id` BIGINT(20) NOT NULL,
   `email` VARCHAR(255) NOT NULL COLLATE 'latin1_swedish_ci',
+  `created_by` VARCHAR(255) NULL COLLATE 'utf8_general_ci',
+  `created_by_department` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
   `sender_contact` VARCHAR(20) NOT NULL COLLATE 'latin1_swedish_ci',
   `subject` VARCHAR(255) NOT NULL COLLATE 'latin1_swedish_ci',
   `description` MEDIUMTEXT NOT NULL COLLATE 'latin1_swedish_ci',
   `priority` ENUM('low','medium','high','urgent') NOT NULL COLLATE 'latin1_swedish_ci',
   `file_id` BIGINT(20) NOT NULL,
   `assigned_to` BIGINT(20) NOT NULL,
-  `status` ENUM('pending','processing','resolved','declined','deleted') NOT NULL COLLATE 'latin1_swedish_ci',
+  `status` ENUM('pending','processing','resolved','declined','deleted','closed') NOT NULL COLLATE 'latin1_swedish_ci',
+  `duedate` DATE NOT NULL,
   `date_created` DATETIME NOT NULL,
   `assignee` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
-  `department` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci'
+  `department` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+  `type` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+  `filepath` VARCHAR(191) NULL COLLATE 'utf8_general_ci',
+  `filetype` VARCHAR(50) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view officeaid_db.vw_user_details
@@ -476,20 +501,36 @@ CREATE TABLE `vw_user_details` (
 -- Dumping structure for view officeaid_db.vw_company_info
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_company_info`;
-CREATE VIEW `vw_company_info` AS select `hr_company_info`.`id` AS `id`,`hr_company_info`.`name` AS `name`,`hr_company_info`.`telephone_1` AS `telephone_1`,`hr_company_info`.`telephone_2` AS `telephone_2`,`hr_company_info`.`fax` AS `fax`,`hr_company_info`.`email` AS `email`,`hr_company_info`.`postal_address` AS `postal_address`,`hr_company_info`.`residence_address` AS `residence_address`,`hr_company_info`.`website` AS `website`,`hr_company_info`.`mission` AS `mission`,`hr_company_info`.`vision` AS `vision`,`hr_company_info`.`gps_location` AS `gps_location`,`hr_company_info`.`tin_number` AS `tin_number`,`hr_company_info`.`logo_id` AS `logo_id`,`hr_company_info`.`date_of_commence` AS `date_of_commence` from `hr_company_info` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_company_info` AS select `hr_company_info`.`id` AS `id`,`hr_company_info`.`name` AS `name`,`hr_company_info`.`telephone_1` AS `telephone_1`,`hr_company_info`.`telephone_2` AS `telephone_2`,`hr_company_info`.`fax` AS `fax`,`hr_company_info`.`email` AS `email`,`hr_company_info`.`postal_address` AS `postal_address`,`hr_company_info`.`residence_address` AS `residence_address`,`hr_company_info`.`website` AS `website`,`hr_company_info`.`mission` AS `mission`,`hr_company_info`.`vision` AS `vision`,`hr_company_info`.`gps_location` AS `gps_location`,`hr_company_info`.`tin_number` AS `tin_number`,`hr_company_info`.`logo_id` AS `logo_id`,`hr_company_info`.`date_of_commence` AS `date_of_commence` from `hr_company_info` ;
 
 -- Dumping structure for view officeaid_db.vw_files
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_files`;
-CREATE VIEW `vw_files` AS SELECT a.*,b.fullname FROM files a
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_files` AS SELECT a.*,b.fullname FROM files a
 
 LEFT JOIN access_users b ON b.id = a.createdby ;
 
 -- Dumping structure for view officeaid_db.vw_requests
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_requests`;
-CREATE VIEW `vw_requests` AS select `a`.`id` AS `id`,`a`.`email` AS `email`,`a`.`sender_contact` AS `sender_contact`,`a`.`subject` AS `subject`,`a`.`description` AS `description`,`a`.`priority` AS `priority`,`a`.`file_id` AS `file_id`,`a`.`assigned_to` AS `assigned_to`,`a`.`status` AS `status`,`a`.`date_created` AS `date_created`,`c`.`name` AS `assignee`,
-dept.name as department 
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_requests` AS select 
+  `a`.`id` AS `id`,
+  `a`.`email` AS `email`,
+  user.fullname as created_by,
+  dept.name as created_by_department,
+  `a`.`sender_contact` AS `sender_contact`,
+  `a`.`subject` AS `subject`,
+  `a`.`description` AS `description`,
+  `a`.`priority` AS `priority`,
+  `a`.`file_id` AS `file_id`,
+  `a`.`assigned_to` AS `assigned_to`,
+  `a`.`status` AS `status`,
+  a.duedate,
+  `a`.`date_created` AS `date_created`,
+  `c`.`name` AS `assignee`,
+  dept.name as department, 
+  a.type, file.filepath, 
+  file.filetype
 
 from ((
   `requests` `a` 
@@ -497,13 +538,14 @@ from ((
 left join `employees` `c` on((`a`.`assigned_to` = `c`.`id`))
 left join `access_users` `user` on((user.username = a.email))
 left join  departments dept on((dept.id = user.department_id))
+left join  files file on((file.id = a.file_id))
 
 )) ;
 
 -- Dumping structure for view officeaid_db.vw_user_details
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_user_details`;
-CREATE VIEW `vw_user_details` AS SELECT
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_user_details` AS SELECT
     `a`.`id` AS `id`,
     `a`.`username` AS `username`,
     `a`.`passwd` AS `passwd`,
