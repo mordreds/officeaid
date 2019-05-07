@@ -39,11 +39,12 @@
     <div class="card-body">
      <label></label>
                  <div class="form-control-element">
-                  <select class="custom-select margin-bottom-20" id="rw_settings_layout">
-                    <option value="default">All Users </option>
-                    <option value="boxed">Disabled</option>
-                    <option value="indent">Delete</option>
-             </select> 
+                  <select class="custom-select margin-bottom-20 form-control" name="systemrole" required>
+                    <option value="" disabled selected>Select System Role</option>
+                    <?php if(!empty($systemrole)) : foreach($systemrole as $systemrole) : ?>
+                      <option value="<?=$systemrole->id?>"> <?=$systemrole->name?> </option>
+                     <?php endforeach; endif; ?>
+                  </select>
            </div>
                 
                <label></label>

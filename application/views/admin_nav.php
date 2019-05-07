@@ -48,17 +48,18 @@
 	  	</li>
 	  	<li class="title">Interface</li>
 	  </li>
-		<?php if(isset($_SESSION['user']['id'])) : if(in_array('AssignTicket',$_SESSION['user']['roles'])) : ?>
-	  	<li class="openable"><a href="<?=base_url()?>dashboard/job">
-				<span class="icon li-feather3"></span> 
-				<span class="text">Assigned</span></a>
-	    </li>
-		<?php endif; else : redirect('access'); endif; ?>
-	  <li class="openable"><a href="<?=base_url()?>dashboard/control"><span class="icon li-ellipsis"></span> <span class="text">Controls</span></a>
-	      		</li>
+		<?php if(in_array('AssignTicket',$_SESSION['user']['roles'])) : ?>
+		  	<li class="openable"><a href="<?=base_url()?>dashboard/job"><span class="icon li-feather3"></span><span class="text">Assigned</span></a></li>
+		<?php endif; ?>
 
-	      		<li class="openable"><a href="<?=base_url()?>dashboard/report"><span class="icon li-layers"></span> <span class="text">Report</span></a>
-	      		</li>
+		<?php if(in_array('Controls',$_SESSION['user']['roles'])) : ?>
+	  		<li class="openable"><a href="<?=base_url()?>dashboard/control"><span class="icon li-ellipsis"></span> <span class="text">Controls</span></a></li>
+	    <?php endif; ?>
+	      		
+  		<?php if(in_array('Report',$_SESSION['user']['roles'])) : ?>
+  			<li class="openable"><a href="<?=base_url()?>dashboard/report"><span class="icon li-layers"></span> <span class="text">Report</span></a></li>
+  		<?php endif; ?>
+
 	      				<li class="title">Template options</li>
 		<?php if(in_array('UserMgmt',$_SESSION['user']['roles'])) : ?>
 			<li class="openable"><a href="#"><span class="icon li-wallet"></span>
@@ -69,8 +70,10 @@
 				</ul>
 			</li>
 		<?php endif; ?>
-<li class="openable"><a href="<?=base_url()?>dashboard/task"><span class="icon li-clipboard-pencil"></span> <span class="text">Task</span></a>
-	      		</li>
+
+		<?php if(in_array('Task',$_SESSION['user']['roles'])) : ?>
+			<li class="openable"><a href="<?=base_url()?>dashboard/task"><span class="icon li-clipboard-pencil"></span> <span class="text">Task</span></a></li>
+		<?php endif; ?>
 	  
 	</ul>
 	</nav></div>

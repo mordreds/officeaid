@@ -76,18 +76,30 @@ class Dashboard extends MX_Controller
       $this->load->view('users',$data); 
       $this->load->view('footer'); 
     else :
-      redirect('dashboard/','refresh');
+      redirect('dashboard/');
     endif;
 }
   public function privillage()
     {
+      if(in_array('UserMgmt',$_SESSION['user']['roles'])) :
+        # Loading Models
+        $this->load->model("globals/model_retrieval");
       
+        # Retrieving All System Roles
+        $dbres = self::$_Default_DB;
+        $tablename = "access_roles_privileges_group";
+        $where_condition = ['where_condition' => ['id !=' => 1]];
+        $data['systemrole'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
+
         $title['title'] = "OfficeAid| Set Privillages"; 
         $this->load->view('header',$title);
         $this->load->view('admin_nav',$title);  
-        $this->load->view('privillage'); 
+        $this->load->view('privillage',$data); 
         $this->load->view('footer'); 
-      
+      else :
+      redirect('dashboard/');
+    endif;
     
   /**************** Interface ********************/
 }
@@ -364,7 +376,7 @@ public function assignedto() {
         $request_data = [
           'fullname'  => ucwords($this->input->post('fullname')),
           'username'  => $this->input->post('email'),
-          'passwd'  => password_hash($this->input->post('fullname'), PASSWORD_DEFAULT),
+          'passwd'  => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
           'department_id' => $this->input->post('department'),
           'phone_number' => ucwords($this->input->post('phone_number')),
           'created_by' => $_SESSION['user']['id']
