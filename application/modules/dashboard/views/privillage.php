@@ -35,7 +35,7 @@
 </div><div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item" data-demo-action="update">Update</a> <a href="#" class="dropdown-item" data-demo-action="expand">Expand</a> <a href="#" class="dropdown-item" data-demo-action="invert">Invert style</a><div class="dropdown-divider"></div><a href="#" class="dropdown-item" data-demo-action="remove">Remove card</a></div></div></div>
 
 <div class="row">
-  <div  class="col-5" >
+  <div  class="col-5" style="display:none" >
     <div class="card-body">
      <label></label>
                  <div class="form-control-element">
@@ -51,7 +51,8 @@
                  <input type="submit" name="Submit Ticket" type="Submit" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-sm">
   </div>
 </div>
-  <div class="col-7">
+<div  class="col-2"></div>
+  <div class="col-8">
     <div class="card-body">
       <div class="row">
       
@@ -77,7 +78,7 @@
                     <tr>
                   <td width="40">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_0"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
+                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_1"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
                     </td>
                       <td width="180"><span class="text-muted">New Request,History ,</span>
                         <span class="text-muted">Directory, Report ,</span><span class="text-muted"> Controls</span>
@@ -91,7 +92,7 @@
                    <tr>
                   <td width="40">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_0"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
+                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_2"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
                     </td>
                       <td width="180"><span class="text-muted">New Request,History ,</span>
                         <span class="text-muted">Directory, Report ,</span><span class="text-muted">Task, Assigned</span>
@@ -105,7 +106,7 @@
                      <tr>
                   <td width="40">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_0"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
+                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_3"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
                     </td>
                       <td width="180"><span class="text-muted">New Request,History ,</span>
                         <span class="text-muted">Directory, Report ,</span><span class="text-muted">Task, Assigned ,</span><span class="text-muted">Users, Previllages</span>
