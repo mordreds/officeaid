@@ -84,6 +84,12 @@ class Dashboard extends MX_Controller
       if(in_array('UserMgmt',$_SESSION['user']['roles'])) :
         # Loading Models
         $this->load->model("globals/model_retrieval");
+
+        # Retrieving All System Roles
+        $dbres = self::$_Default_DB;
+        $tablename = "vw_user_details";
+        $where_condition = ['where_condition' => ['status' => "active"]];
+        $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
       
         # Retrieving All System Roles
         $dbres = self::$_Default_DB;
