@@ -74,6 +74,14 @@
           </select>
         </div>
         <div class="form-control-element">
+          <select class="custom-select margin-bottom-20 form-control" name="systemrole" required>
+            <option value="" disabled selected>Select System Role</option>
+            <?php if(!empty($systemrole)) : foreach($systemrole as $systemrole) : ?>
+              <option value="<?=$systemrole->id?>"> <?=$systemrole->name?> </option>
+             <?php endforeach; endif; ?>
+          </select>
+        </div>
+        <div class="form-control-element">
           <input type="password" class="mask_phone form-control" placeholder="password" name="password" required>
           <div class="form-control-element__box"></div>
         </div> 

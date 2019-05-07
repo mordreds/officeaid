@@ -64,6 +64,12 @@ class Dashboard extends MX_Controller
       $tablename = "departments";
       $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename);
 
+      # Retrieving All System Roles
+      $dbres = self::$_Default_DB;
+      $tablename = "access_roles_privileges_group";
+      $where_condition = ['where_condition' => ['id !=' => 1]];
+      $data['systemrole'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
       $title['title'] = "OfficeAid| Users"; 
       $this->load->view('header',$title); 
       $this->load->view('admin_nav',$title); 
@@ -340,6 +346,7 @@ public function assignedto() {
       $this->form_validation->set_rules('email','Email','trim|required');
       $this->form_validation->set_rules('phone_number','Phone Number','trim|required');
       $this->form_validation->set_rules('department','Department','trim|required');
+      $this->form_validation->set_rules('systemrole','System Role','trim|required');
       $this->form_validation->set_rules('password','Password','trim|required');
 
       if($this->form_validation->run() === FALSE) {
@@ -367,8 +374,14 @@ public function assignedto() {
         /******** Insertion Of New Data ***********/
         $save_data = $this->model_insertion->datainsert($dbres,$tablename,$request_data);
 
-        if($save_data) 
+        if($save_data) {
+          # inserting permissions
+          $tablename = "access_roles_privileges_user";
+          $insert_data = ['user_id' => $save_data, 'group_id' => $this->input->post('systemrole')];
+          $save_data = $this->model_insertion->datainsert($dbres,$tablename,$insert_data);
+
           $this->session->set_flashdata('success', 'Saving User Successful');
+        }
         else 
           $this->session->set_flashdata('error', 'Saving User Failed');
 
