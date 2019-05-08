@@ -29,12 +29,14 @@ CREATE TABLE IF NOT EXISTS `access_login_failed` (
   `country` varchar(255) DEFAULT NULL COMMENT 'country from which the system was accessed',
   `access_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'date of access',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.access_login_failed: 1 rows
+-- Dumping data for table officeaid_db.access_login_failed: 3 rows
 /*!40000 ALTER TABLE `access_login_failed` DISABLE KEYS */;
 INSERT INTO `access_login_failed` (`id`, `user_id`, `username`, `password`, `user_agent`, `hostname`, `ipaddress`, `city_region`, `country`, `access_date`) VALUES
-  (1, 1, 'marksbonapps@gmail.com', 'a460be6a7e38cc2f79598f4b1e9f894f', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', 'cbsa.com', '127.0.0.1', NULL, NULL, '2019-03-26 00:04:54');
+  (1, 1, 'marksbonapps@gmail.com', 'a460be6a7e38cc2f79598f4b1e9f894f', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', 'cbsa.com', '127.0.0.1', NULL, NULL, '2019-03-26 00:04:54'),
+  (2, 10, 'nanaaikinson@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', 'cbsa.com', '127.0.0.1', NULL, NULL, '2019-05-07 10:01:43'),
+  (3, 10, 'nanaaikinson@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', 'cbsa.com', '127.0.0.1', NULL, NULL, '2019-05-07 10:01:54');
 /*!40000 ALTER TABLE `access_login_failed` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_login_successful
@@ -50,9 +52,9 @@ CREATE TABLE IF NOT EXISTS `access_login_successful` (
   `city_region` text COMMENT 'city & region of the user at the time of system access',
   `country` varchar(255) DEFAULT NULL COMMENT 'country of the user at the time of system access',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.access_login_successful: 53 rows
+-- Dumping data for table officeaid_db.access_login_successful: 74 rows
 /*!40000 ALTER TABLE `access_login_successful` DISABLE KEYS */;
 INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `online`, `user_agent`, `ipaddress`, `hostname`, `city_region`, `country`) VALUES
   (1, 1, '2019-03-26 00:38:11', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
@@ -107,7 +109,37 @@ INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `
   (50, 1, '2019-05-02 13:11:15', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (51, 1, '2019-05-02 13:11:26', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (52, 1, '2019-05-02 16:34:02', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (53, 1, '2019-05-04 00:29:44', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
+  (53, 1, '2019-05-04 00:29:44', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (54, 1, '2019-05-07 10:01:25', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (55, 10, '2019-05-07 10:33:37', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (56, 1, '2019-05-07 10:45:39', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (57, 1, '2019-05-07 10:45:41', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (58, 1, '2019-05-07 10:45:44', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (59, 1, '2019-05-07 10:45:45', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (60, 1, '2019-05-07 10:45:46', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (61, 1, '2019-05-07 10:45:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (62, 1, '2019-05-07 10:45:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (63, 1, '2019-05-07 10:45:48', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (64, 1, '2019-05-07 10:47:46', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (65, 1, '2019-05-07 10:47:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (66, 1, '2019-05-07 10:47:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (67, 1, '2019-05-07 10:47:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (68, 1, '2019-05-07 10:47:51', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (69, 1, '2019-05-07 10:47:51', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (70, 1, '2019-05-07 10:47:51', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (71, 1, '2019-05-07 10:47:51', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (72, 1, '2019-05-07 11:05:19', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (73, 1, '2019-05-07 11:05:21', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (74, 1, '2019-05-07 23:14:55', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (75, 1, '2019-05-07 23:22:37', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (76, 1, '2019-05-07 23:34:19', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (77, 1, '2019-05-07 23:35:07', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (78, 1, '2019-05-07 23:35:42', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (79, 1, '2019-05-07 23:37:08', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (80, 1, '2019-05-07 23:38:19', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (81, 1, '2019-05-07 23:50:58', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (82, 1, '2019-05-07 23:51:28', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (83, 1, '2019-05-07 23:51:30', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
 /*!40000 ALTER TABLE `access_login_successful` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_password_reset_requests
@@ -138,14 +170,16 @@ CREATE TABLE IF NOT EXISTS `access_roles_privileges_group` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table officeaid_db.access_roles_privileges_group: 3 rows
+-- Dumping data for table officeaid_db.access_roles_privileges_group: 5 rows
 /*!40000 ALTER TABLE `access_roles_privileges_group` DISABLE KEYS */;
 INSERT INTO `access_roles_privileges_group` (`id`, `name`, `roles`, `privileges`, `description`, `login_url`, `status`, `date_created`) VALUES
-  (1, 'SYSTEM', 'AssignTicket|UserMgmt', '', 'Designers of this software', 'dashboard', 'active', '2017-10-16 17:42:32'),
-  (2, 'HEAD OF DEPARTMENT', 'AssignTicket', '', 'Chief Executive Officer Of The Whole Business', '', 'active', '2019-01-22 23:54:44'),
-  (3, 'RECEPTIONIST', '', '', 'Recieves Clients Warmly And Also The First Point Of Contact. Front Desk Things Too', '', 'active', '2019-01-22 23:56:09');
+  (1, 'System Developers', 'New Request|History|Directory|Report|Task|Assign-Ticket-Task|Users|Privileges|Assigned-Tickets', '', 'Designers of this software', 'dashboard', 'active', '2017-10-16 22:42:32'),
+  (2, 'End Users', 'New Request|History|Directory', '', 'Chief Executive Officer Of The Whole Business', '', 'active', '2019-01-23 05:54:44'),
+  (3, 'Assignees', 'New Request|History|Directory|Report|Controls', '', 'Recieves Clients Warmly And Also The First Point Of Contact. Front Desk Things Too', '', 'active', '2019-01-23 05:56:09'),
+  (4, 'Manager', 'New Request|History|Directory|Report|Task|Assigned', '', NULL, '', 'active', '2019-05-07 11:55:53'),
+  (5, 'Administrator', 'New Request|History|Directory|Report|Task|Assigned|Users|Privileges', '', NULL, '', 'active', '2019-05-07 11:55:53');
 /*!40000 ALTER TABLE `access_roles_privileges_group` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_roles_privileges_user
@@ -157,12 +191,13 @@ CREATE TABLE IF NOT EXISTS `access_roles_privileges_user` (
   `group_id` int(11) NOT NULL COMMENT 'Contains the id of the group to which the user belongs to in roles & priviledges',
   `status` enum('active','inactive','deleted','') CHARACTER SET utf8 DEFAULT 'active' COMMENT 'state of the user''s permissions.',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table officeaid_db.access_roles_privileges_user: 1 rows
+-- Dumping data for table officeaid_db.access_roles_privileges_user: 2 rows
 /*!40000 ALTER TABLE `access_roles_privileges_user` DISABLE KEYS */;
 INSERT INTO `access_roles_privileges_user` (`id`, `user_id`, `custom_roles`, `custom_privileges`, `group_id`, `status`) VALUES
-  (1, 1, '', '', 1, 'active');
+  (1, 1, '', '', 1, 'active'),
+  (2, 10, '', '', 2, 'active');
 /*!40000 ALTER TABLE `access_roles_privileges_user` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_users
@@ -179,9 +214,9 @@ CREATE TABLE IF NOT EXISTS `access_users` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table officeaid_db.access_users: ~8 rows (approximately)
+-- Dumping data for table officeaid_db.access_users: ~9 rows (approximately)
 /*!40000 ALTER TABLE `access_users` DISABLE KEYS */;
 INSERT INTO `access_users` (`id`, `username`, `passwd`, `fullname`, `phone_number`, `department_id`, `login_attempt`, `status`, `created_by`, `date_created`) VALUES
   (1, 'marksbonapps@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Osborne Mordreds', '0541786220', 1, 5, 'active', 0, '2018-07-03 15:59:37'),
@@ -191,7 +226,8 @@ INSERT INTO `access_users` (`id`, `username`, `passwd`, `fullname`, `phone_numbe
   (5, 'peter@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Adjei Peter', '0244626488', 10, 5, 'active', 0, '2019-04-23 07:01:28'),
   (6, 'aware@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Aware Guy Guy', '0244626488', 3, 5, 'inactive', 0, '2019-04-23 07:01:28'),
   (7, 'waasty@okomfoanokyeruralbank.com', '$2y$10$yE24j7T8J/OSH9HX/OfVoeZVHuDSprfo0ggo9r08an2wD0u8RldzS', 'Diego De-Asanbujah', '0244176440', 1, 5, 'active', 0, '2019-04-25 04:53:58'),
-  (8, 'gyamfi@yahoo.com', '$2y$10$d1Dww7xFJ8couw28r86JEeEvEqQv9LYsxhEhPZdKnPOSC42idR/0u', 'Sammy Gyamfi', '0544786254', 3, 5, 'deleted', 1, '2019-04-27 00:23:58');
+  (8, 'gyamfi@yahoo.com', '$2y$10$d1Dww7xFJ8couw28r86JEeEvEqQv9LYsxhEhPZdKnPOSC42idR/0u', 'Sammy Gyamfi', '0544786254', 3, 5, 'deleted', 1, '2019-04-27 00:23:58'),
+  (10, 'nanaaikinson@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Nana Aikinson', '0544789635', 8, 5, 'active', 1, '2019-05-07 10:00:38');
 /*!40000 ALTER TABLE `access_users` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.company_info
@@ -217,8 +253,32 @@ CREATE TABLE IF NOT EXISTS `company_info` (
 -- Dumping data for table officeaid_db.company_info: 1 rows
 /*!40000 ALTER TABLE `company_info` DISABLE KEYS */;
 INSERT INTO `company_info` (`id`, `name`, `telephone_1`, `telephone_2`, `fax`, `email`, `postal_address`, `residence_address`, `website`, `mission`, `vision`, `gps_location`, `tin_number`, `logo_path`, `date_of_commence`) VALUES
-  (1, 'Okomfo Anokye Rural Bank', '+233 0204344906', '0246543708', NULL, 'okomfokye83@yahoo.com', 'Okomfo Anokye Rural Bank Ltd\r\nPostal Office Box 13\r\nWiamoase Ashanti\r\nKumasi', 'Kumasi-Wiamoase', 'www.okomfoanokyeruralbank.com', 'MISSION STATEMENT', 'VISION STATEMAN', 'GA-125-69631', 'TN-12345678', 'resources/img/logo.png', '0000-00-00');
+  (1, 'Okomfo Anokye Rural Bank', '+233 0204344906', '0246543708', NULL, 'Info@okomfoanokyeruralbank.com', 'Okomfo Anokye Rural Bank Ltd\r\nPostal Office Box 13\r\nWiamoase Ashanti\r\nKumasi', 'Kumasi-Wiamoase', 'www.okomfoanokyeruralbank.com', 'MISSION STATEMENT', 'VISION STATEMAN', 'GA-125-69631', 'TN-12345678', 'resources/img/logo.png', '0000-00-00');
 /*!40000 ALTER TABLE `company_info` ENABLE KEYS */;
+
+-- Dumping structure for table officeaid_db.complains
+CREATE TABLE IF NOT EXISTS `complains` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) NOT NULL,
+  `status` enum('active','inactive','deleted') NOT NULL DEFAULT 'active',
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdby` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- Dumping data for table officeaid_db.complains: ~8 rows (approximately)
+/*!40000 ALTER TABLE `complains` DISABLE KEYS */;
+INSERT INTO `complains` (`id`, `name`, `status`, `date_created`, `createdby`) VALUES
+  (1, 'T24', 'active', '2019-05-07 21:53:44', 0),
+  (2, 'CCC/ACH', 'active', '2019-05-07 21:54:05', 0),
+  (3, 'E-ZWICH', 'active', '2019-05-07 21:54:28', 0),
+  (4, 'EMAIL', 'active', '2019-05-07 21:54:37', 0),
+  (5, 'GVIVE', 'active', '2019-05-07 21:55:08', 0),
+  (6, 'I - TRANS', 'active', '2019-05-07 21:55:31', 0),
+  (7, 'RIO', 'active', '2019-05-07 21:55:42', 0),
+  (8, 'UNITY LINK', 'active', '2019-05-07 21:55:51', 0),
+  (9, 'USER WORKSTATION', 'active', '2019-05-07 21:56:09', 0);
+/*!40000 ALTER TABLE `complains` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.departments
 CREATE TABLE IF NOT EXISTS `departments` (
@@ -303,12 +363,14 @@ CREATE TABLE IF NOT EXISTS `files` (
   `filecode` varchar(255) DEFAULT NULL,
   `filepath` varchar(191) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table officeaid_db.files: ~0 rows (approximately)
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
 INSERT INTO `files` (`id`, `subject`, `createdby`, `filetype`, `department_id`, `status`, `filecode`, `filepath`) VALUES
-  (1, 'Priinter Issue', 1, 'zip', 1, 'Public', '', 'uploads/1-2019-04-30-18-08-55-1816015.zip');
+  (1, 'Priinter Issue', 1, 'zip', 1, 'Public', '', 'uploads/1-2019-04-30-18-08-55-1816015.zip'),
+  (2, 'Public Key', 1, 'pdf', 7, 'Public', '', 'uploads/1-2019-05-08-01-03-27-6340176.pdf'),
+  (3, 'Salaries', 3, 'pdf', 4, 'Private', '00233', 'uploads/3-2019-05-08-01-04-46-2428517.pdf');
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.files_additions
@@ -393,6 +455,7 @@ CREATE TABLE IF NOT EXISTS `requests` (
   `description` mediumtext NOT NULL,
   `priority` enum('low','medium','high','urgent') NOT NULL DEFAULT 'low',
   `type` varchar(50) NOT NULL DEFAULT 'ticket',
+  `complain_id` tinyint(4) NOT NULL DEFAULT '0',
   `duedate` date NOT NULL,
   `file_id` bigint(20) NOT NULL,
   `department_id` bigint(20) NOT NULL,
@@ -403,19 +466,13 @@ CREATE TABLE IF NOT EXISTS `requests` (
   `status` enum('pending','processing','resolved','declined','deleted','closed') NOT NULL DEFAULT 'pending',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.requests: ~8 rows (approximately)
+-- Dumping data for table officeaid_db.requests: ~2 rows (approximately)
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
-INSERT INTO `requests` (`id`, `email`, `sender_contact`, `subject`, `description`, `priority`, `type`, `duedate`, `file_id`, `department_id`, `updated_by`, `updated_at`, `assigned_to`, `date_solved`, `status`, `date_created`) VALUES
-  (1, 'marksbonapps@gmail.com', '+23356967555', 'Priinter Issue', '<p>test</p>', 'medium', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-04-11 20:51:03'),
-  (2, 'marksbonapps@gmail.com', '+23356967555', 'Testing Again', '<p>testing Qwertyu</p>', 'medium', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'processing', '2019-04-12 09:42:32'),
-  (3, 'marksbonapps@gmail.com', '+23356967555', 'Priinter Issue', '<p>This Is Tm;;l======================================he Description&nbsp;</p>', 'medium', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-04-12 23:07:25'),
-  (4, 'peter@gmail.com', '0244445669', 'Mouse Not Working', '<p>My Mouse Has Stop Working&nbsp;</p>', 'urgent', 'ticket', '0000-00-00', 0, 0, 0, 0, 1, '0000-00-00 00:00:00', 'processing', '2019-04-19 23:02:19'),
-  (5, 'Serwaa@okomfoanokyeruralbank.com', '0244445668', 'Not Seeing My Keyboard Oooo', 'Bismark, I Cant Find My Keyboard Oooooo', 'urgent', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'resolved', '2019-04-19 23:06:41'),
-  (6, 'Osborne.mordred@gmail.com', '+23356967555', 'Public Keys', '<p>desc</p>', 'low', 'ticket', '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-01 02:33:59'),
-  (7, 'marksbonapps@gmail.com', '', 'Priinter Issuessss', 'Assignment', 'low', 'task', '2019-05-17', 0, 0, 0, 0, 1, '0000-00-00 00:00:00', 'closed', '2019-05-01 15:17:12'),
-  (8, 'marksbonapps@gmail.com', '', 'Trdy', 'Description', 'low', 'task', '2019-05-10', 0, 0, 0, 0, 4, '0000-00-00 00:00:00', 'pending', '2019-05-02 13:11:44');
+INSERT INTO `requests` (`id`, `email`, `sender_contact`, `subject`, `description`, `priority`, `type`, `complain_id`, `duedate`, `file_id`, `department_id`, `updated_by`, `updated_at`, `assigned_to`, `date_solved`, `status`, `date_created`) VALUES
+  (1, 'Osborne.mordred@gmail.com', '+23356967555', 'Can\'t Login', '<p>please Come Asap</p>', 'urgent', 'ticket', 1, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-07 22:19:56'),
+  (2, 'Marksbonapps@gmail.com', '+23356967555', 'Testing Again', '<p>urgergedrg</p>', 'urgent', 'ticket', 3, '0000-00-00', 0, 0, 0, 0, 1, '0000-00-00 00:00:00', 'processing', '2019-05-07 22:27:40');
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 
 -- Dumping structure for view officeaid_db.vw_company_info
@@ -470,6 +527,8 @@ CREATE TABLE `vw_requests` (
   `assignee` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
   `department` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
   `type` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+  `complain_id` TINYINT(4) NOT NULL,
+  `complain` VARCHAR(191) NULL COLLATE 'utf8_general_ci',
   `filepath` VARCHAR(191) NULL COLLATE 'utf8_general_ci',
   `filetype` VARCHAR(50) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
@@ -501,19 +560,19 @@ CREATE TABLE `vw_user_details` (
 -- Dumping structure for view officeaid_db.vw_company_info
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_company_info`;
-CREATE  VIEW `vw_company_info` AS select `hr_company_info`.`id` AS `id`,`hr_company_info`.`name` AS `name`,`hr_company_info`.`telephone_1` AS `telephone_1`,`hr_company_info`.`telephone_2` AS `telephone_2`,`hr_company_info`.`fax` AS `fax`,`hr_company_info`.`email` AS `email`,`hr_company_info`.`postal_address` AS `postal_address`,`hr_company_info`.`residence_address` AS `residence_address`,`hr_company_info`.`website` AS `website`,`hr_company_info`.`mission` AS `mission`,`hr_company_info`.`vision` AS `vision`,`hr_company_info`.`gps_location` AS `gps_location`,`hr_company_info`.`tin_number` AS `tin_number`,`hr_company_info`.`logo_id` AS `logo_id`,`hr_company_info`.`date_of_commence` AS `date_of_commence` from `hr_company_info` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_company_info` AS select `hr_company_info`.`id` AS `id`,`hr_company_info`.`name` AS `name`,`hr_company_info`.`telephone_1` AS `telephone_1`,`hr_company_info`.`telephone_2` AS `telephone_2`,`hr_company_info`.`fax` AS `fax`,`hr_company_info`.`email` AS `email`,`hr_company_info`.`postal_address` AS `postal_address`,`hr_company_info`.`residence_address` AS `residence_address`,`hr_company_info`.`website` AS `website`,`hr_company_info`.`mission` AS `mission`,`hr_company_info`.`vision` AS `vision`,`hr_company_info`.`gps_location` AS `gps_location`,`hr_company_info`.`tin_number` AS `tin_number`,`hr_company_info`.`logo_id` AS `logo_id`,`hr_company_info`.`date_of_commence` AS `date_of_commence` from `hr_company_info` ;
 
 -- Dumping structure for view officeaid_db.vw_files
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_files`;
-CREATE  VIEW `vw_files` AS SELECT a.*,b.fullname FROM files a
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_files` AS SELECT a.*,b.fullname FROM files a
 
 LEFT JOIN access_users b ON b.id = a.createdby ;
 
 -- Dumping structure for view officeaid_db.vw_requests
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_requests`;
-CREATE  VIEW `vw_requests` AS select 
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_requests` AS select 
   `a`.`id` AS `id`,
   `a`.`email` AS `email`,
   user.fullname as created_by,
@@ -529,7 +588,10 @@ CREATE  VIEW `vw_requests` AS select
   `a`.`date_created` AS `date_created`,
   `c`.`name` AS `assignee`,
   dept.name as department, 
-  a.type, file.filepath, 
+  a.type, 
+  a.`complain_id`,
+  comp.name as complain,
+  file.filepath, 
   file.filetype
 
 from ((
@@ -539,13 +601,14 @@ left join `employees` `c` on((`a`.`assigned_to` = `c`.`id`))
 left join `access_users` `user` on((user.username = a.email))
 left join  departments dept on((dept.id = user.department_id))
 left join  files file on((file.id = a.file_id))
+left join complains comp on comp.id = a.complain_id
 
 )) ;
 
 -- Dumping structure for view officeaid_db.vw_user_details
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_user_details`;
-CREATE  VIEW `vw_user_details` AS SELECT
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_user_details` AS SELECT
     `a`.`id` AS `id`,
     `a`.`username` AS `username`,
     `a`.`passwd` AS `passwd`,

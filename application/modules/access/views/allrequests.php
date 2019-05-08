@@ -3,11 +3,10 @@
           <thead>
             <tr>
               <th>No #</th>
+              <th>Complain</th>
               <th>Subject</th>
-              <!-- <th>Description</th> -->
-              <th>CreatedBy</th>
-              <th>AssignedTo</th>
               <th>Priority</th>
+              <th>AssignedTo</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -52,14 +51,10 @@
                 },
                 columns: [
                   {data: "id", visible: false},
+                  {data: "complain"},
                   {data: "subject"},
-                  /*{data: "description",render: function(data,type,row,meta) { 
-                    let desc = row.description.substring(0,20);
-                    return desc;
-                  }},*/
-                  {data: "email"},
-                  {data: "assignee"},
                   {data: "priority"},
+                  {data: "assignee"},
                   {data: "status", render: function(data,type,row,meta) { 
                     if(row.status == "completed") {
                       label_class = "label-success";
@@ -74,7 +69,7 @@
                     return '<span class="label '+label_class+'">'+row.status+'</span>';}
                   },
                   {render: function(data,type,row,meta) {
-                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.sender_name+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.department_name+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
+                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
                   }}
                 ],
               });

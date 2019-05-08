@@ -48,12 +48,12 @@
 	  	</li>
 	  	<li class="title">Interface</li>
 	  </li>
-		<?php if(in_array('AssignTicket',$_SESSION['user']['roles'])) : ?>
-		  	<li class="openable"><a href="<?=base_url()?>dashboard/job"><span class="icon li-feather3"></span><span class="text">Assigned</span></a></li>
+		<?php if(in_array('Assign-Ticket-Task',$_SESSION['user']['roles'])) : ?>
+		  	<li class="openable"><a href="<?=base_url()?>dashboard/job"><span class="icon li-feather3"></span><span class="text">Assign Job</span></a></li>
 		<?php endif; ?>
 
-		<?php if(in_array('Controls',$_SESSION['user']['roles'])) : ?>
-	  		<li class="openable"><a href="<?=base_url()?>dashboard/control"><span class="icon li-ellipsis"></span> <span class="text">Controls</span></a></li>
+		<?php if(in_array('Assigned-Tickets',$_SESSION['user']['roles'])) : ?>
+	  		<li class="openable"><a href="<?=base_url()?>dashboard/control"><span class="icon li-ellipsis"></span> <span class="text">My Assignments</span></a></li>
 	    <?php endif; ?>
 	      		
   		<?php if(in_array('Report',$_SESSION['user']['roles'])) : ?>
@@ -61,7 +61,7 @@
   		<?php endif; ?>
 
 	      				<li class="title">Template options</li>
-		<?php if(in_array('UserMgmt',$_SESSION['user']['roles'])) : ?>
+		<?php if(in_array('Users',$_SESSION['user']['roles'])) : ?>
 			<li class="openable"><a href="#"><span class="icon li-wallet"></span>
 					<span class="text">User Profile</span></a>
 					<ul>

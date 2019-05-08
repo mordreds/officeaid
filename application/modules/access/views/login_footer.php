@@ -24,7 +24,8 @@
           'description': $('[name="description"]').val(),
           'email': $('[name="email"]').val(),
           'creator_contact': $('[name="creator_contact"]').val(),
-          'priority': $('[name="priority"]').val()
+          'priority': $('[name="priority"]').val(),
+          'complain': $('[name=complain]').val()
         };
         
         $.ajax({

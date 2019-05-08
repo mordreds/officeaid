@@ -86,14 +86,6 @@
                 <div class="buttons">
                   <div class="dropdown">
                     <button class="button button-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Profile</a> 
-                      <a class="dropdown-item" href="#">Projects</a> 
-                      <a class="dropdown-item" href="#">Invoices</a> 
-                      <a class="dropdown-item" href="#">Settings</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Log out</a>
-                    </div>
                   </div>
                   <div class="button button-minimize" data-action="aside-minimize" data-toggle="tooltip" data-placement="top" data-original-title="Minimize navigation"></div>
                 </div>

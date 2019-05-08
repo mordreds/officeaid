@@ -97,14 +97,7 @@
                   <input type="text" class="form-control margin-bottom-20" id="priority" readonly>
                   <div class="form-control-element__box"><span class="fa fa-user-secret"></span></div>
                 </div>
-
-                <div class="form-control-element">
-                  <div class="form-control-element">
-                    <input type="test" class="form-control margin-bottom-20" id="date" readonly>
-                    <div class="form-control-element__box"><span class="fa fa-calendar"></span></div>
-                  </div>
-                </div>
-
+                
                 <div class="form-control-element">
                   <div class="form-control-element">
                     <h3> Files </h3>

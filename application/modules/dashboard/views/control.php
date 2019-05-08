@@ -16,7 +16,7 @@
          </div>
    
    </div></div></div><!-- //END PAGE ASIDE PANEL --><!-- PAGE CONTENT CONTAINER --><div class="content" id="content"><!-- PAGE HEADING --><div class="page-heading"><div class="page-heading__container"><div class="icon"><span class="li-chart-settings"></span></div>
-  <h1 class="title">Control Access</h1><p class="caption">OfficeAid</p></div><div class="page-heading__container float-right d-none d-sm-block"></div>
+  <h1 class="title">My Assignments</h1><p class="caption">OfficeAid</p></div><div class="page-heading__container float-right d-none d-sm-block"></div>
   <nav aria-label="breadcrumb" role="navigation">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="">Dashboard</a></li>
@@ -32,12 +32,14 @@
           <th>ID</th>
           <th>Created By</th>
           <th>Department</th>
+          <th>Complain Type</th>
           <th>Subject</th>
           <th>Priority</th>
           <th>Due Date</th>
           <th>Attachments</th>
           <th>Type</th>
           <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -82,6 +84,7 @@
           {data: "id", visible:false},
           {data: "created_by"},
           {data: "created_by_department"},
+          {data: "complain"},
           {data: "subject"},
           {data: "priority"},
           {data: "duedate"},
@@ -129,6 +132,9 @@
             processed = "";
 
             return '<div class="form-control-element"><select class="custom-select changestatus" data-id='+window.btoa(row.id)+'><option '+pending+'>Pending</option><option '+processing+'>Processing</option><option '+processed+'>Resolved</option></select></div>';
+          }},
+          {render: function(data,type,row,meta) {
+            return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
           }}
         ],
     });

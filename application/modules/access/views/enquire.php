@@ -2,10 +2,10 @@
           <div class="row">
             <div class="col-6">
                <div class="form-control-element">
-                <select class="custom-select margin-bottom-20" name="department" required>
+                <select class="custom-select margin-bottom-20" name="complain" required>
                   <option value="" disabled selected>Select Issue Type</option>
-                  <?php if(!empty($departments)) : foreach($departments as $department) : ?>
-                    <option value="<?=$department->id?>"> <?=$department->name?> </option>
+                  <?php if(!empty($allcomplains)) : foreach($allcomplains as $complain) : ?>
+                    <option value="<?=$complain->id?>"> <?=$complain->name?> </option>
                    <?php endforeach; endif; ?>
                 </select>
               </div> 

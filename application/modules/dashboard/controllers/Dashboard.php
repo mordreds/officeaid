@@ -43,19 +43,20 @@ class Dashboard extends MX_Controller
 
      public function control()
     {
-      
+      if(in_array('Assigned-Tickets',$_SESSION['user']['roles'])) :
         $title['title'] = "OfficeAid| Controls"; 
         $this->load->view('header',$title); 
         $this->load->view('admin_nav',$title);
         $this->load->view('control'); 
-        $this->load->view('footer'); 
-      
-    
-  /**************** Interface ********************/
-}
+        $this->load->view('modals');
+          $this->load->view('footer'); 
+      else :
+        redirect('dashboard/');
+      endif;
+    }
   public function users() 
   {
-    if(in_array('UserMgmt',$_SESSION['user']['roles'])) :
+    if(in_array('Users',$_SESSION['user']['roles'])) :
       # Loading Models
       $this->load->model("globals/model_retrieval");
 
@@ -81,7 +82,7 @@ class Dashboard extends MX_Controller
 }
   public function privillage()
     {
-      if(in_array('UserMgmt',$_SESSION['user']['roles'])) :
+      if(in_array('Users',$_SESSION['user']['roles'])) :
         # Loading Models
         $this->load->model("globals/model_retrieval");
 
@@ -121,6 +122,7 @@ public function job()
     $this->load->view('header',$title); 
     $this->load->view('admin_nav',$title);
     $this->load->view('job'); 
+    $this->load->view('modals'); 
     $this->load->view('footer'); 
   }
       
@@ -252,7 +254,7 @@ public function job()
         else
           $color_code = "success";
         $query_result[$key]->type = '<div class="btn btn-outline-'.$color_code.' btn-block disabled btn-sm">'.ucwords($value->type).'</div>';
-        $query_result[$key]->duedate = date('Y-m-d', strtotime($value->duedate));
+        $query_result[$key]->duedate = ($value->duedate != "0000-00-00") ? date('Y-m-d', strtotime($value->duedate)) : "<b><em>Not Applicable</em></b>";
         $query_result[$key]->subject = ucwords($value->subject);
         $query_result[$key]->priority = ucwords($value->priority);
       }
