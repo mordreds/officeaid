@@ -8,6 +8,8 @@
     <link rel="icon" href="<?=base_url()?>resources/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="<?=base_url()?>resources/css/styles2c70.css?v=1.0.3">
 
+    <link href="<?=base_url()?>resources/node_modules/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+
     <script src="<?=base_url()?>resources/js/vendors/jquery/jquery.min.js"></script>
 
     <style type="text/css">

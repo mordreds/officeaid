@@ -20,21 +20,23 @@
               </select>
             </div>
             <div class="form-control-element">
-              <select class="custom-select margin-bottom-20" id="rw_settings_layout" name="department">
-              <option value="" disabled selected>Select Department</option>
-                <?php if(!empty($departments)) : foreach($departments as $dept) : ?>
-                  <option value="<?=$dept->id?>"><?=$dept->name?></option>
-                <?php endforeach; endif; ?>
-              </select>
-            </div>
+          <select class="select2 form-control custom-select" name="department" required>
+            <option value="" disabled selected>Select Department</option>
+            <?php if(!empty($departments)) : foreach($departments as $department) : ?>
+              <option value="<?=$department->id?>"> <?=$department->name?> </option>
+             <?php endforeach; endif; ?>
+          </select>
+        </div>
+            <p></p>
             <div class="form-control-element ">
-              <select class="custom-select margin-bottom-20" id="rw_settings_layout" name="createdby">
+              <select class="select2 form-control custom-select" id="rw_settings_layout" name="createdby">
                 <option value="default">Select Your Name</option>
                 <?php if(!empty($allusers)) : foreach($allusers as $user) : ?>
                   <option value="<?=$user->id?>"><?=$user->fullname?></option>
                 <?php endforeach; endif; ?>
               </select>
             </div>
+            <p></p>
             <div class="form-control-element">
               <input type="text" class="form-control" name="subject" placeholder="Enter Subject" />
               <div class="form-control-element__box"><span class="fa fa-pencil"></span></div>

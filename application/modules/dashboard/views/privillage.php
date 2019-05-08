@@ -40,21 +40,23 @@
       <?php endif; ?>
       
       <div class="form-control-element">
-        <select class="custom-select margin-bottom-20 form-control" name="user" required>
+        <select class="select2 form-control custom-select" name="user" required>
           <option value="" disabled selected>Select User</option>
           <?php if(!empty($allusers)) : foreach($allusers as $user) : ?>
             <option value="<?=$user->id?>"> <?=$user->fullname?> </option>
            <?php endforeach; endif; ?>
         </select>
       </div>
+      <p></p>
       <div class="form-control-element">
-        <select class="custom-select margin-bottom-20 form-control" name="systemrole" required>
+        <select class="select2 form-control custom-select" name="systemrole" required>
           <option value="" disabled selected>Select System Role</option>
           <?php if(!empty($systemrole)) : foreach($systemrole as $role) : ?>
             <option value="<?=$role->id?>"> <?=$role->name?> </option>
            <?php endforeach; endif; ?>
         </select>
       </div>
+      <p></p>
       <input type="submit" name="Submit Ticket" type="Submit" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-sm"/>
     </form>
   </div>

@@ -1,14 +1,16 @@
         <form id="New_Request_Form" action="javascript:void(0);" onsubmit="formSubmit()">
           <div class="row">
             <div class="col-6">
+
                <div class="form-control-element">
-                <select class="custom-select margin-bottom-20" name="complain" required>
+                <select class="select2 form-control custom-select" name="complain" required>
                   <option value="" disabled selected>Select Issue Type</option>
                   <?php if(!empty($allcomplains)) : foreach($allcomplains as $complain) : ?>
                     <option value="<?=$complain->id?>"> <?=$complain->name?> </option>
                    <?php endforeach; endif; ?>
                 </select>
-              </div> 
+              </div>
+              <p></p> 
               <div class="form-control-element">
                 <input type="email" class="form-control margin-bottom-20" placeholder="Enter Your Email" name="email" required>
                 <div class="form-control-element__box"><span class="fa fa-envelope"></span></div>
