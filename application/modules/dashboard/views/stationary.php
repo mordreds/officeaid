@@ -25,12 +25,6 @@
   </div><!-- //END PAGE HEADING -->-
   <div class="container-fluid">
   <div class="card">
-    <div class="card-container">
-    <div class="dropdown">
-        <div class="rw-btn rw-btn--card" data-toggle="dropdown">
-      <div>
-                                                                
-  </div></div><div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item" data-demo-action="update">Update</a> <a href="#" class="dropdown-item" data-demo-action="expand">Expand</a> <a href="#" class="dropdown-item" data-demo-action="invert">Invert style</a><div class="dropdown-divider"></div><a href="#" class="dropdown-item" data-demo-action="remove">Remove card</a></div></div></div>
     <div class="card-body">
       <?php if($this->session->flashdata('success')) : ?>
             <div class="alert alert-success" role="alert"><strong>Success!</strong> <?=$this->session->flashdata('success')?></div>

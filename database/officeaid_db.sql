@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `access_login_successful` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.access_login_successful: 74 rows
+-- Dumping data for table officeaid_db.access_login_successful: 83 rows
 /*!40000 ALTER TABLE `access_login_successful` DISABLE KEYS */;
 INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `online`, `user_agent`, `ipaddress`, `hostname`, `city_region`, `country`) VALUES
   (1, 1, '2019-03-26 00:38:11', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `access_roles_privileges_user` (
 /*!40000 ALTER TABLE `access_roles_privileges_user` DISABLE KEYS */;
 INSERT INTO `access_roles_privileges_user` (`id`, `user_id`, `custom_roles`, `custom_privileges`, `group_id`, `status`) VALUES
   (1, 1, '', '', 1, 'active'),
-  (2, 10, '', '', 2, 'active');
+  (2, 2, '', '', 5, 'active');
 /*!40000 ALTER TABLE `access_roles_privileges_user` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_users
@@ -220,14 +220,7 @@ CREATE TABLE IF NOT EXISTS `access_users` (
 /*!40000 ALTER TABLE `access_users` DISABLE KEYS */;
 INSERT INTO `access_users` (`id`, `username`, `passwd`, `fullname`, `phone_number`, `department_id`, `login_attempt`, `status`, `created_by`, `date_created`) VALUES
   (1, 'marksbonapps@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Osborne Mordreds', '0541786220', 1, 5, 'active', 0, '2018-07-03 15:59:37'),
-  (2, 'bismark@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Bismark Offei', '0244626487', 2, 5, 'active', 0, '2019-04-23 07:01:28'),
-  (3, 'ike@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Isaac Gyasi', '0244626488', 2, 5, 'active', 0, '2019-04-23 07:01:28'),
-  (4, 'evans@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Evans Owusu', '0244626488', 1, 5, 'active', 0, '2019-04-23 07:01:28'),
-  (5, 'peter@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Adjei Peter', '0244626488', 10, 5, 'active', 0, '2019-04-23 07:01:28'),
-  (6, 'aware@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Aware Guy Guy', '0244626488', 3, 5, 'inactive', 0, '2019-04-23 07:01:28'),
-  (7, 'waasty@okomfoanokyeruralbank.com', '$2y$10$yE24j7T8J/OSH9HX/OfVoeZVHuDSprfo0ggo9r08an2wD0u8RldzS', 'Diego De-Asanbujah', '0244176440', 1, 5, 'active', 0, '2019-04-25 04:53:58'),
-  (8, 'gyamfi@yahoo.com', '$2y$10$d1Dww7xFJ8couw28r86JEeEvEqQv9LYsxhEhPZdKnPOSC42idR/0u', 'Sammy Gyamfi', '0544786254', 3, 5, 'deleted', 1, '2019-04-27 00:23:58'),
-  (10, 'nanaaikinson@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Nana Aikinson', '0544789635', 8, 5, 'active', 1, '2019-05-07 10:00:38');
+  (2, 'nanaaikinson@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Nana Aikinson', '0544789635', 8, 5, 'active', 1, '2019-05-07 10:00:38');
 /*!40000 ALTER TABLE `access_users` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.company_info
@@ -266,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `complains` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- Dumping data for table officeaid_db.complains: ~8 rows (approximately)
+-- Dumping data for table officeaid_db.complains: ~9 rows (approximately)
 /*!40000 ALTER TABLE `complains` DISABLE KEYS */;
 INSERT INTO `complains` (`id`, `name`, `status`, `date_created`, `createdby`) VALUES
   (1, 'T24', 'active', '2019-05-07 21:53:44', 0),
@@ -291,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `departments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.departments: ~14 rows (approximately)
+-- Dumping data for table officeaid_db.departments: ~15 rows (approximately)
 /*!40000 ALTER TABLE `departments` DISABLE KEYS */;
 INSERT INTO `departments` (`id`, `name`, `description`, `type`, `status`, `date_created`) VALUES
   (1, 'Info. Tech. (IT)', 'Information Technology', 1, 'active', '2018-12-30 13:53:15'),
@@ -365,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `files` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- Dumping data for table officeaid_db.files: ~0 rows (approximately)
+-- Dumping data for table officeaid_db.files: ~3 rows (approximately)
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
 INSERT INTO `files` (`id`, `subject`, `createdby`, `filetype`, `department_id`, `status`, `filecode`, `filepath`) VALUES
   (1, 'Priinter Issue', 1, 'zip', 1, 'Public', '', 'uploads/1-2019-04-30-18-08-55-1816015.zip'),
@@ -560,19 +553,19 @@ CREATE TABLE `vw_user_details` (
 -- Dumping structure for view officeaid_db.vw_company_info
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_company_info`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_company_info` AS select `hr_company_info`.`id` AS `id`,`hr_company_info`.`name` AS `name`,`hr_company_info`.`telephone_1` AS `telephone_1`,`hr_company_info`.`telephone_2` AS `telephone_2`,`hr_company_info`.`fax` AS `fax`,`hr_company_info`.`email` AS `email`,`hr_company_info`.`postal_address` AS `postal_address`,`hr_company_info`.`residence_address` AS `residence_address`,`hr_company_info`.`website` AS `website`,`hr_company_info`.`mission` AS `mission`,`hr_company_info`.`vision` AS `vision`,`hr_company_info`.`gps_location` AS `gps_location`,`hr_company_info`.`tin_number` AS `tin_number`,`hr_company_info`.`logo_id` AS `logo_id`,`hr_company_info`.`date_of_commence` AS `date_of_commence` from `hr_company_info` ;
+CREATE VIEW `vw_company_info` AS select `hr_company_info`.`id` AS `id`,`hr_company_info`.`name` AS `name`,`hr_company_info`.`telephone_1` AS `telephone_1`,`hr_company_info`.`telephone_2` AS `telephone_2`,`hr_company_info`.`fax` AS `fax`,`hr_company_info`.`email` AS `email`,`hr_company_info`.`postal_address` AS `postal_address`,`hr_company_info`.`residence_address` AS `residence_address`,`hr_company_info`.`website` AS `website`,`hr_company_info`.`mission` AS `mission`,`hr_company_info`.`vision` AS `vision`,`hr_company_info`.`gps_location` AS `gps_location`,`hr_company_info`.`tin_number` AS `tin_number`,`hr_company_info`.`logo_id` AS `logo_id`,`hr_company_info`.`date_of_commence` AS `date_of_commence` from `hr_company_info` ;
 
 -- Dumping structure for view officeaid_db.vw_files
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_files`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_files` AS SELECT a.*,b.fullname FROM files a
+CREATE VIEW `vw_files` AS SELECT a.*,b.fullname FROM files a
 
 LEFT JOIN access_users b ON b.id = a.createdby ;
 
 -- Dumping structure for view officeaid_db.vw_requests
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_requests`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_requests` AS select 
+CREATE VIEW `vw_requests` AS select 
   `a`.`id` AS `id`,
   `a`.`email` AS `email`,
   user.fullname as created_by,
@@ -608,7 +601,7 @@ left join complains comp on comp.id = a.complain_id
 -- Dumping structure for view officeaid_db.vw_user_details
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_user_details`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_user_details` AS SELECT
+CREATE VIEW `vw_user_details` AS SELECT
     `a`.`id` AS `id`,
     `a`.`username` AS `username`,
     `a`.`passwd` AS `passwd`,

@@ -26,14 +26,7 @@
   <div class="container-fluid">
 
    <div class="card">
-    <div class="card-container">
-    <div class="dropdown">
-        <div class="rw-btn rw-btn--card" data-toggle="dropdown">
-      <div>
-                                                                
-  </div>
-</div><div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item" data-demo-action="update">Update</a> <a href="#" class="dropdown-item" data-demo-action="expand">Expand</a> <a href="#" class="dropdown-item" data-demo-action="invert">Invert style</a><div class="dropdown-divider"></div><a href="#" class="dropdown-item" data-demo-action="remove">Remove card</a></div></div></div>
-
+<div class="divider"></div>
 <div class="row">
   <div  class="col-4" >
     <div class="cardbody" style="margin-left: 10px">
@@ -98,7 +91,8 @@
             <th>Full Name</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th>Department</th>
+            <th>Department / Branch</th>
+            <th>Role</th>
             <th>Status</th>
             <th>Action</th>
             </tr>
@@ -150,6 +144,7 @@
               {data: "username"},
               {data: "phone_number"},
               {data: "department"},
+              {data: "group_name"},
               {data: "status", render: function(data,type,row,meta) { 
                 if(row.status == "active") 
                   return '<div class="btn btn-outline-success btn-block disabled btn-sm">'+row.status+'</div>';

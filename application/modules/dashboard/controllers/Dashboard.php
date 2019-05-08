@@ -82,7 +82,7 @@ class Dashboard extends MX_Controller
 }
   public function privillage()
     {
-      if(in_array('Users',$_SESSION['user']['roles'])) :
+      if(in_array('Privileges',$_SESSION['user']['roles'])) :
         # Loading Models
         $this->load->model("globals/model_retrieval");
 
@@ -410,6 +410,45 @@ public function assignedto() {
       }
       else :
         $this->session->set_flashdata('error', 'Saving User Failed');
+        redirect('dashboard/');
+
+      endif;
+  }
+
+   public function changerole() {
+    if(in_array('Privileges',$_SESSION['user']['roles'])) :
+      $this->form_validation->set_rules('user','User','trim|required');
+      $this->form_validation->set_rules('systemrole','System Role','trim|required');
+
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        $this->session->set_flashdata('error', $errors);
+        redirect('dashboard/privillage');
+      }
+      else {
+        # Loading Models 
+        $this->load->model('globals/model_update');
+
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "access_roles_privileges_user";
+        $request_data = ['group_id'  => $this->input->post('systemrole')];
+        $where_condition = ['user_id' => $this->input->post('user')];
+        /***** Data Definition *****/
+
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$request_data,$where_condition);
+        
+        if($save_data) 
+          $this->session->set_flashdata('success', "Role Successful Changed");
+        else
+          $this->session->set_flashdata('error', "Changing Role Failed");
+
+        redirect('dashboard/privillage');
+        /******** Insertion Of New Data ***********/
+      }
+      else :
+        $this->session->set_flashdata('error', 'Changing Role Failed');
         redirect('dashboard/');
 
       endif;

@@ -26,32 +26,39 @@
   <div class="container-fluid">
 
    <div class="card">
-    <div class="card-container">
-    <div class="dropdown">
-        <div class="rw-btn rw-btn--card" data-toggle="dropdown">
-      <div>
-                                                                
-  </div>
-</div><div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item" data-demo-action="update">Update</a> <a href="#" class="dropdown-item" data-demo-action="expand">Expand</a> <a href="#" class="dropdown-item" data-demo-action="invert">Invert style</a><div class="dropdown-divider"></div><a href="#" class="dropdown-item" data-demo-action="remove">Remove card</a></div></div></div>
+     <div class="divider"></div>
 
 <div class="row">
-  <div  class="col-5" style="display:none" >
+  <div  class="col-4">
     <div class="card-body">
-     <label></label>
-                 <div class="form-control-element">
-                  <select class="custom-select margin-bottom-20 form-control" name="systemrole" required>
-                    <option value="" disabled selected>Select System Role</option>
-                    <?php if(!empty($systemrole)) : foreach($systemrole as $systemrole) : ?>
-                      <option value="<?=$systemrole->id?>"> <?=$systemrole->name?> </option>
-                     <?php endforeach; endif; ?>
-                  </select>
-           </div>
-                
-               <label></label>
-                 <input type="submit" name="Submit Ticket" type="Submit" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-sm">
+     <form action="<?=base_url()?>dashboard/changerole" method="post">
+
+      <?php if($this->session->flashdata('success')) : ?>
+        <div class="alert alert-success" role="alert"><strong>Success!</strong> <?=$this->session->flashdata('success')?></div>
+      <?php elseif($this->session->flashdata('error')) : ?>
+        <div class="alert alert-danger" role="alert"><strong><?=$this->session->flashdata('error')?> !</strong>  </div>
+      <?php endif; ?>
+      
+      <div class="form-control-element">
+        <select class="custom-select margin-bottom-20 form-control" name="user" required>
+          <option value="" disabled selected>Select User</option>
+          <?php if(!empty($allusers)) : foreach($allusers as $user) : ?>
+            <option value="<?=$user->id?>"> <?=$user->fullname?> </option>
+           <?php endforeach; endif; ?>
+        </select>
+      </div>
+      <div class="form-control-element">
+        <select class="custom-select margin-bottom-20 form-control" name="systemrole" required>
+          <option value="" disabled selected>Select System Role</option>
+          <?php if(!empty($systemrole)) : foreach($systemrole as $role) : ?>
+            <option value="<?=$role->id?>"> <?=$role->name?> </option>
+           <?php endforeach; endif; ?>
+        </select>
+      </div>
+      <input type="submit" name="Submit Ticket" type="Submit" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-sm"/>
+    </form>
   </div>
 </div>
-<div  class="col-2"></div>
   <div class="col-8">
     <div class="card-body">
       <div class="row">
@@ -62,61 +69,23 @@
           <div class="table-responsive">
             <table class="table table-indent-rows margin-bottom-0">
               <tbody>
+                <?php if(!empty($systemrole)) : foreach ($systemrole as $key => $value) : 
+                  $tempVar = explode('|', $value->roles);
+                  $allroles = implode(', ', $tempVar);
+                ?>
                 <tr>
                   <td width="40">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" id="t1_checkbox_0"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
                     </td>
-                      <td width="180"><span class="text-muted">New Request, History ,</span><span class="text-muted">Directory</span>
-                      </td>
+                      <td width="180"><span class="text-muted"><?=$allroles?></td>
                       
-                      <td width="150"><div class="btn btn-outline-success btn-block disabled btn-sm">End Users</div>
+                      <td width="150"><div class="btn btn-outline-success btn-block disabled btn-sm"><?=$value->name?></div>
                       </td>
                       <td width="40"><button class="btn btn-light btn-sm btn-icon"><span class="fa fa-pencil"></span></button>
                       </td>
-                    </tr>
-                    <tr>
-                  <td width="40">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_1"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
-                    </td>
-                      <td width="180"><span class="text-muted">New Request,History ,</span>
-                        <span class="text-muted">Directory, Report ,</span><span class="text-muted"> Controls</span>
-                      </td>
-                      
-                      <td width="150"><div class="btn btn-outline-success btn-block disabled btn-sm">Assignees</div>
-                      </td>
-                      <td width="40"><button class="btn btn-light btn-sm btn-icon"><span class="fa fa-pencil"></span></button>
-                      </td>
-                    </tr>
-                   <tr>
-                  <td width="40">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_2"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
-                    </td>
-                      <td width="180"><span class="text-muted">New Request,History ,</span>
-                        <span class="text-muted">Directory, Report ,</span><span class="text-muted">Task, Assigned</span>
-                      </td>
-                      
-                      <td width="150"><div class="btn btn-outline-success btn-block disabled btn-sm">Manager</div>
-                      </td>
-                      <td width="40"><button class="btn btn-light btn-sm btn-icon"><span class="fa fa-pencil"></span></button>
-                      </td>
-                    </tr>
-                     <tr>
-                  <td width="40">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="t1_checkbox_3"><label class="custom-control-label" for="t1_checkbox_0"></label></div>
-                    </td>
-                      <td width="180"><span class="text-muted">New Request,History ,</span>
-                        <span class="text-muted">Directory, Report ,</span><span class="text-muted">Task, Assigned ,</span><span class="text-muted">Users, Previllages</span>
-                      </td>
-                      
-                      <td width="150"><div class="btn btn-outline-success btn-block disabled btn-sm">Administrator</div>
-                      </td>
-                      <td width="40"><button class="btn btn-light btn-sm btn-icon"><span class="fa fa-pencil"></span></button>
-                      </td>
-                    </tr>
+                </tr>
+                <?php endforeach; endif; ?>
                   </tbody>
                 </table>
               </div>
