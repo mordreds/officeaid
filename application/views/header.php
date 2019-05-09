@@ -12,5 +12,6 @@
     <script src="<?=base_url()?>resources/js/vendors/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>resources/js/vendors/datatables/datatables.min.js"></script>
   <script type="text/javascript" src="<?=base_url()?>resources/js/vendors/datatables/extensions/dataTables.buttons.min.js"></script>
+  <link href="<?=base_url()?>resources/node_modules/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>

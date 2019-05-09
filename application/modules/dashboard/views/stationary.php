@@ -37,13 +37,14 @@
           <div class="row">
             <div class="col-6">
               <div class="form-control-element">
-                <select class="custom-select margin-bottom-20" name="assignedto"  required>
+                <select class="select2 form-control custom-select" name="assignedto"  required>
                   <option value="" disabled selected> Select Staff</option>
                   <?php if(!empty($allusers)) : foreach($allusers as $user) : ?>
                   <option value="<?=$user->id?>"><?=$user->fullname?></option>
                 <?php endforeach; endif; ?>
                 </select>
               </div>
+              <p></p>
               <!-- <div class="form-control-element">
                 <select class="custom-select margin-bottom-20" name="department" required>
                   <option value="" disabled selected>Select Department</option>

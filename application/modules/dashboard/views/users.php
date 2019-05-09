@@ -59,21 +59,23 @@
           <div class="form-control-element__box"></div>
         </div> <br/>
         <div class="form-control-element">
-          <select class="custom-select margin-bottom-20 form-control" name="department" required>
+          <select class="select2 form-control custom-select" name="department" required>
             <option value="" disabled selected>Select Department</option>
             <?php if(!empty($departments)) : foreach($departments as $department) : ?>
               <option value="<?=$department->id?>"> <?=$department->name?> </option>
              <?php endforeach; endif; ?>
           </select>
         </div>
+        <p></p>
         <div class="form-control-element">
-          <select class="custom-select margin-bottom-20 form-control" name="systemrole" required>
+          <select class="select2 form-control custom-select" name="systemrole" required>
             <option value="" disabled selected>Select System Role</option>
             <?php if(!empty($systemrole)) : foreach($systemrole as $systemrole) : ?>
               <option value="<?=$systemrole->id?>"> <?=$systemrole->name?> </option>
              <?php endforeach; endif; ?>
           </select>
         </div>
+        <p></p>
         <div class="form-control-element">
           <input type="password" class="mask_phone form-control" placeholder="password" name="password" required>
           <div class="form-control-element__box"></div>
@@ -158,7 +160,9 @@
                 else if(row.status == "inactive")
                   button = '<a href="<?=base_url()?>dashboard/userstatus/active/'+row.id+'" type="button" class="btn btn-success btn-xs">Activate</a> ';
 
-                button += ' <a href="<?=base_url()?>dashboard/userstatus/deleted/'+row.id+'" type="button" class="btn btn-danger btn-xs">Delete</a>'
+                button += ' <a href="<?=base_url()?>dashboard/userstatus/deleted/'+row.id+'" type="button" class="btn btn-danger btn-xs">Delete</a>';
+
+                button += ' <a href="#" '+row.id+'" type="button" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-primary btn-xs">Reset</a>'
 
                 return button;
               }}
@@ -176,3 +180,25 @@
 
 </div>
 </div><!-- //END PAGE CONTENT CONTAINER --></div><!-- //END PAGE CONTENT --></div><!-- //END PAGE WRAPPER --><!-- TEMPLATE SETTINGS -->
+
+<!--Reset Password-->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        </div><div class="modal-body">
+          <form>
+            <div class="form-group"><label>Enter Default</label>
+              <input type="text" class="form-control" placeholder="Example input"> 
+              <span class="form-text">eg. 123456</span>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

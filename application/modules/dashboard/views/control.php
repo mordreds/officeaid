@@ -51,7 +51,7 @@
           <td>2011/04/20</td>
           <td>
            <div class="form-control-element">
-              <select class="custom-select margin-bottom-20" id="rw_settings_layout">
+              <select class="select2 form-control custom-select" id="rw_settings_layout">
                 <option>  Pending </option>
                 <option> Processing </option>
                 <option> Resolved </option>
