@@ -26,18 +26,12 @@
   </div><!-- //END PAGE HEADING -->
   <div class="container-fluid">
    <div class="card">
-    <div class="card-container">
-    <div class="dropdown">
-        <div class="rw-btn rw-btn--card" data-toggle="dropdown">
-      <div>
-                                                                
-  </div></div><div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item" data-demo-action="update">Update</a> <a href="#" class="dropdown-item" data-demo-action="expand">Expand</a> <a href="#" class="dropdown-item" data-demo-action="invert">Invert style</a><div class="dropdown-divider"></div><a href="#" class="dropdown-item" data-demo-action="remove">Remove card</a></div></div></div>
     <div class="card-body">
 
       <div class="card" style="width:100% !important">
           <div class="card-body">
             <div class="row">
-              <div class="col-3">
+              <div class="col-2">
                   <div class="form-control-element">
                   <select class="custom-select margin-bottom-20" id="rw_settings_layout">
                     <option value="default">Department/Breanch</option>
@@ -47,7 +41,7 @@
                   </select>
               </div>
             </div>
-              <div class="col-3">
+              <div class="col-2">
                   <div class="form-control-element">
                   <select class="custom-select margin-bottom-20" id="rw_settings_layout">
                     <option value="default">Type</option>
@@ -56,8 +50,8 @@
                   </select>
               </div>
             </div>
-             <div class="col-3">
-                   <div class="form-group margin-top-10 margin-bottom-30">
+             <div class="col-2">
+                   <div class="form-group">
                                       <div class="input-group">
                                       <div class="input-group-prepend">
                                       <div class="input-group-text">
@@ -68,7 +62,19 @@
                                     
                   </div>
             </div>
-              <div class="col-3">
+            <div class="col-2">
+                   <div class="form-group">
+                                      <div class="input-group">
+                                      <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                    <span class="fa fa-calendar-check-o"></span>
+                                    </div>
+                                    </div><input type="Date" class="form-control" placeholder="Press on field to open..." id="dr-example-ex">
+                                  </div>
+                                    
+                  </div>
+            </div>
+              <div class="col-2">
                  <input type="submit" name="Submit Ticket" type="Submit" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-sm">
               </div>
             
