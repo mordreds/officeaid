@@ -52,9 +52,9 @@ CREATE TABLE IF NOT EXISTS `access_login_successful` (
   `city_region` text COMMENT 'city & region of the user at the time of system access',
   `country` varchar(255) DEFAULT NULL COMMENT 'country of the user at the time of system access',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.access_login_successful: 89 rows
+-- Dumping data for table officeaid_db.access_login_successful: 93 rows
 /*!40000 ALTER TABLE `access_login_successful` DISABLE KEYS */;
 INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `online`, `user_agent`, `ipaddress`, `hostname`, `city_region`, `country`) VALUES
   (1, 1, '2019-03-26 00:38:11', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
@@ -145,7 +145,11 @@ INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `
   (86, 1, '2019-05-09 18:54:40', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (87, 1, '2019-05-09 18:54:43', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (88, 1, '2019-05-09 22:14:17', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (89, 1, '2019-05-10 05:25:30', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
+  (89, 1, '2019-05-10 10:25:05', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (90, 1, '2019-05-10 10:27:00', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (91, 1, '2019-05-10 10:42:17', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (92, 1, '2019-05-10 10:55:45', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (93, 1, '2019-05-10 10:56:06', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
 /*!40000 ALTER TABLE `access_login_successful` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_password_reset_requests
@@ -183,8 +187,8 @@ CREATE TABLE IF NOT EXISTS `access_roles_privileges_group` (
 INSERT INTO `access_roles_privileges_group` (`id`, `name`, `roles`, `privileges`, `description`, `login_url`, `status`, `date_created`) VALUES
   (1, 'System Developers', 'New Request|History|Directory|Report|Task|Assign-Ticket-Task|Users|Privileges|Assigned-Tickets', '', 'Designers of this software', 'dashboard', 'active', '2017-10-16 22:42:32'),
   (2, 'End Users', 'New Request|History|Directory', '', 'Chief Executive Officer Of The Whole Business', '', 'active', '2019-01-23 05:54:44'),
-  (3, 'Assignees', 'New Request|History|Directory|Report|Controls', '', 'Recieves Clients Warmly And Also The First Point Of Contact. Front Desk Things Too', '', 'active', '2019-01-23 05:56:09'),
-  (4, 'Manager', 'New Request|History|Directory|Report|Task|Assigned', '', NULL, '', 'active', '2019-05-07 11:55:53'),
+  (3, 'Assignees', 'New Request|History|Directory|Controls|Assigned-Tickets', '', 'Recieves Clients Warmly And Also The First Point Of Contact. Front Desk Things Too', '', 'active', '2019-01-23 05:56:09'),
+  (4, 'Manager', 'New Request|History|Directory|Controls|Report|Task|Assigned|Assign-Ticket-Task', '', NULL, '', 'active', '2019-05-07 11:55:53'),
   (5, 'Administrator', 'New Request|History|Directory|Report|Task|Assigned|Users|Privileges', '', NULL, '', 'active', '2019-05-07 11:55:53');
 /*!40000 ALTER TABLE `access_roles_privileges_group` ENABLE KEYS */;
 
@@ -472,8 +476,8 @@ CREATE TABLE IF NOT EXISTS `requests` (
 -- Dumping data for table officeaid_db.requests: ~2 rows (approximately)
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
 INSERT INTO `requests` (`id`, `email`, `sender_contact`, `subject`, `description`, `priority`, `type`, `complain_id`, `duedate`, `file_id`, `department_id`, `updated_by`, `updated_at`, `assigned_to`, `date_solved`, `status`, `date_created`) VALUES
-  (1, 'Osborne.mordred@gmail.com', '+23356967555', 'Can\'t Login', '<p>please Come Asap</p>', 'urgent', 'ticket', 1, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-07 22:19:56'),
-  (2, 'Marksbonapps@gmail.com', '+23356967555', 'Testing Again', '<p>urgergedrg</p>', 'urgent', 'ticket', 3, '0000-00-00', 0, 0, 0, 0, 1, '0000-00-00 00:00:00', 'processing', '2019-05-07 22:27:40');
+  (1, 'nanaaikinson@gmail.com', '+23356967555', 'Can\'t Login', '<p>please Come Asap</p>', 'urgent', 'ticket', 1, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-07 22:19:56'),
+  (2, 'Marksbonapps@gmail.com', '+23356967555', 'Testing Again', '<p>urgergedrg</p>', 'urgent', 'ticket', 3, '0000-00-00', 0, 0, 0, 0, 11, '0000-00-00 00:00:00', 'processing', '2019-05-07 22:27:40');
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 
 -- Dumping structure for view officeaid_db.vw_company_info
@@ -526,7 +530,7 @@ CREATE TABLE `vw_requests` (
   `duedate` DATE NOT NULL,
   `date_created` DATETIME NOT NULL,
   `date_solved` DATETIME NOT NULL,
-  `assignee` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+  `assignee` VARCHAR(255) NULL COLLATE 'utf8_general_ci',
   `department_id` INT(11) NULL,
   `department` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
   `type` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
@@ -590,7 +594,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
   a.duedate,
   `a`.`date_created` AS `date_created`,
   `a`.`date_solved` AS `date_solved`,
-  `c`.`name` AS `assignee`,
+  `ass`.`fullname` AS `assignee`,
   dept.id as department_id, 
   dept.name as department, 
   a.type, 
@@ -602,8 +606,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 from ((
   `requests` `a` 
   
-left join `employees` `c` on((`a`.`assigned_to` = `c`.`id`))
 left join `access_users` `user` on((user.username = a.email))
+left join `access_users` `ass` on((ass.id = a.assigned_to))
 left join  departments dept on((dept.id = user.department_id))
 left join  files file on((file.id = a.file_id))
 left join complains comp on comp.id = a.complain_id
