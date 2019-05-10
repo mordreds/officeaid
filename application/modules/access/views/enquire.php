@@ -20,10 +20,10 @@
                 </select>
               </div>
               
-              <div class="form-control-element">
+              <!-- <div class="form-control-element">
                 <input type="email" class="form-control margin-bottom-20" placeholder="Enter Your Email" name="email" required>
                 <div class="form-control-element__box"><span class="fa fa-envelope"></span></div>
-              </div>
+              </div> -->
               <div class="form-control-element">
                 <input type="text" class="form-control margin-bottom-20" placeholder="Subject" name="subject" maxlength="30" required>
                 <div class="form-control-element__box"><span class="fa fa-pencil"></span></div>
