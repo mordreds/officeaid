@@ -27,7 +27,7 @@
   <div class="container-fluid">
    <div class="card">
     <div class="card-body">
-      <form action="javascript:void(0)" onsubmit="return generatereport();">
+      <form action="#" onsubmit="event.preventDefault(); return generatereport();">
         <div class="card" style="width:100% !important">
             <div class="card-body">
               <div class="row">
@@ -106,37 +106,44 @@
         </div>
       </form>
 
-      <table id="department_result" class="table table-bordered" cellspacing="0" width="100%">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Department</th>
-            <th>Category</th>
-            <th>Subject</th>
-            <th>Date Issued</th>
-            <th>Date Completed</th>
-            <th>Assigned To</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div id="department-result" class="row" style="display:none">
+        <div class="divider"></div>
+          <table id="department-datatable" class="table table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Department</th>
+                <th>Category</th>
+                <th>Subject</th>
+                <th>Date Issued</th>
+                <th>Date Completed</th>
+                <th>Assigned To</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
 
-        <table id="users-datatable" class="table table-bordered" cellspacing="0" width="100%">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Staff</th>
-            <th>Type</th>
-            <th>Issue Type</th>
-            <th>Description</th>
-            <th>Location</th>
-            <th>Date Issued</th>
-            <th>Date Completed</th>
-            <th>Status</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+        <div id="userresult" class="row" style="display:none">
+          <div class="divider"></div>
+          <table id="users-datatable" class="table table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Staff</th>
+                <th>Type</th>
+                <th>Issue Type</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Date Issued</th>
+                <th>Date Completed</th>
+                <th>status</th>
+                <th>Assigned To</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
     </div>
                                       
                             
@@ -158,29 +165,83 @@
       'endtime': $('[name="endtime"]').val()
     };
 
-    $('#users-datatable').DataTable({
-      dom: "Bfrtip",
-      buttons: ["copy", "csv", "excel", "pdf", "print"],
-      datasrc: '',
-      ajax: {
-        type: 'post',
-        url: formurl,
-        data : formData,
-        error: function() {
-          alert("error retrieving list");
-        }
-      },
-      columns: [
-        {data: "id"},
-        {data: "created_by"},
-        {data: "type"},
-        {data: "complain"},
-        {data: "description"},
-        {data: "department"},
-        {data: "date_created"},
-        {data: "date_solved"},
-        {data: "status"}
-      ],
-    });
+    if(formData.department == "") { 
+      $('#department-result').attr('style', "display:none");
+      /*$('#department-datatable').DataTable().fnDestroy();*/
+
+      var uninitialized = $('#users-datatable').filter(function() {
+        return !$.fn.DataTable.fnIsDataTable(this);
+      });
+
+      if(uninitialized.length == 0)
+        $('#users-datatable').DataTable().destroy();
+
+      $('#userresult').attr('style', "display:block");
+      $('#users-datatable').DataTable({ 
+        dom: "Bfrtip",
+        buttons: ["copy", "csv", "excel", "pdf", "print"],
+        ajax: {
+          dataSrc: '',
+          type: 'post',
+          url: formurl,
+          data : formData,
+          error: function() {
+            alert("error retrieving list");
+          }
+        },
+        columns: [
+          {data: "id", visible:false},
+          {data: "created_by"},
+          {data: "type"},
+          {data: "complain"},
+          {data: "description"},
+          {data: "department"},
+          {data: "date_created"},
+          {data: "date_solved"},
+          {data: "status"},
+          {data: "assignee"}
+        ],
+      });
+    } 
+    else {
+      $('#userresult').attr('style', "display:none");
+      /*$('#department-datatable').DataTable().fnDestroy();*/
+
+      var uninitialized = $('#department-datatable').filter(function() {
+        return !$.fn.DataTable.fnIsDataTable(this);
+      });
+
+      if(uninitialized.length == 0)
+        $('#department-datatable').DataTable().destroy();
+
+      $('#userresult').attr('style', "display:block");
+      $('#department-datatable').DataTable({ 
+        dom: "Bfrtip",
+        buttons: ["copy", "csv", "excel", "pdf", "print"],
+        ajax: {
+          dataSrc: '',
+          type: 'post',
+          url: formurl,
+          data : formData,
+          error: function() {
+            alert("error retrieving list");
+          }
+        },
+        columns: [
+          {data: "id", visible:false},
+          {data: "created_by"},
+          {data: "type"},
+          {data: "complain"},
+          {data: "description"},
+          {data: "department"},
+          {data: "date_created"},
+          {data: "date_solved"},
+          {data: "status"},
+          {data: "assignee"}
+        ],
+      });
+    }
+
+    
   }
 </script>

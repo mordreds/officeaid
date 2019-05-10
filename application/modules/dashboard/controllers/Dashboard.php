@@ -571,6 +571,7 @@ public function assignedto() {
         $assignee = ($this->input->post('assignee')) ? ['assigned_to' => $this->input->post('assignee')] : array();
         $starttime = ($this->input->post('starttime')) ? ['DATE(date_created) >=' => date('Y-m-d', strtotime($this->input->post('starttime')))] : array();
         $endtime = ($this->input->post('endtime')) ? ['DATE(date_created) <=' => date('Y-m-d', strtotime($this->input->post('endtime')))] : array();
+        
         $where_condition = ['where_condition' => array_merge($department_id, $complain_id, $issue_type, $starttime, $endtime, $createdby, $assignee)];
         /***** Data Definition *****/
 
