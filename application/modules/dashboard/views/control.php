@@ -32,12 +32,12 @@
           <th>ID</th>
           <th>Created By</th>
           <th>Department</th>
-          <th>Complain Type</th>
+          <th>Type</th>
           <th>Subject</th>
           <th>Priority</th>
           <th>Due Date</th>
           <th>Attachments</th>
-          <th>Type</th>
+          <th>Complain Type</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
