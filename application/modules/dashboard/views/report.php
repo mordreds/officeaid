@@ -112,24 +112,6 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Department</th>
-                <th>Category</th>
-                <th>Subject</th>
-                <th>Date Issued</th>
-                <th>Date Completed</th>
-                <th>Assigned To</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-
-        <div id="userresult" class="row" style="display:none">
-          <div class="divider"></div>
-          <table id="users-datatable" class="table table-bordered" cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                <th>ID</th>
                 <th>Staff</th>
                 <th>Type</th>
                 <th>Issue Type</th>
@@ -144,10 +126,28 @@
             <tbody></tbody>
           </table>
         </div>
-    </div>
-                                      
-                            
 
+        <div id="userresult" class="row" style="display:none">
+          <div class="divider"></div>
+          <table id="users-datatable" class="table table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Department / Branch</th>
+                <th>Staff</th>
+                <th>Type</th>
+                <th>Issue Type</th>
+                <th>Description</th>
+                <th>Date Issued</th>
+                <th>Date Completed</th>
+                <th>status</th>
+                <th>Assigned To</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+    </div>
 </div>
 </div>
 </div><!-- //END PAGE CONTENT CONTAINER --></div><!-- //END PAGE CONTENT --></div><!-- //END PAGE WRAPPER --><!-- TEMPLATE SETTINGS -->
@@ -205,7 +205,7 @@
     } 
     else {
       $('#userresult').attr('style', "display:none");
-      /*$('#department-datatable').DataTable().fnDestroy();*/
+      $('#department-result').attr('style', "display:block");
 
       var uninitialized = $('#department-datatable').filter(function() {
         return !$.fn.DataTable.fnIsDataTable(this);
@@ -214,7 +214,6 @@
       if(uninitialized.length == 0)
         $('#department-datatable').DataTable().destroy();
 
-      $('#userresult').attr('style', "display:block");
       $('#department-datatable').DataTable({ 
         dom: "Bfrtip",
         buttons: ["copy", "csv", "excel", "pdf", "print"],
@@ -229,11 +228,11 @@
         },
         columns: [
           {data: "id", visible:false},
+          {data: "department"},
           {data: "created_by"},
           {data: "type"},
           {data: "complain"},
           {data: "description"},
-          {data: "department"},
           {data: "date_created"},
           {data: "date_solved"},
           {data: "status"},

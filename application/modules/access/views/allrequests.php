@@ -56,7 +56,7 @@
                   {data: "priority"},
                   {data: "assignee"},
                   {data: "status", render: function(data,type,row,meta) { 
-                    if(row.status == "completed") {
+                    if(row.status == "resolved") {
                       label_class = "label-success";
                     }
                     else if(row.status == "inactive"){
