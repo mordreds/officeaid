@@ -52,9 +52,9 @@ CREATE TABLE IF NOT EXISTS `access_login_successful` (
   `city_region` text COMMENT 'city & region of the user at the time of system access',
   `country` varchar(255) DEFAULT NULL COMMENT 'country of the user at the time of system access',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.access_login_successful: 83 rows
+-- Dumping data for table officeaid_db.access_login_successful: 89 rows
 /*!40000 ALTER TABLE `access_login_successful` DISABLE KEYS */;
 INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `online`, `user_agent`, `ipaddress`, `hostname`, `city_region`, `country`) VALUES
   (1, 1, '2019-03-26 00:38:11', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
@@ -139,7 +139,13 @@ INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `
   (80, 1, '2019-05-07 23:38:19', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (81, 1, '2019-05-07 23:50:58', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (82, 1, '2019-05-07 23:51:28', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (83, 1, '2019-05-07 23:51:30', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
+  (83, 1, '2019-05-07 23:51:30', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (84, 1, '2019-05-08 07:14:42', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (85, 1, '2019-05-09 10:35:20', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (86, 1, '2019-05-09 18:54:40', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (87, 1, '2019-05-09 18:54:43', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (88, 1, '2019-05-09 22:14:17', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (89, 1, '2019-05-10 05:25:30', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
 /*!40000 ALTER TABLE `access_login_successful` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_password_reset_requests
@@ -191,13 +197,14 @@ CREATE TABLE IF NOT EXISTS `access_roles_privileges_user` (
   `group_id` int(11) NOT NULL COMMENT 'Contains the id of the group to which the user belongs to in roles & priviledges',
   `status` enum('active','inactive','deleted','') CHARACTER SET utf8 DEFAULT 'active' COMMENT 'state of the user''s permissions.',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table officeaid_db.access_roles_privileges_user: 2 rows
+-- Dumping data for table officeaid_db.access_roles_privileges_user: 3 rows
 /*!40000 ALTER TABLE `access_roles_privileges_user` DISABLE KEYS */;
 INSERT INTO `access_roles_privileges_user` (`id`, `user_id`, `custom_roles`, `custom_privileges`, `group_id`, `status`) VALUES
   (1, 1, '', '', 1, 'active'),
-  (2, 2, '', '', 5, 'active');
+  (2, 2, '', '', 5, 'active'),
+  (3, 11, '', '', 3, 'active');
 /*!40000 ALTER TABLE `access_roles_privileges_user` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_users
@@ -214,13 +221,14 @@ CREATE TABLE IF NOT EXISTS `access_users` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table officeaid_db.access_users: ~9 rows (approximately)
+-- Dumping data for table officeaid_db.access_users: ~3 rows (approximately)
 /*!40000 ALTER TABLE `access_users` DISABLE KEYS */;
 INSERT INTO `access_users` (`id`, `username`, `passwd`, `fullname`, `phone_number`, `department_id`, `login_attempt`, `status`, `created_by`, `date_created`) VALUES
   (1, 'marksbonapps@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Osborne Mordreds', '0541786220', 1, 5, 'active', 0, '2018-07-03 15:59:37'),
-  (2, 'nanaaikinson@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Nana Aikinson', '0544789635', 8, 5, 'active', 1, '2019-05-07 10:00:38');
+  (2, 'nanaaikinson@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Nana Aikinson', '0544789635', 8, 5, 'active', 1, '2019-05-07 10:00:38'),
+  (11, 'offei@okomfo.com', '$2y$10$1dCW5Hh0zCesciB2XZs7t.Ilj4znf1GM7yCQgTvPb5aA2kHu9nxa6', 'Bismark Offei', '+2345687985456', 2, 5, 'active', 1, '2019-05-09 22:34:41');
 /*!40000 ALTER TABLE `access_users` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.company_info
@@ -259,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `complains` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- Dumping data for table officeaid_db.complains: ~9 rows (approximately)
+-- Dumping data for table officeaid_db.complains: ~8 rows (approximately)
 /*!40000 ALTER TABLE `complains` DISABLE KEYS */;
 INSERT INTO `complains` (`id`, `name`, `status`, `date_created`, `createdby`) VALUES
   (1, 'T24', 'active', '2019-05-07 21:53:44', 0),
@@ -284,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `departments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.departments: ~15 rows (approximately)
+-- Dumping data for table officeaid_db.departments: ~14 rows (approximately)
 /*!40000 ALTER TABLE `departments` DISABLE KEYS */;
 INSERT INTO `departments` (`id`, `name`, `description`, `type`, `status`, `date_created`) VALUES
   (1, 'Info. Tech. (IT)', 'Information Technology', 1, 'active', '2018-12-30 13:53:15'),
@@ -517,7 +525,9 @@ CREATE TABLE `vw_requests` (
   `status` ENUM('pending','processing','resolved','declined','deleted','closed') NOT NULL COLLATE 'latin1_swedish_ci',
   `duedate` DATE NOT NULL,
   `date_created` DATETIME NOT NULL,
+  `date_solved` DATETIME NOT NULL,
   `assignee` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+  `department_id` INT(11) NULL,
   `department` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
   `type` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
   `complain_id` TINYINT(4) NOT NULL,
@@ -553,19 +563,19 @@ CREATE TABLE `vw_user_details` (
 -- Dumping structure for view officeaid_db.vw_company_info
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_company_info`;
-CREATE VIEW `vw_company_info` AS select `hr_company_info`.`id` AS `id`,`hr_company_info`.`name` AS `name`,`hr_company_info`.`telephone_1` AS `telephone_1`,`hr_company_info`.`telephone_2` AS `telephone_2`,`hr_company_info`.`fax` AS `fax`,`hr_company_info`.`email` AS `email`,`hr_company_info`.`postal_address` AS `postal_address`,`hr_company_info`.`residence_address` AS `residence_address`,`hr_company_info`.`website` AS `website`,`hr_company_info`.`mission` AS `mission`,`hr_company_info`.`vision` AS `vision`,`hr_company_info`.`gps_location` AS `gps_location`,`hr_company_info`.`tin_number` AS `tin_number`,`hr_company_info`.`logo_id` AS `logo_id`,`hr_company_info`.`date_of_commence` AS `date_of_commence` from `hr_company_info` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_company_info` AS select `hr_company_info`.`id` AS `id`,`hr_company_info`.`name` AS `name`,`hr_company_info`.`telephone_1` AS `telephone_1`,`hr_company_info`.`telephone_2` AS `telephone_2`,`hr_company_info`.`fax` AS `fax`,`hr_company_info`.`email` AS `email`,`hr_company_info`.`postal_address` AS `postal_address`,`hr_company_info`.`residence_address` AS `residence_address`,`hr_company_info`.`website` AS `website`,`hr_company_info`.`mission` AS `mission`,`hr_company_info`.`vision` AS `vision`,`hr_company_info`.`gps_location` AS `gps_location`,`hr_company_info`.`tin_number` AS `tin_number`,`hr_company_info`.`logo_id` AS `logo_id`,`hr_company_info`.`date_of_commence` AS `date_of_commence` from `hr_company_info` ;
 
 -- Dumping structure for view officeaid_db.vw_files
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_files`;
-CREATE VIEW `vw_files` AS SELECT a.*,b.fullname FROM files a
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_files` AS SELECT a.*,b.fullname FROM files a
 
 LEFT JOIN access_users b ON b.id = a.createdby ;
 
 -- Dumping structure for view officeaid_db.vw_requests
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_requests`;
-CREATE VIEW `vw_requests` AS select 
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_requests` AS select 
   `a`.`id` AS `id`,
   `a`.`email` AS `email`,
   user.fullname as created_by,
@@ -579,7 +589,9 @@ CREATE VIEW `vw_requests` AS select
   `a`.`status` AS `status`,
   a.duedate,
   `a`.`date_created` AS `date_created`,
+  `a`.`date_solved` AS `date_solved`,
   `c`.`name` AS `assignee`,
+  dept.id as department_id, 
   dept.name as department, 
   a.type, 
   a.`complain_id`,
@@ -601,7 +613,7 @@ left join complains comp on comp.id = a.complain_id
 -- Dumping structure for view officeaid_db.vw_user_details
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_user_details`;
-CREATE VIEW `vw_user_details` AS SELECT
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_user_details` AS SELECT
     `a`.`id` AS `id`,
     `a`.`username` AS `username`,
     `a`.`passwd` AS `passwd`,

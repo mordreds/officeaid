@@ -28,16 +28,41 @@ class Dashboard extends MX_Controller
       endif;
    } 
 
-      public function report() 
+    public function report() 
     {
-      if(isset($_SESSION['user'])) : 
+      if(in_array('Report', $_SESSION['user']['roles'])) : 
+        # Loading Models
+        $this->load->model("globals/model_retrieval");
+
+        # Retrieving All Departments
+        $dbres = self::$_Default_DB;
+        $tablename = "departments";
+        $data['alldepartments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename);
+
+        # Retrieving All Users
+        $tablename = "vw_user_details";
+        $where_condition = ['where_condition' => ['status' => "active"]];
+        $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
+        # Retrieving All Assignees
+        $tablename = "vw_user_details";
+        $where_condition = ['where_condition' => ['group_id' => 3]];
+        $data['allassignees'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
+        # Retrieving All Issue Types
+        $tablename = "complains";
+        $where_condition = ['where_condition' => ['status' => "active"]];
+        $data['allissues'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
         $title['title'] = "OfficeAid| Reports"; 
         $this->load->view('header',$title); 
         $this->load->view('admin_nav',$title);
-        $this->load->view('report'); 
+        $this->load->view('report',$data); 
         $this->load->view('footer'); 
+      
       else : 
-        redirect('access');
+        redirect('dashboard');
+      
       endif;
    }
 
@@ -51,7 +76,7 @@ class Dashboard extends MX_Controller
         $this->load->view('modals');
           $this->load->view('footer'); 
       else :
-        redirect('dashboard/');
+        redirect('dashboard');
       endif;
     }
   public function users() 
@@ -361,7 +386,7 @@ public function assignedto() {
     Saving New User
   **************************/
   public function save_user() {
-    if(in_array('UserMgmt',$_SESSION['user']['roles'])) :
+    if(in_array('Users',$_SESSION['user']['roles'])) :
       $this->form_validation->set_rules('fullname','Ticket ID','trim|required');
       $this->form_validation->set_rules('email','Email','trim|required');
       $this->form_validation->set_rules('phone_number','Phone Number','trim|required');
@@ -458,7 +483,7 @@ public function assignedto() {
     Saving New User
   **************************/
   public function userstatus($status,$userid) {
-    if(in_array('UserMgmt',$_SESSION['user']['roles'])) :
+    if(in_array('Users',$_SESSION['user']['roles'])) :
         # Loading Models 
         $this->load->model('globals/model_update');
 
@@ -492,7 +517,7 @@ public function assignedto() {
   **************************/
   public function getallusers_json() 
   {
-    if(!isset($_SESSION['user']['username']) && in_array('UserMgmt',$_SESSION['user']['roles']))
+    if(!isset($_SESSION['user']['username']) && in_array('Users',$_SESSION['user']['roles']))
       redirect('access');
     else
     {
@@ -514,7 +539,56 @@ public function assignedto() {
 
 
 
+  # Generating Invoice
+  public function generatereport() 
+  {
+    if(in_array('Report',$_SESSION['user']['roles']))
+    {
+      $this->form_validation->set_rules('department','Department','trim');
+      $this->form_validation->set_rules('createdby','Created By','trim');
+      $this->form_validation->set_rules('assignee','Assigned To','trim');
+      $this->form_validation->set_rules('issue_type','Issue Type','trim');
+      $this->form_validation->set_rules('complain_type','Complain Type','trim');
+      $this->form_validation->set_rules('starttime','Start Time','trim');
+      $this->form_validation->set_rules('endtime','EndTime','trim');
 
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        print_r(json_encode(['status' => ERROR, 'error' => $errors]));
+      }
+      else {
+        # Loading Models 
+        $this->load->model('globals/model_retrieval');
+
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "vw_requests";
+
+        $department_id = ($this->input->post('department')) ? ['department_id' => $this->input->post('department')] : array();
+        $complain_id = ($this->input->post('complain_type')) ? ['complain_id' => $this->input->post('complain_type')] : array();
+        $issue_type = ($this->input->post('issue_type')) ? ['type' => $this->input->post('issue_type')] : array();
+        $createdby = ($this->input->post('createdby')) ? ['email' => $this->input->post('createdby')] : array();
+        $assignee = ($this->input->post('assignee')) ? ['assigned_to' => $this->input->post('assignee')] : array();
+        $starttime = ($this->input->post('starttime')) ? ['DATE(date_created) >=' => date('Y-m-d', strtotime($this->input->post('starttime')))] : array();
+        $endtime = ($this->input->post('endtime')) ? ['DATE(date_created) <=' => date('Y-m-d', strtotime($this->input->post('endtime')))] : array();
+        $where_condition = ['where_condition' => array_merge($department_id, $complain_id, $issue_type, $starttime, $endtime, $createdby, $assignee)];
+        /***** Data Definition *****/
+
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
+        if($save_data) 
+          $reponseData = $save_data;
+        else
+          $reponseData = "";
+
+        print_r(json_encode($reponseData));
+        /******** Insertion Of New Data ***********/
+      }
+    }
+    else 
+      print_r(json_encode($returndata = ['status' => ERROR, 'error' => "Permission Denied"]));
+  }
 
 
 

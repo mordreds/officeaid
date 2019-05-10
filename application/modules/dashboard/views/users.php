@@ -28,7 +28,7 @@
    <div class="card">
 <div class="divider"></div>
 <div class="row">
-  <div  class="col-4" >
+  <div  class="col-3" >
     <div class="cardbody" style="margin-left: 10px">
       <label></label>
       
@@ -81,10 +81,10 @@
           <div class="form-control-element__box"></div>
         </div> 
         <label></label>
-        <input type="submit" name="Submit Ticket" type="Submit" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-sm">
+        <input type="submit" value="Add New User" type="Submit" class="btn btn-primary btn-block">
       </form>
   </div></div>
-  <div class="col-8">
+  <div class="col-9">
     <div class="card-body">
         <table id="users-datatable" class="table table-bordered" cellspacing="0" width="100%">
         <thead>

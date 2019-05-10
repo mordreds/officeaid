@@ -27,135 +27,160 @@
   <div class="container-fluid">
    <div class="card">
     <div class="card-body">
-
-      <div class="card" style="width:100% !important">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-2">
+      <form action="javascript:void(0)" onsubmit="return generatereport();">
+        <div class="card" style="width:100% !important">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-3">
                   <div class="form-control-element">
-                  <select class="custom-select margin-bottom-20" id="rw_settings_layout">
-                    <option value="default">Department/Breanch</option>
-                    <option value="boxed">IT</option>
-                    <option value="indent">HR</option>
-                    <option value="indent">OKH</option>
-                  </select>
-              </div>
-            </div>
-              <div class="col-2">
+                    <select class="custom-select margin-bottom-20" name="department">
+                      <option value="" disabled selected>Department / Branch</option>
+                      <?php if(!empty($alldepartments)) : foreach($alldepartments as $dept) : ?>
+                        <option value="<?=$dept->id?>"> <?=$dept->name?> </option>
+                       <?php endforeach; endif; ?>
+                    </select>
+                  </div>
                   <div class="form-control-element">
-                  <select class="custom-select margin-bottom-20" id="rw_settings_layout">
-                    <option value="default">Type</option>
-                    <option value="boxed">Ticket</option>
-                    <option value="indent">Task</option>
-                  </select>
-              </div>
-            </div>
-             <div class="col-2">
-                   <div class="form-group">
-                                      <div class="input-group">
-                                      <div class="input-group-prepend">
-                                      <div class="input-group-text">
-                                    <span class="fa fa-calendar-check-o"></span>
-                                    </div>
-                                    </div><input type="Date" class="form-control" placeholder="Press on field to open..." id="dr-example-ex">
-                                  </div>
-                                    
+                    <select class="custom-select margin-bottom-20" name="createdby">
+                      <option value="" disabled selected>Created By</option>
+                      <?php if(!empty($allusers)) : foreach($allusers as $user) : ?>
+                        <option value="<?=$user->username?>"> <?=$user->fullname?> </option>
+                       <?php endforeach; endif; ?>
+                    </select>
                   </div>
-            </div>
-            <div class="col-2">
-                   <div class="form-group">
-                                      <div class="input-group">
-                                      <div class="input-group-prepend">
-                                      <div class="input-group-text">
-                                    <span class="fa fa-calendar-check-o"></span>
-                                    </div>
-                                    </div><input type="Date" class="form-control" placeholder="Press on field to open..." id="dr-example-ex">
-                                  </div>
-                                    
+                  <div class="form-control-element">
+                    <select class="custom-select margin-bottom-20" name="assignee">
+                      <option value="" disabled selected>Assigned To</option>
+                      <?php if(!empty($allassignees)) : foreach($allassignees as $assignee) : ?>
+                        <option value="<?=$assignee->id?>"> <?=$assignee->fullname?> </option>
+                       <?php endforeach; endif; ?>
+                    </select>
                   </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-control-element">
+                    <select class="custom-select margin-bottom-20" name="issue_type">
+                      <option value="" disabled selected>Type</option>
+                      <option>All</option>
+                      <option value="ticket">Ticket</option>
+                      <option value="task">Task</option>
+                    </select>
+                  </div>
+                  <div class="form-control-element">
+                    <select class="custom-select margin-bottom-20" name="complain_type">
+                      <option value="" disabled selected>Issue Type</option>
+                      <option value="0">All</option>
+                      <?php if(!empty($allissues)) : foreach($allissues as $issue) : ?>
+                        <option value="<?=$issue->id?>"> <?=$issue->name?> </option>
+                       <?php endforeach; endif; ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-3">
+                 <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <span class="fa fa-calendar-check-o"></span>
+                        </div>
+                      </div>
+                      <input type="date" class="form-control" name="starttime">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <span class="fa fa-calendar-check-o"></span>
+                        </div>
+                      </div>
+                      <input type="date" class="form-control" name="endtime">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <button type="submit" class="btn btn-primary btn-block">Generate Report</button>
+                </div>
             </div>
-              <div class="col-2">
-                 <input type="submit" name="Submit Ticket" type="Submit" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-sm">
-              </div>
-            
           </div>
         </div>
-      </div>
+      </form>
 
-       <table id="dt-example-buttons" class="table table-bordered" cellspacing="0" width="100%">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Department</th>
-          <th>Category</th>
-          <th>Subject</th>
-          <th>Date Issued</th>
-          <th>Date Completed</th>
-          <th>Assigned To</th>
-          </tr>
-        </thead>
-        <tfoot>
+      <table id="department_result" class="table table-bordered" cellspacing="0" width="100%">
+        <thead>
           <tr>
             <th>ID</th>
-          <th>Department</th>
-          <th>Category</th>
-          <th>Subject</th>
-          <th>Date Issued</th>
-          <th>Date Completed</th>
-          <th>Assigned To</th>
+            <th>Department</th>
+            <th>Category</th>
+            <th>Subject</th>
+            <th>Date Issued</th>
+            <th>Date Completed</th>
+            <th>Assigned To</th>
             </tr>
-          </tfoot>
-          <tbody>
-            <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>2011/04/25</td>
-              <td>2011/04/25</td>
-              <td>$320,800</td>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <table id="users-datatable" class="table table-bordered" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Staff</th>
+            <th>Type</th>
+            <th>Issue Type</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Date Issued</th>
+            <th>Date Completed</th>
+            <th>Status</th>
             </tr>
-            <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>2011/04/25</td>
-              <td>2011/04/25</td>
-              <td>$320,800</td>
-            </tr>
-            <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>2011/04/25</td>
-              <td>2011/04/25</td>
-              <td>$320,800</td>
-            </tr>
-            
-              </tbody>
-              </table>
-              <script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
-                                        app._loading.show($("#dt-ext-buttons"),{spinner: true});
-                                        $("#dt-example-buttons").DataTable({
-                                            dom: "Bfrtip",
-                                            buttons: ["copy", "csv", "excel", "pdf", "print"],
-                                            "initComplete": function(settings, json) {
-                                                setTimeout(function(){
-                                                    app._loading.hide($("#dt-ext-buttons"));
-                                                },1000);
-                                            }
-                                        });
-                                    });</script>
+          </thead>
+          <tbody></tbody>
+        </table>
     </div>
                                       
                             
 
 </div>
- 
-
-
-
 </div>
 </div><!-- //END PAGE CONTENT CONTAINER --></div><!-- //END PAGE CONTENT --></div><!-- //END PAGE WRAPPER --><!-- TEMPLATE SETTINGS -->
+
+<script type="text/javascript">
+  function generatereport() { 
+    let formurl = "<?=base_url()?>dashboard/generatereport";
+    let formData = {
+      'department' : $('[name="department"] option:selected').val(),
+      'assignee' : $('[name="assignee"] option:selected').val(),
+      'createdby' : $('[name="createdby"] option:selected').val(),
+      'complain_type': $('[name="complain_type"] option:selected').val(),
+      'issue_type': $('[name="issue_type"] option:selected').val(),
+      'starttime': $('[name="starttime"]').val(),
+      'endtime': $('[name="endtime"]').val()
+    };
+
+    $('#users-datatable').DataTable({
+      dom: "Bfrtip",
+      buttons: ["copy", "csv", "excel", "pdf", "print"],
+      datasrc: '',
+      ajax: {
+        type: 'post',
+        url: formurl,
+        data : formData,
+        error: function() {
+          alert("error retrieving list");
+        }
+      },
+      columns: [
+        {data: "id"},
+        {data: "created_by"},
+        {data: "type"},
+        {data: "complain"},
+        {data: "description"},
+        {data: "department"},
+        {data: "date_created"},
+        {data: "date_solved"},
+        {data: "status"}
+      ],
+    });
+  }
+</script>
