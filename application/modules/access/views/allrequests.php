@@ -69,7 +69,7 @@
                     return '<span class="label '+label_class+'">'+row.status+'</span>';}
                   },
                   {render: function(data,type,row,meta) {
-                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
+                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"'>Details</button> <button class='btn btn-danger btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"'>Cancel</button>"
                   }}
                 ],
               });

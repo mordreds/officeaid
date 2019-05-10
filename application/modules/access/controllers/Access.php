@@ -92,13 +92,11 @@ class Access extends MX_Controller
       $data['allcomplains'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
 
       # Retrieving All complains
-      $dbres = self::$_Default_DB;
       $tablename = "departments";
       $where_condition = ['where_condition' => ['status' => "active", 'type' => 1]];
       $title['alldepartments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
 
       # Retrieving All complains
-      $dbres = self::$_Default_DB;
       $tablename = "departments";
       $where_condition = ['where_condition' => ['status' => "active", 'type' => 2]];
       $title['allbranches'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
@@ -107,6 +105,11 @@ class Access extends MX_Controller
       $tablename = "company_info";
       $where_condition = ['where_condition' => array('id' => 1)];
       $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
+      # Retrieving Company Details
+      $tablename = VIEW_USER_TABLE;
+      $where_condition = ['where_condition' => array('status' => "active")];
+      $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
       
       $title['title'] = "Request | OfficeAid"; 
       $title['pageName'] = "New Request"; 
