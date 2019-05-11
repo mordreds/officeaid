@@ -146,3 +146,6 @@ define('SUCCESSFUL', 200);
 define('ERROR', 203);
 # ID of user Logged In
 define('USERID', 1);
+
+# Permission 
+define('ASSIGNEE', 3);

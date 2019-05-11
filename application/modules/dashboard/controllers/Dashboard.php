@@ -169,6 +169,7 @@ public function job()
       $dbres = self::$_Default_DB;
       $tablename = "vw_requests";
       $condition = array(
+        'where_condition' => ['type' => "ticket"] ,
         'wherein_condition' => [
           'status' => "pending,processing,resolved",
         ],
@@ -181,6 +182,7 @@ public function job()
       $condition = array(
         'where_condition' => [
           'status' => "active",
+          'group_id' => ASSIGNEE
         ],
         'orderby'=> ['id' => "Desc"]
       );

@@ -80,6 +80,7 @@
         <div class="modal-body">
           <form id="New_Request_Form" action="<?=base_url()?>access/updaterequest" method="POST">
             <input type="hidden" name="id" id="recordid">
+            <input type="hidden" name="redirect_url" value="<?=current_url()?>">
             <div class="row">
               <div class="col-6">
                 

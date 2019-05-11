@@ -82,41 +82,41 @@ class Access extends MX_Controller
     *******************************/
     public function request() 
     {
-      # Loading Models
-      $this->load->model("globals/model_retrieval");
+        # Loading Models
+        $this->load->model("globals/model_retrieval");
 
-      # Retrieving All complains
-      $dbres = self::$_Default_DB;
-      $tablename = "complains";
-      $where_condition = ['where_condition' => ['status' => "active"]];
-      $data['allcomplains'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
+        # Retrieving All complains
+        $dbres = self::$_Default_DB;
+        $tablename = "complains";
+        $where_condition = ['where_condition' => ['status' => "active"]];
+        $data['allcomplains'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
 
-      # Retrieving All complains
-      $tablename = "departments";
-      $where_condition = ['where_condition' => ['status' => "active", 'type' => 1]];
-      $title['alldepartments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
+        # Retrieving All complains
+        $tablename = "departments";
+        $where_condition = ['where_condition' => ['status' => "active", 'type' => 1]];
+        $title['alldepartments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
 
-      # Retrieving All complains
-      $tablename = "departments";
-      $where_condition = ['where_condition' => ['status' => "active", 'type' => 2]];
-      $title['allbranches'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
+        # Retrieving All complains
+        $tablename = "departments";
+        $where_condition = ['where_condition' => ['status' => "active", 'type' => 2]];
+        $title['allbranches'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
 
-      # Retrieving Company Details
-      $tablename = "company_info";
-      $where_condition = ['where_condition' => array('id' => 1)];
-      $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+        # Retrieving Company Details
+        $tablename = "company_info";
+        $where_condition = ['where_condition' => array('id' => 1)];
+        $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
 
-      # Retrieving Company Details
-      $tablename = VIEW_USER_TABLE;
-      $where_condition = ['where_condition' => array('status' => "active")];
-      $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
-      
-      $title['title'] = "Request | OfficeAid"; 
-      $title['pageName'] = "New Request"; 
-      $this->load->view('login_header',$title); 
-      $this->load->view('nav',$title); 
-      $this->load->view('enquire',$data); 
-      $this->load->view('login_footer'); 
+        # Retrieving Company Details
+        $tablename = VIEW_USER_TABLE;
+        $where_condition = ['where_condition' => array('status' => "active")];
+        $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+        
+        $title['title'] = "Request | OfficeAid"; 
+        $title['pageName'] = "New Request"; 
+        $this->load->view('login_header',$title); 
+        $this->load->view('nav',$title); 
+        $this->load->view('enquire',$data); 
+        $this->load->view('login_footer'); 
     }
   /*******************************
       All Requests
@@ -625,6 +625,7 @@ class Access extends MX_Controller
     public function updaterequest() {
       $this->form_validation->set_rules('id','Record','trim|required');
       $this->form_validation->set_rules('description','Description','trim|required');
+      $this->form_validation->set_rules('redirect_url','Redirect Url','trim|required');
 
       if($this->form_validation->run() === FALSE) {
         $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
@@ -647,7 +648,7 @@ class Access extends MX_Controller
         else
           $this->session->set_flashdata('error', "Record Update Failed");
 
-        redirect('access/allrequests');
+        redirect($this->input->post('redirect_url'));
         /******** Insertion Of New Data ***********/
         
       }

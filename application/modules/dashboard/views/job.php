@@ -25,7 +25,7 @@
           <thead>
             <tr>
               <th>No #</th>
-              <th>Complain Type</th>
+              <th>Issue Type</th>
               <th>Subject</th>
               <th>CreatedBy</th>
               <th>Department</th>
@@ -100,7 +100,7 @@
                     else
                     processed = "";
 
-                    return '<div class="form-control-element"><select class="select2 form-control custom-select" data-id='+window.btoa(row.id)+'><option '+pending+'>Pending</option><option '+processing+'>Processing</option><option '+processed+'>Resolved</option><option>Closed</option></select></div>';
+                    return '<div class="form-control-element"><select class="select2 form-control custom-select" data-id='+window.btoa(row.id)+'><option '+pending+'>Pending</option><option '+processing+'>Processing</option><option '+processed+'>Resolved</option><option>Closed</option><option>Excalted (APEX)</option></select></div>';
                   }},
                   {render: function(data,type,row,meta) {
                     return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
