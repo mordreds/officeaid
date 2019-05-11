@@ -127,17 +127,17 @@
           </table>
         </div>
 
-        <div id="userresult" class="row" style="display:none">
+        <div id="user-result" class="row" style="display:none">
           <div class="divider"></div>
           <table id="users-datatable" class="table table-bordered" cellspacing="0" width="100%">
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Department / Branch</th>
                 <th>Staff</th>
                 <th>Type</th>
                 <th>Issue Type</th>
                 <th>Description</th>
+                <th>Department / Branch</th>
                 <th>Date Issued</th>
                 <th>Date Completed</th>
                 <th>status</th>
@@ -167,7 +167,7 @@
 
     if(formData.department == "") { 
       $('#department-result').attr('style', "display:none");
-      /*$('#department-datatable').DataTable().fnDestroy();*/
+      $('#user-result').attr('style', "display:block");
 
       var uninitialized = $('#users-datatable').filter(function() {
         return !$.fn.DataTable.fnIsDataTable(this);
@@ -176,7 +176,6 @@
       if(uninitialized.length == 0)
         $('#users-datatable').DataTable().destroy();
 
-      $('#userresult').attr('style', "display:block");
       $('#users-datatable').DataTable({ 
         dom: "Bfrtip",
         buttons: ["copy", "csv", "excel", "pdf", "print"],

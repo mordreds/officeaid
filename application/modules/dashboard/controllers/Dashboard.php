@@ -580,8 +580,15 @@ public function assignedto() {
         /******** Insertion Of New Data ***********/
         $save_data = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
 
-        if($save_data) 
+        if($save_data) {
+          foreach ($save_data as $key => $value) {
+            # code...
+            $save_data[$key]->date_created = date('D d M, Y', strtotime($value->date_created));
+            $date_resolved = date('D d M, Y', strtotime($value->date_solved));
+            $save_data[$key]->date_solved = ($date_resolved == "Thu 01 Jan, 1970") ? "" : $date_resolved ;
+          }
           $reponseData = $save_data;
+        }
         else
           $reponseData = "";
 
