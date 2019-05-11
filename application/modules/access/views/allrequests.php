@@ -59,11 +59,11 @@
                     if(row.status == "resolved") {
                       label_class = "label-success";
                     }
-                    else if(row.status == "inactive"){
+                    else if(row.status == "Excalated (APEX)"){
                       label_class = "label-danger";
                     }
                     else if(row.status == "pending" || row.status == "processing")
-                      label_class = "label-warning";
+                      label_class = "label-default";
 
                     user_status = row.status;
                     return '<span class="label '+label_class+'">'+row.status+'</span>';}
