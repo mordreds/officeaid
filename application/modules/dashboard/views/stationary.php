@@ -36,7 +36,7 @@
       <form id="New_Request_Form" action="<?=base_url()?>access/save_task" method="post">
           <div class="row">
             <div class="col-6">
-              <div class="form-control-element">
+              <div class="form-control-element margin-bottom-20">
                 <select class="select2 form-control custom-select" name="assignedto"  required>
                   <option value="" disabled selected> Select Staff</option>
                   <?php if(!empty($allusers)) : foreach($allusers as $user) : ?>
@@ -59,7 +59,7 @@
                 <div class="form-control-element__box"><span class="fa fa-pencil"></span></div>
               </div>
               <div class="form-control-element">
-                <input type="Date" class="form-control margin-bottom-20" placeholder="Scheduled Date" name="duedate" required>
+                <input type="date" class="form-control margin-bottom-20" placeholder="Scheduled Date" name="duedate" min="<?=date('Y-m-d')?>" required>
                 <div class="form-control-element__box"><span class="fa fa-time"></span></div>
               </div>
               
@@ -70,8 +70,12 @@
                 </div>
               </div> -->
             </div>
-            <div class="col-6" style="margin-top: 38px">
-              <div class="form-group row"><label class="col-sm-2 col-form-label">Assignment</label><div class="col-sm-10"><textarea class="form-control" rows="5" name="description"></textarea></div></div>
+            <div class="col-6" >
+              <div class="form-group row"><!-- <label class="col-sm-2 col-form-label">Description</label> -->
+                <div class="col-sm-12">
+                  <textarea class="form-control" rows="7" name="description" placeholder="Type Description Of Task Here ......"></textarea>
+                </div>
+              </div>
             </div>
             <div class="divider"></div>
           </div>
