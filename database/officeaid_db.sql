@@ -29,14 +29,10 @@ CREATE TABLE IF NOT EXISTS `access_login_failed` (
   `country` varchar(255) DEFAULT NULL COMMENT 'country from which the system was accessed',
   `access_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'date of access',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.access_login_failed: 3 rows
+-- Dumping data for table officeaid_db.access_login_failed: 0 rows
 /*!40000 ALTER TABLE `access_login_failed` DISABLE KEYS */;
-INSERT INTO `access_login_failed` (`id`, `user_id`, `username`, `password`, `user_agent`, `hostname`, `ipaddress`, `city_region`, `country`, `access_date`) VALUES
-  (1, 1, 'marksbonapps@gmail.com', 'a460be6a7e38cc2f79598f4b1e9f894f', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', 'cbsa.com', '127.0.0.1', NULL, NULL, '2019-03-26 00:04:54'),
-  (2, 10, 'nanaaikinson@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', 'cbsa.com', '127.0.0.1', NULL, NULL, '2019-05-07 10:01:43'),
-  (3, 10, 'nanaaikinson@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', 'cbsa.com', '127.0.0.1', NULL, NULL, '2019-05-07 10:01:54');
 /*!40000 ALTER TABLE `access_login_failed` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_login_successful
@@ -52,104 +48,16 @@ CREATE TABLE IF NOT EXISTS `access_login_successful` (
   `city_region` text COMMENT 'city & region of the user at the time of system access',
   `country` varchar(255) DEFAULT NULL COMMENT 'country of the user at the time of system access',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.access_login_successful: 93 rows
+-- Dumping data for table officeaid_db.access_login_successful: 0 rows
 /*!40000 ALTER TABLE `access_login_successful` DISABLE KEYS */;
 INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `online`, `user_agent`, `ipaddress`, `hostname`, `city_region`, `country`) VALUES
-  (1, 1, '2019-03-26 00:38:11', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (2, 1, '2019-03-26 00:39:16', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (3, 1, '2019-03-26 00:39:23', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (4, 1, '2019-03-26 00:42:46', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (5, 1, '2019-03-26 00:44:23', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (6, 1, '2019-03-26 00:45:24', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (7, 1, '2019-03-26 00:46:10', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (8, 1, '2019-03-26 00:47:06', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (9, 1, '2019-03-26 00:47:49', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (10, 1, '2019-03-26 00:49:36', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (11, 1, '2019-03-26 00:50:18', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (12, 1, '2019-03-26 00:52:44', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (13, 1, '2019-03-26 00:54:32', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (14, 1, '2019-03-27 10:54:44', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.107', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (15, 1, '2019-03-27 20:12:08', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.118', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (16, 1, '2019-03-27 20:14:09', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.118', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (17, 1, '2019-03-29 04:10:10', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.118', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (18, 1, '2019-03-29 04:53:20', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.0.1617 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (19, 1, '2019-03-29 07:38:45', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.118', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (20, 1, '2019-04-04 00:59:48', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (21, 1, '2019-04-04 20:45:44', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (22, 1, '2019-04-09 08:35:42', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (23, 1, '2019-04-11 01:03:44', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (24, 1, '2019-04-12 23:29:40', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (25, 1, '2019-04-12 23:33:12', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (26, 1, '2019-04-15 23:06:01', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (27, 1, '2019-04-16 00:04:08', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (28, 1, '2019-04-19 23:43:47', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (29, 1, '2019-04-19 23:52:47', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (30, 1, '2019-04-19 23:54:08', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (31, 1, '2019-04-20 00:08:22', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (32, 1, '2019-04-20 00:18:49', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (33, 1, '2019-04-20 00:18:51', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (34, 1, '2019-04-20 00:29:43', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (35, 1, '2019-04-20 00:29:52', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (36, 1, '2019-04-20 00:30:18', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (37, 1, '2019-04-20 00:34:55', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (38, 1, '2019-04-20 02:03:28', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (39, 1, '2019-04-20 02:04:23', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (40, 1, '2019-04-20 02:19:21', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (41, 1, '2019-04-20 02:19:26', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (42, 1, '2019-04-25 04:10:43', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (43, 1, '2019-04-25 04:10:50', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (44, 1, '2019-04-27 00:22:15', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (45, 1, '2019-04-27 07:08:10', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (46, 1, '2019-04-27 11:01:35', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (47, 1, '2019-04-30 16:10:22', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (48, 1, '2019-05-01 02:34:10', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (49, 1, '2019-05-01 13:26:36', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (50, 1, '2019-05-02 13:11:15', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (51, 1, '2019-05-02 13:11:26', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (52, 1, '2019-05-02 16:34:02', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (53, 1, '2019-05-04 00:29:44', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (54, 1, '2019-05-07 10:01:25', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (55, 10, '2019-05-07 10:33:37', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (56, 1, '2019-05-07 10:45:39', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (57, 1, '2019-05-07 10:45:41', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (58, 1, '2019-05-07 10:45:44', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (59, 1, '2019-05-07 10:45:45', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (60, 1, '2019-05-07 10:45:46', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (61, 1, '2019-05-07 10:45:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (62, 1, '2019-05-07 10:45:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (63, 1, '2019-05-07 10:45:48', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (64, 1, '2019-05-07 10:47:46', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (65, 1, '2019-05-07 10:47:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (66, 1, '2019-05-07 10:47:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (67, 1, '2019-05-07 10:47:47', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (68, 1, '2019-05-07 10:47:51', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (69, 1, '2019-05-07 10:47:51', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (70, 1, '2019-05-07 10:47:51', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (71, 1, '2019-05-07 10:47:51', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (72, 1, '2019-05-07 11:05:19', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (73, 1, '2019-05-07 11:05:21', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (74, 1, '2019-05-07 23:14:55', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (75, 1, '2019-05-07 23:22:37', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (76, 1, '2019-05-07 23:34:19', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (77, 1, '2019-05-07 23:35:07', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (78, 1, '2019-05-07 23:35:42', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (79, 1, '2019-05-07 23:37:08', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (80, 1, '2019-05-07 23:38:19', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (81, 1, '2019-05-07 23:50:58', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (82, 1, '2019-05-07 23:51:28', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (83, 1, '2019-05-07 23:51:30', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (84, 1, '2019-05-08 07:14:42', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (85, 1, '2019-05-09 10:35:20', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (86, 1, '2019-05-09 18:54:40', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (87, 1, '2019-05-09 18:54:43', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (88, 1, '2019-05-09 22:14:17', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (89, 1, '2019-05-10 10:25:05', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (90, 1, '2019-05-10 10:27:00', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (91, 1, '2019-05-10 10:42:17', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (92, 1, '2019-05-10 10:55:45', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (93, 1, '2019-05-10 10:56:06', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
+  (1, 1, '2019-05-10 19:52:41', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (2, 1, '2019-05-11 09:14:20', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (3, 2, '2019-05-11 09:18:15', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (4, 1, '2019-05-11 09:23:12', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (5, 12, '2019-05-11 11:45:54', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
 /*!40000 ALTER TABLE `access_login_successful` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_password_reset_requests
@@ -201,14 +109,15 @@ CREATE TABLE IF NOT EXISTS `access_roles_privileges_user` (
   `group_id` int(11) NOT NULL COMMENT 'Contains the id of the group to which the user belongs to in roles & priviledges',
   `status` enum('active','inactive','deleted','') CHARACTER SET utf8 DEFAULT 'active' COMMENT 'state of the user''s permissions.',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table officeaid_db.access_roles_privileges_user: 3 rows
 /*!40000 ALTER TABLE `access_roles_privileges_user` DISABLE KEYS */;
 INSERT INTO `access_roles_privileges_user` (`id`, `user_id`, `custom_roles`, `custom_privileges`, `group_id`, `status`) VALUES
   (1, 1, '', '', 1, 'active'),
-  (2, 2, '', '', 5, 'active'),
-  (3, 11, '', '', 3, 'active');
+  (2, 2, '', '', 2, 'active'),
+  (3, 11, '', '', 3, 'active'),
+  (4, 12, '', '', 4, 'active');
 /*!40000 ALTER TABLE `access_roles_privileges_user` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_users
@@ -225,14 +134,15 @@ CREATE TABLE IF NOT EXISTS `access_users` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table officeaid_db.access_users: ~3 rows (approximately)
 /*!40000 ALTER TABLE `access_users` DISABLE KEYS */;
 INSERT INTO `access_users` (`id`, `username`, `passwd`, `fullname`, `phone_number`, `department_id`, `login_attempt`, `status`, `created_by`, `date_created`) VALUES
   (1, 'marksbonapps@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Osborne Mordreds', '0541786220', 1, 5, 'active', 0, '2018-07-03 15:59:37'),
   (2, 'nanaaikinson@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Nana Aikinson', '0544789635', 8, 5, 'active', 1, '2019-05-07 10:00:38'),
-  (11, 'offei@okomfo.com', '$2y$10$1dCW5Hh0zCesciB2XZs7t.Ilj4znf1GM7yCQgTvPb5aA2kHu9nxa6', 'Bismark Offei', '+2345687985456', 2, 5, 'active', 1, '2019-05-09 22:34:41');
+  (11, 'offei@okomfo.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Bismark Offei', '+2345687985456', 2, 5, 'active', 1, '2019-05-09 22:34:41'),
+  (12, 'bwboakye@gmail.com', '$2y$10$Ygl.A.MxAGMPKFqVJS9LTO8pIeuwVm6VWGIbFHf07/1fjrJwjv2me', 'Bright Boakye', '0544789635', 3, 5, 'active', 1, '2019-05-11 09:22:27');
 /*!40000 ALTER TABLE `access_users` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.company_info
@@ -468,16 +378,20 @@ CREATE TABLE IF NOT EXISTS `requests` (
   `updated_at` bigint(20) NOT NULL,
   `assigned_to` bigint(20) NOT NULL,
   `date_solved` datetime NOT NULL,
-  `status` enum('pending','processing','resolved','declined','deleted','closed') NOT NULL DEFAULT 'pending',
+  `status` enum('pending','processing','resolved','declined','deleted','closed','Excalated(Apex)','Cancelled') NOT NULL DEFAULT 'pending',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.requests: ~2 rows (approximately)
+-- Dumping data for table officeaid_db.requests: ~3 rows (approximately)
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
 INSERT INTO `requests` (`id`, `email`, `sender_contact`, `subject`, `description`, `priority`, `type`, `complain_id`, `duedate`, `file_id`, `department_id`, `updated_by`, `updated_at`, `assigned_to`, `date_solved`, `status`, `date_created`) VALUES
   (1, 'nanaaikinson@gmail.com', '+23356967555', 'Can\'t Login', '<p>please Come Asap</p>', 'urgent', 'ticket', 1, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-07 22:19:56'),
-  (2, 'Marksbonapps@gmail.com', '+23356967555', 'Testing Again', '<p>urgergedrg</p>', 'urgent', 'ticket', 3, '0000-00-00', 0, 0, 0, 0, 11, '0000-00-00 00:00:00', 'processing', '2019-05-07 22:27:40');
+  (2, 'Marksbonapps@gmail.com', '+23356967555', 'Testing Again', '<p>urgergedrg</p>', 'urgent', 'ticket', 3, '0000-00-00', 0, 0, 0, 0, 11, '0000-00-00 00:00:00', 'pending', '2019-05-07 22:27:40'),
+  (3, 'Offei@okomfo.com', '+23356967555', 'Public Keys', '<p>Medium Test</p>', 'medium', 'ticket', 2, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-10 14:08:15'),
+  (4, 'Marksbonapps@gmail.com', '+23356967555', 'Trdy', '<p>Testing Now</p>', 'high', 'ticket', 1, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-10 14:09:00'),
+  (5, 'Nanaaikinson@gmail.com', '+23356967555', 'Testing Again', '<p>desc</p>', 'low', 'ticket', 8, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-11 01:57:50'),
+  (6, 'Offei@okomfo.com', '+23356967555', 'Trdy', '<p>qwerty - Update From Assign Job Again</p>', 'low', 'ticket', 2, '0000-00-00', 0, 0, 0, 0, 11, '0000-00-00 00:00:00', 'pending', '2019-05-11 02:11:29');
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 
 -- Dumping structure for view officeaid_db.vw_company_info
@@ -526,7 +440,7 @@ CREATE TABLE `vw_requests` (
   `priority` ENUM('low','medium','high','urgent') NOT NULL COLLATE 'latin1_swedish_ci',
   `file_id` BIGINT(20) NOT NULL,
   `assigned_to` BIGINT(20) NOT NULL,
-  `status` ENUM('pending','processing','resolved','declined','deleted','closed') NOT NULL COLLATE 'latin1_swedish_ci',
+  `status` ENUM('pending','processing','resolved','declined','deleted','closed','Excalated(Apex)','Cancelled') NOT NULL COLLATE 'latin1_swedish_ci',
   `duedate` DATE NOT NULL,
   `date_created` DATETIME NOT NULL,
   `date_solved` DATETIME NOT NULL,
