@@ -112,11 +112,11 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Staff</th>
+                <th>Department / Branch</th>
+                <th>Created By</th>
                 <th>Type</th>
                 <th>Issue Type</th>
-                <th>Description</th>
-                <th>Location</th>
+                <th>Subject</th>
                 <th>Date Issued</th>
                 <th>Date Completed</th>
                 <th>status</th>
