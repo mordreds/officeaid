@@ -1,8 +1,9 @@
-<div class="page"><!-- PAGE CONTENT WRAPPER -->
+
   <a href="<?=base_url()?>access/files" class="btn btn-primary btn-xs">History</a>
-    <div class="page__content" id="page-content"><!-- PAGE CONTENT CONTAINER -->
-      <!-- //END PAGE CONTENT CONTAINER --><!-- PAGE LOGIN CONTAINER -->
-      <div class="important-container login-container">
+   <div class="row">
+    <div class="col-md-4 col-ms-3"></div>
+    <div class="col-md-4 col-ms-6">
+
         <form action="<?=base_url()?>access/savefile" method="post" enctype="multipart/form-data">
           <div class="card-body">
           <?php if($this->session->flashdata('success')) : ?>
@@ -60,12 +61,10 @@
             </div>
           </div>
         </form>
-        
-        <div class="form-group text-center">
+
         </div>
-      </div>
-    </div><!-- PAGE LOGIN CONTAINER -->
-  </div><!-- //END PAGE CONTENT -->
+        <div class="col-md-4 col-ms-3"></div> 
+    </div>  
 </div>
 
 <script type="text/javascript">var editor = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {
