@@ -326,6 +326,8 @@ public function updaterequest() {
     $dbres = self::$_Default_DB;
     $tablename = "requests";
     $update_data = [ 'status' => $this->input->post('status') ];
+    if($update_data['status'] == "completed")
+      $update_data['date_solved'] = date('Y-m-d H:i:s');
     $where_condition = ['id' => base64_decode($this->input->post('ticketid'))];
     /***** Data Definition *****/
     /******** Insertion Of New Data ***********/
