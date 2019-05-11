@@ -584,8 +584,13 @@ public function assignedto() {
           foreach ($save_data as $key => $value) {
             # code...
             $save_data[$key]->date_created = date('D d M, Y', strtotime($value->date_created));
-            $date_resolved = date('D d M, Y', strtotime($value->date_solved));
-            $save_data[$key]->date_solved = ($date_resolved == "Thu 01 Jan, 1970") ? "" : $date_resolved ;
+            $db_date_resolved = $value->date_solved;
+            if($db_date_resolved == "0000-00-00 00:00:00")
+              $date_resolved = "";
+            else
+              $date_resolved = date('D d M, Y', strtotime($db_date_resolved));
+            
+            $save_data[$key]->date_solved = $date_resolved ;
           }
           $reponseData = $save_data;
         }
