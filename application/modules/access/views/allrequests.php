@@ -59,7 +59,7 @@
                     if(row.status == "resolved") {
                       label_class = "label-success";
                     }
-                    else if(row.status == "Excalated (APEX)"){
+                    else if(row.status == "Escalated (APEX)"){
                       label_class = "label-danger";
                     }
                     else if(row.status == "pending" || row.status == "processing")

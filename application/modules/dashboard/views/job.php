@@ -100,7 +100,7 @@
                     else
                     processed = "";
 
-                  if(status == 'Excalated (APEX)')
+                  if(status == 'Escalated (APEX)')
                       escalated = "selected";
                     else
                     escalated = "";
