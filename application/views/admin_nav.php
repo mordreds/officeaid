@@ -4,7 +4,7 @@
 				<a href="<?=base_url()?>" class="logo-text d-none d-lg-block">
 	<strong class="text-primary">Office</strong><strong>Aid</strong></a> 
 	 <a href="<?=base_url()?>" class="logo-text d-lg-none">
-	 	<strong class="text-primary">i</strong><strong>vl</strong></a>
+	 	<strong class="text-primary">O</strong><strong>A</strong></a>
 	 	<div class="rw-btn rw-btn--nav" data-action="aside-hide"><span></span>
 	 	</div>
 	 </div>
@@ -27,7 +27,8 @@
 						<li class="list-group-item padding-left-5 border-top-0">
 						<div class="user user--bordered user--lg">
 							<div class="user__name">
-								<strong>Tracey Newman</strong> commented on your <strong>Awesome article</strong>, <span class="text-muted">5 min ago</span></div>
+								<button type="button" class="btn btn-outline-light btn-block" data-toggle="modal" data-target=".bd-example-modal-sm">Change Password</button>
+							</div>
 							</div>
 						</li>
 						</ul>
