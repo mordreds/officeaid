@@ -1,4 +1,4 @@
-        <form id="New_Request_Form" action="javascript:void(0);" onsubmit="formSubmit()">
+        <form id="New_Request_Form" method="post" enctype="multipart/form-data">
           <div class="row">
             <div class="col-6">
 
@@ -42,7 +42,8 @@
                 </select>
               </div>
               <div class="form-control-element">
-                <input type="file" class="form-control" placeholder="Attachment" accept="image/*">
+                <input type="file" class="form-control" placeholder="Attachment" id="Attachment">
+                <input type="hidden" id="b64" name="image64">
                 <div class="form-control-element__box"><span class="fa fa-file"></span></div>
               </div>
               <!-- <div class="col-6" style="float: right">
@@ -62,7 +63,7 @@
             </div>
             <div class="divider"></div>
           </div>
-          <button class="btn btn-primary btn-block" id="new_request_submit">Submit Ticket</button>
+          <button type="submit" class="btn btn-primary btn-block" id="new_request_submit">Submit Ticket</button>
         </form>
       </div>
     </div><!-- PAGE LOGIN CONTAINER -->

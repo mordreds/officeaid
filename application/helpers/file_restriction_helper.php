@@ -69,12 +69,12 @@
     if(!empty($file_array))
     {
       # File Upload Restrictions
-      $supported_extension = array('doc','docx','pdf','xls','xlsx','txt','zip','.exe');
+      $supported_extension = array('doc','docx','pdf','xls','xlsx','txt','zip','exe','png', 'jpg', 'jpeg');
       $extension = strtolower(pathinfo($file_array['name'], PATHINFO_EXTENSION));
 
       if( in_array($extension,$supported_extension) ) 
       {
-        if( $file_array['size'] > 0 && $file_array['size'] < 20000000 ) 
+        if( $file_array['size'] > 0 && $file_array['size'] < 200000000) 
         {
           $project_name = str_replace(' ', '', $project_name);
 

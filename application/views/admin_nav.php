@@ -3,7 +3,7 @@
 			<div class="logo-holder">
 				<a href="<?=base_url()?>" class="logo-text d-none d-lg-block">
 	<strong class="text-primary">Office</strong><strong>Aid</strong></a> 
-	 <a href="index.html" class="logo-text d-lg-none">
+	 <a href="<?=base_url()?>" class="logo-text d-lg-none">
 	 	<strong class="text-primary">i</strong><strong>vl</strong></a>
 	 	<div class="rw-btn rw-btn--nav" data-action="aside-hide"><span></span>
 	 	</div>

@@ -1,9 +1,9 @@
   <div class="page page--w-header"><!-- PAGE HEADER -->
     <header class="page__header">
       <div class="logo-holder">
-        <a href="index.html" class="logo-text d-none d-lg-block">
+        <a href="<?=base_url()?>" class="logo-text d-none d-lg-block">
           <strong class="text-primary">Office</strong> <strong>Aid</strong></a> 
-          <a href="index.html" class="logo-text d-lg-none"><strong class="text-primary">#</strong>
+          <a href="<?=base_url()?>" class="logo-text d-lg-none"><strong class="text-primary">#</strong>
             <strong>OA</strong></a><div class="rw-btn rw-btn--nav" data-action="aside-hide"><span></span></div>
         </div>
         

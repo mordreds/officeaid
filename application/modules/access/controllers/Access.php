@@ -399,6 +399,7 @@ class Access extends MX_Controller
       $this->form_validation->set_rules('creator_contact','Your Contact','trim|required');
       $this->form_validation->set_rules('priority','Priority','trim|required');
       $this->form_validation->set_rules('complain','Complain','trim|required');
+      $this->form_validation->set_rules('file','File','trim');
 
       if($this->form_validation->run() === FALSE) {
         $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
@@ -407,24 +408,47 @@ class Access extends MX_Controller
       }
       else {
         $this->load->model('globals/model_insertion');
+        $this->load->helper('file_restriction');
         /***** Data Definition *****/
         $dbres = self::$_Default_DB;
-        $tablename = "requests";
         $request_data = [
-          'email' => ucwords($this->input->post('email')),
+          'email' => $this->input->post('email'),
           'sender_contact' => ucwords($this->input->post('creator_contact')),
           'subject' => ucwords($this->input->post('subject')),
           'description' => ucwords($this->input->post('description')),
           'priority' => ucwords($this->input->post('priority')),
           'type' => "ticket",
           'complain_id' => $this->input->post('complain'),
-          'file_id' => 0,
-          /*'due_date' => ucwords($this->input->post('date')),
-          'department_id' => ucwords($this->input->post('department')),*/
         ];
-        //print_r($request_data); exit;
+        
+        # uploading files if any 
+        $file_array = $_FILES['file'];
+        if(!empty($file_array)) {
+          $tablename = "files";
+          $upload_data = [
+            'type' => "ticket",
+            'status' => "Public",
+          ];
+
+          $project_name = "_".date('Y-m-d-H-i-s')."-".rand(1111111,9999999);
+          $target_dir = "uploads/";
+          $fileresponse = doc_restriction($file_array,$project_name,$target_dir);
+
+          if(@$fileresponse['error']) {
+            print_r(json_encode($fileresponse['error']));
+          }
+          else {
+            $upload_data['filetype'] = $fileresponse['extension'];
+            $upload_data['filepath'] = $fileresponse['imgpath'];
+          }
+
+          $save_data_upload = $this->model_insertion->datainsert($dbres,$tablename,$upload_data);
+        }
         /***** Data Definition *****/
         /******** Insertion Of New Data ***********/
+
+        $tablename = "requests";
+        $request_data['file_id'] = $save_data_upload;
         $save_data = $this->model_insertion->datainsert($dbres,$tablename,$request_data);
   
         if(is_int($save_data)) 

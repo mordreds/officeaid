@@ -101,7 +101,8 @@
                 
                 <div class="form-control-element">
                   <div class="form-control-element">
-                    <h3> Files </h3>
+                    <h3> File </h3>
+                    <p id="image"></p>
                   </div>
                 </div>
               
@@ -148,6 +149,14 @@
       $('#phone_no').val($(this).data('s_contact'));
       $('#date').val($(this).data('d_date'));
       $('.note-editable').html($(this).data('desc'));
+      let image = $(this).data('img');
+
+      if(image != null)
+        $('#image').html('<a href="<?=base_url()?>'+image+'" style="color: #428c01"><span class="fa fa-file fa-2x"></span></a>');
+      else
+        $('#image').html("");
+
+      $('#image').attr("href", data('img'));
 
       $('.note-placeholder').attr('style',"display:none");
       $('.note-style').attr('style',"display:none");

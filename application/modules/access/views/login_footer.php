@@ -20,22 +20,35 @@
     });</script>
     <!-- New Request Save -->
     <script type="text/javascript">
-      function formSubmit() {
+        /*$(document).on('change', '#Attachment', function (){
+            if (this.files && this.files[0]) {
+              var FR= new FileReader();
+              FR.addEventListener("load", function(e) {
+                $("#b64").val(e.target.result);
+              }); 
+              FR.readAsDataURL( this.files[0] );
+            }
+        });*/
+
+      $('form#New_Request_Form').submit(function (e) {
+        e.preventDefault();
         let formurl = "<?=base_url()?>access/save_request";
-        let formData = {
-          'subject' : $('[name="subject"]').val(),
-          'description': $('[name="description"]').val(),
-          'email': $('[name="email"]').val(),
-          'creator_contact': $('[name="creator_contact"]').val(),
-          'priority': $('[name="priority"]').val(),
-          'complain': $('[name=complain]').val()
-        };
-        
+        let formData = new FormData();
+        formData.append('file', $('[type="file"]')[0].files[0]);
+        formData.append('subject', $('[name="subject"]').val());
+        formData.append('email', $('[name="email"]').val());
+        formData.append('description', $('[name="description"]').val());
+        formData.append('creator_contact', $('[name="creator_contact"]').val());
+        formData.append('priority', $('[name="priority"]').val());
+        formData.append('complain', $('[name="complain"]').val());
+
         $.ajax({
             type: 'post',
             url: formurl,
             data : formData,
             cache: false,
+            processData: false,
+            contentType: false,
             beforeSend: function(){
               $(".loading_screen").modal("show");
             },
@@ -44,7 +57,7 @@
             },
             success: function(response){
               result = JSON.parse(response);
-
+              
               if(result.ticketNo > 0) {
                 $('.ticketNo').html("Ticket Submited Successfully..<br/> Ticket ID : " + result.ticketNo);
                 $('.ticket_result').modal("show");
@@ -55,7 +68,8 @@
               }
             }
         });
-      }
+
+      });
 
       $('.close_ticket_modal').click(function(){
         location.reload();

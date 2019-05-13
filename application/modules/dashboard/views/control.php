@@ -139,7 +139,7 @@
             return '<div class="form-control-element"><select class="custom-select changestatus" data-id='+window.btoa(row.id)+'><option '+pending+'>Pending</option><option '+processing+'>Processing</option><option '+processed+'>Resolved</option><option '+escalated+'>Escalated (APEX)</option></select></div>';
           }},
           {render: function(data,type,row,meta) {
-            return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"'>Details</button>"
+            return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-d_date='"+row.due_date +"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"' data-img='"+row.filepath+"'>Details</button>"
           }}
         ],
     });

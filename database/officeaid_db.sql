@@ -48,16 +48,29 @@ CREATE TABLE IF NOT EXISTS `access_login_successful` (
   `city_region` text COMMENT 'city & region of the user at the time of system access',
   `country` varchar(255) DEFAULT NULL COMMENT 'country of the user at the time of system access',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.access_login_successful: 0 rows
+-- Dumping data for table officeaid_db.access_login_successful: 12 rows
 /*!40000 ALTER TABLE `access_login_successful` DISABLE KEYS */;
 INSERT INTO `access_login_successful` (`id`, `user_id`, `time_in`, `time_out`, `online`, `user_agent`, `ipaddress`, `hostname`, `city_region`, `country`) VALUES
   (1, 1, '2019-05-10 19:52:41', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (2, 1, '2019-05-11 09:14:20', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (3, 2, '2019-05-11 09:18:15', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
   (4, 1, '2019-05-11 09:23:12', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
-  (5, 12, '2019-05-11 11:45:54', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
+  (5, 12, '2019-05-11 11:45:54', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (6, 12, '2019-05-11 13:59:12', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (7, 12, '2019-05-11 14:35:53', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (8, 11, '2019-05-11 14:36:05', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (9, 12, '2019-05-12 06:59:15', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (10, 11, '2019-05-12 08:16:17', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (11, 1, '2019-05-12 08:20:48', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (12, 1, '2019-05-12 14:53:36', '0000-00-00 00:00:00', 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (13, 2, '2019-05-13 09:42:56', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (14, 1, '2019-05-13 09:45:33', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (15, 11, '2019-05-13 10:05:58', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (16, 1, '2019-05-13 10:10:29', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (17, 11, '2019-05-13 10:10:59', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL),
+  (18, 1, '2019-05-13 10:11:15', '0000-00-00 00:00:00', 0, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132', '127.0.0.1', 'cbsa.com', NULL, NULL);
 /*!40000 ALTER TABLE `access_login_successful` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.access_password_reset_requests
@@ -111,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `access_roles_privileges_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table officeaid_db.access_roles_privileges_user: 3 rows
+-- Dumping data for table officeaid_db.access_roles_privileges_user: 4 rows
 /*!40000 ALTER TABLE `access_roles_privileges_user` DISABLE KEYS */;
 INSERT INTO `access_roles_privileges_user` (`id`, `user_id`, `custom_roles`, `custom_privileges`, `group_id`, `status`) VALUES
   (1, 1, '', '', 1, 'active'),
@@ -136,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `access_users` (
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table officeaid_db.access_users: ~3 rows (approximately)
+-- Dumping data for table officeaid_db.access_users: ~4 rows (approximately)
 /*!40000 ALTER TABLE `access_users` DISABLE KEYS */;
 INSERT INTO `access_users` (`id`, `username`, `passwd`, `fullname`, `phone_number`, `department_id`, `login_attempt`, `status`, `created_by`, `date_created`) VALUES
   (1, 'marksbonapps@gmail.com', '$2y$10$O/swrfsJ6TbhtHiyzR7GmurgN4u49VcaMFzrOtZ9.3N511hoPhOVi', 'Osborne Mordreds', '0541786220', 1, 5, 'active', 0, '2018-07-03 15:59:37'),
@@ -270,6 +283,7 @@ INSERT INTO `employees` (`id`, `name`, `phone_1`, `phone_2`, `branch_id`, `statu
 -- Dumping structure for table officeaid_db.files
 CREATE TABLE IF NOT EXISTS `files` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) NOT NULL DEFAULT 'personal',
   `subject` varchar(191) NOT NULL,
   `createdby` int(11) NOT NULL,
   `filetype` varchar(50) NOT NULL,
@@ -278,14 +292,13 @@ CREATE TABLE IF NOT EXISTS `files` (
   `filecode` varchar(255) DEFAULT NULL,
   `filepath` varchar(191) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- Dumping data for table officeaid_db.files: ~3 rows (approximately)
+-- Dumping data for table officeaid_db.files: ~0 rows (approximately)
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
-INSERT INTO `files` (`id`, `subject`, `createdby`, `filetype`, `department_id`, `status`, `filecode`, `filepath`) VALUES
-  (1, 'Priinter Issue', 1, 'zip', 1, 'Public', '', 'uploads/1-2019-04-30-18-08-55-1816015.zip'),
-  (2, 'Public Key', 1, 'pdf', 7, 'Public', '', 'uploads/1-2019-05-08-01-03-27-6340176.pdf'),
-  (3, 'Salaries', 3, 'pdf', 4, 'Private', '00233', 'uploads/3-2019-05-08-01-04-46-2428517.pdf');
+INSERT INTO `files` (`id`, `type`, `subject`, `createdby`, `filetype`, `department_id`, `status`, `filecode`, `filepath`) VALUES
+  (1, 'ticket', '', 0, 'pdf', 0, 'Public', NULL, 'uploads/_2019-05-13-10-51-47-2585372.pdf'),
+  (2, 'ticket', '', 0, 'pdf', 0, 'Public', NULL, 'uploads/_2019-05-13-10-52-27-8213577.pdf');
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
 
 -- Dumping structure for table officeaid_db.files_additions
@@ -378,12 +391,12 @@ CREATE TABLE IF NOT EXISTS `requests` (
   `updated_at` bigint(20) NOT NULL,
   `assigned_to` bigint(20) NOT NULL,
   `date_solved` datetime NOT NULL,
-  `status` enum('pending','processing','resolved','declined','deleted','closed','Excalated(Apex)','Cancelled') NOT NULL DEFAULT 'pending',
+  `status` varchar(50) NOT NULL DEFAULT 'pending',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Dumping data for table officeaid_db.requests: ~3 rows (approximately)
+-- Dumping data for table officeaid_db.requests: ~6 rows (approximately)
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
 INSERT INTO `requests` (`id`, `email`, `sender_contact`, `subject`, `description`, `priority`, `type`, `complain_id`, `duedate`, `file_id`, `department_id`, `updated_by`, `updated_at`, `assigned_to`, `date_solved`, `status`, `date_created`) VALUES
   (1, 'nanaaikinson@gmail.com', '+23356967555', 'Can\'t Login', '<p>please Come Asap</p>', 'urgent', 'ticket', 1, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-07 22:19:56'),
@@ -391,7 +404,9 @@ INSERT INTO `requests` (`id`, `email`, `sender_contact`, `subject`, `description
   (3, 'Offei@okomfo.com', '+23356967555', 'Public Keys', '<p>Medium Test</p>', 'medium', 'ticket', 2, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-10 14:08:15'),
   (4, 'Marksbonapps@gmail.com', '+23356967555', 'Trdy', '<p>Testing Now</p>', 'high', 'ticket', 1, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-10 14:09:00'),
   (5, 'Nanaaikinson@gmail.com', '+23356967555', 'Testing Again', '<p>desc</p>', 'low', 'ticket', 8, '0000-00-00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-11 01:57:50'),
-  (6, 'Offei@okomfo.com', '+23356967555', 'Trdy', '<p>qwerty - Update From Assign Job Again</p>', 'low', 'ticket', 2, '0000-00-00', 0, 0, 0, 0, 11, '0000-00-00 00:00:00', 'pending', '2019-05-11 02:11:29');
+  (6, 'Offei@okomfo.com', '+23356967555', 'Trdy', '<p>qwerty - Update From Assign Job Again</p>', 'low', 'ticket', 2, '0000-00-00', 0, 0, 0, 0, 11, '2019-05-11 15:58:41', 'Escalated (APEX)', '2019-05-11 02:11:29'),
+  (7, 'Nanaaikinson@gmail.com', '+23356967555', 'Testing File Upload', '<p>des</p>', 'medium', 'ticket', 7, '0000-00-00', 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 'pending', '2019-05-13 08:51:47'),
+  (8, 'Nanaaikinson@gmail.com', '+23356967555', 'Testing Again', '<p>desc</p>', 'high', 'ticket', 8, '0000-00-00', 2, 0, 0, 0, 11, '0000-00-00 00:00:00', 'pending', '2019-05-13 08:52:27');
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 
 -- Dumping structure for view officeaid_db.vw_company_info
@@ -440,7 +455,7 @@ CREATE TABLE `vw_requests` (
   `priority` ENUM('low','medium','high','urgent') NOT NULL COLLATE 'latin1_swedish_ci',
   `file_id` BIGINT(20) NOT NULL,
   `assigned_to` BIGINT(20) NOT NULL,
-  `status` ENUM('pending','processing','resolved','declined','deleted','closed','Excalated(Apex)','Cancelled') NOT NULL COLLATE 'latin1_swedish_ci',
+  `status` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
   `duedate` DATE NOT NULL,
   `date_created` DATETIME NOT NULL,
   `date_solved` DATETIME NOT NULL,
