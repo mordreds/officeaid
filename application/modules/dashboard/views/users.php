@@ -156,13 +156,13 @@
               }},
               {render: function(data,type,row,meta){
                 if(row.status == "active")
-                  button = '<a href="<?=base_url()?>dashboard/userstatus/inactive/'+row.id+'" type="button" class="btn btn-warning btn-xs">Suspend</a> ';
+                  button = '<a href="<?=base_url()?>dashboard/userstatus/inactive/'+row.id+'" class="btn btn-warning btn-xs">Suspend</a> ';
                 else if(row.status == "inactive")
-                  button = '<a href="<?=base_url()?>dashboard/userstatus/active/'+row.id+'" type="button" class="btn btn-success btn-xs">Activate</a> ';
+                  button = '<a href="<?=base_url()?>dashboard/userstatus/active/'+row.id+'" class="btn btn-success btn-xs">Activate</a> ';
 
-                button += ' <a href="<?=base_url()?>dashboard/userstatus/deleted/'+row.id+'" type="button" class="btn btn-danger btn-xs">Delete</a>';
+                button += ' <a href="<?=base_url()?>dashboard/userstatus/deleted/'+row.id+'" class="btn btn-danger btn-xs">Delete</a>';
 
-                button += ' <a href="#" '+row.id+'" type="button" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-primary btn-xs">Reset</a>'
+                button += ' <a href="#" data-user="'+row.id+'" class="btn btn-primary btn-xs reset_submit">Reset Password</a>'
 
                 return button;
               }}
@@ -188,17 +188,25 @@
       <div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        </div><div class="modal-body">
-          <form>
-            <div class="form-group"><label>Enter Default</label>
-              <input type="text" class="form-control" placeholder="Example input"> 
-              <span class="form-text">eg. 123456</span>
-            </div>
-          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        <form action="<?=base_url()?>access/reset_password" method="post">
+          <div class="modal-body">
+              <input type="hidden"  name="userid" value="">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enter New Password" name="password"> 
+              </div>        
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    $('table').on('click', ".reset_submit",function() {
+      $('[name="userid"]').val($(this).data('user'));
+      $('.bd-example-modal-sm').modal('show');
+    });
+  </script>

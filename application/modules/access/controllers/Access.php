@@ -677,6 +677,45 @@ class Access extends MX_Controller
         
       }
     }
+
+    public function reset_password() {
+      $this->form_validation->set_rules('userid','User','trim|required');
+      $this->form_validation->set_rules('password','New Password','trim|required');
+
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        $this->session->set_flashdata('error', $errors);
+        redirect('dashboard/users');
+      }
+      else {
+        $this->load->model('globals/model_update');
+        
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "access_users";
+        $update_data = ['passwd' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)];
+        $where_condition = ['id' => $this->input->post('userid')];
+        /***** Data Definition *****/
+        
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+
+        if($save_data) 
+          $this->session->set_flashdata('success', "Password Updated");
+        
+        else
+          $this->session->set_flashdata('error', "Password Failed");
+
+        if($this->input->post('userid') == $_SESSION['user']['id']) {
+          $this->session->sess_destroy();
+          redirect('access');
+        }
+        else
+          redirect('dashboard/users');
+        /******** Insertion Of New Data ***********/
+        
+      }
+    }
   /**************** Insertions ********************/
 
   /**************** Other Functions **********************/
