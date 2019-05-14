@@ -170,7 +170,7 @@
               </div>
               <form action="<?=base_url()?>access/changepassword" method="post">
                 <div class="modal-body">
-                    <input type="hidden"  name="userid" value="<?=?>">
+                    <input type="hidden"  name="userid" value="">
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Enter New Password" name="password"> 
                     </div>        
