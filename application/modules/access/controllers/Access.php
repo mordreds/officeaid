@@ -187,7 +187,10 @@ class Access extends MX_Controller
       'pdf' => "fa fa-file-pdf-o",
       'txt' => "fa fa-file-text-o",
 
-      'image' => "fa fa-file-image-o",
+      'png' => "fa fa-file-image-o",
+      'jpg' => "fa fa-file-image-o",
+      'jpeg' => "fa fa-file-image-o",
+      'gif' => "fa fa-file-image-o",
 
       'xls' => "fa fa-file-excel-o",
       'xlsx' => "fa fa-file-excel-o",
@@ -712,6 +715,43 @@ class Access extends MX_Controller
         }
         else
           redirect('dashboard/users');
+        /******** Insertion Of New Data ***********/
+        
+      }
+    }
+
+
+    public function changepassword() {
+      $this->form_validation->set_rules('password','New Password','trim|required');
+      $this->form_validation->set_rules('redirect_url','Redirect URL','trim|required');
+
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        $this->session->set_flashdata('error', $errors);
+        redirect($this->input->post('redirect_url'));
+      }
+      else {
+        $this->load->model('globals/model_update');
+        
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "access_users";
+        $update_data = ['passwd' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)];
+        $where_condition = ['id' => $_SESSION['user']['id']];
+        /***** Data Definition *****/
+        
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+
+        if($save_data) {
+          $this->session->sess_destroy();
+          redirect('access');
+        }
+        
+        else {
+          $this->session->set_flashdata('error', "Password Failed");
+          redirect($this->input->post('redirect_url'));
+        }
         /******** Insertion Of New Data ***********/
         
       }

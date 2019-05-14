@@ -48,7 +48,7 @@
             </script>
 
     <script>
-        $(function () {
+        /*$(function () {
             // Switchery
             var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
             $('.js-switch').each(function () {
@@ -150,7 +150,38 @@
                 //templateResult: formatRepo, // omitted for brevity, see the source of this page
                 //templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
             });
-        });
+        });*/
     </script>
+
+
+    <!-- *********** Reset Password ********* -->
+      <script type="text/javascript">
+        $('#reset_password').click(function(){
+        $('#password_reset_modal').modal('show');
+        });
+      </script>
+
+      <div id="password_reset_modal" class="modal fade">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              </div>
+              <form action="<?=base_url()?>access/changepassword" method="post">
+                <div class="modal-body">
+                    <input type="hidden"  name="userid" value="<?=?>">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Enter New Password" name="password"> 
+                    </div>        
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    <!-- *********** Reset Password ********* -->
 </body>
 </html>

@@ -27,7 +27,7 @@
 						<li class="list-group-item padding-left-5 border-top-0">
 						<div class="user user--bordered user--lg">
 							<div class="user__name">
-								<button type="button" class="btn btn-outline-light btn-block" data-toggle="modal" data-target=".bd-example-modal-sm">Change Password</button>
+								<button type="button" class="btn btn-outline-light btn-block" id="reset_password">Change Password</button>
 							</div>
 							</div>
 						</li>

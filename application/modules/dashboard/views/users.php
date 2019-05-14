@@ -210,29 +210,3 @@
       $('.bd-example-modal-sm').modal('show');
     });
   </script>
-
-  <!--New Password-->
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">New Password</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-        </div>
-        <form action="<?=base_url()?>access/reset_password" method="post">
-          <div class="modal-body">
-              <input type="hidden"  name="userid" value="">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter New Password" name="password"> 
-              </div> 
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Confirm Password" name="password"> 
-              </div>       
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="submit" class="btn btn-primary">Save </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
