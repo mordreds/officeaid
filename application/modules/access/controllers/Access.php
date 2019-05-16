@@ -426,7 +426,7 @@ class Access extends MX_Controller
         
         # uploading files if any 
         $file_array = $_FILES['file'];
-        if(!empty($file_array)) {
+        if($file_array['size'] > 0) {
           $tablename = "files";
           $upload_data = [
             'type' => "ticket",
@@ -452,7 +452,7 @@ class Access extends MX_Controller
         /******** Insertion Of New Data ***********/
 
         $tablename = "requests";
-        $request_data['file_id'] = $save_data_upload;
+        $request_data['file_id'] = (!empty($save_data_upload)) ? $save_data_upload : 0;
         $save_data = $this->model_insertion->datainsert($dbres,$tablename,$request_data);
   
         if(is_int($save_data)) 
