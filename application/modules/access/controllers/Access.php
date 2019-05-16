@@ -406,8 +406,8 @@ class Access extends MX_Controller
 
       if($this->form_validation->run() === FALSE) {
         $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
-        $result = json_encode(array('error' => $errors));
-        print_r($result); exit;
+        $this->session->set_flashdata('error', $errors);
+        redirect('access/request');
       }
       else {
         $this->load->model('globals/model_insertion');
@@ -438,7 +438,8 @@ class Access extends MX_Controller
           $fileresponse = doc_restriction($file_array,$project_name,$target_dir);
 
           if(@$fileresponse['error']) {
-            print_r(json_encode($fileresponse['error']));
+            $this->session->set_flashdata('error', $fileresponse['error']);
+            redirect('access/request');
           }
           else {
             $upload_data['filetype'] = $fileresponse['extension'];
@@ -455,12 +456,11 @@ class Access extends MX_Controller
         $save_data = $this->model_insertion->datainsert($dbres,$tablename,$request_data);
   
         if(is_int($save_data)) 
-          $result = json_encode(array('ticketNo' => str_pad($save_data, 7, 0,STR_PAD_LEFT)));
-        
+          $this->session->set_flashdata('success', "New Ticket Created. Ticket No : ".str_pad($save_data, 7, 0,STR_PAD_LEFT));
         else 
-          $result = json_encode(array('error', 'Saving Data Failed'));
+           $this->session->set_flashdata('error', "New Ticket Failed.");
 
-        print_r($result);
+         redirect('access/request');
         /******** Insertion Of New Data ***********/
         
       }

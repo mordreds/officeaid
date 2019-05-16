@@ -1,7 +1,11 @@
-        <form id="New_Request_Form" method="post" enctype="multipart/form-data">
+        <form action="<?=base_url()?>access/save_request" method="post" enctype="multipart/form-data">
           <div class="row">
             <div class="col-6">
-
+              <?php if($this->session->flashdata('success')) : ?>
+                <div class="alert alert-success" role="alert"><strong>Success!</strong> <?=$this->session->flashdata('success')?></div>
+              <?php elseif($this->session->flashdata('error')) : ?>
+                <div class="alert alert-danger" role="alert"><strong><?=$this->session->flashdata('error')?> !</strong>  </div>
+              <?php endif; ?>
                <div class="form-control-element margin-bottom-20">
                 <select class="select2 form-control custom-select" name="complain" required>
                   <option value="" disabled selected>Select Issue Type</option>
@@ -42,7 +46,7 @@
                 </select>
               </div>
               <div class="form-control-element">
-                <input type="file" class="form-control" placeholder="Attachment" id="Attachment">
+                <input type="file" class="form-control" placeholder="Attachment" name="file">
                 <input type="hidden" id="b64" name="image64">
                 <div class="form-control-element__box"><span class="fa fa-file"></span></div>
               </div>

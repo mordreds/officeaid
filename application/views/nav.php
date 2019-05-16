@@ -1,3 +1,8 @@
+  <?php
+    $username = (!empty($_SESSION['user']['fullname'])) ? $_SESSION['user']['fullname'] : "General Ticket User";
+    $groupname = (!empty($_SESSION['user']['group_name'])) ? $_SESSION['user']['group_name'] : "End User";
+  ?>
+
   <div class="page page--w-header"><!-- PAGE HEADER -->
     <header class="page__header">
       <div class="logo-holder">
@@ -13,9 +18,9 @@
     <!-- //END PAGE HEADER --><!-- PAGE CONTENT WRAPPER -->
     <div class="page__content" id="page-content"><!-- PAGE ASIDE PANEL -->
       <div class="page-aside invert" id="page-aside">
-        <div class="navigation" id="navigation-default"><div class="user user--bordered user--lg user--w-lineunder user--controls"><img src="<?=base_url().$companyinfo[0]->logo_path?>"><div class="user__name"><strong>Dmitry Ivaniuk</strong><br><span class="text-muted">Administrator</span><div class="user__controls"></div></div>
+        <div class="navigation" id="navigation-default"><div class="user user--bordered user--lg user--w-lineunder user--controls"><img src="<?=base_url().$companyinfo[0]->logo_path?>"><div class="user__name"><strong><?=$username?></strong><br><span class="text-muted"><?=$groupname?></span><div class="user__controls"></div></div>
         <div class="user__lineunder">
-          <div class="text">Last visit 15min ago</div>
+          <div class="text">Show Less</div>
         <div class="buttons"><div class="button button-minimize" data-action="aside-minimize" data-toggle="tooltip" data-placement="top" data-original-title="Minimize navigation">
       </div>
     </div>
