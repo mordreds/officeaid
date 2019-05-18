@@ -241,6 +241,83 @@
       </div>
     </div>
   <!-- *********** Delete Modal *********** -->
+
+  <!-- *********** Cancel Request Modal *********** -->
+    <script type="text/javascript">
+      $(document).on("click",".cancel_req",function(){
+        $("[name=request_id]").val($(this).data('t_id'));
+        $('#cancelrequest').modal('show');
+      });
+    </script>
+    <div id="cancelrequest"  class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header  bg-danger">
+            <h5 class="modal-title" id="exampleModalLabel">Cancel Confirmation </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="<?=base_url()?>access/cancel_request" method="POST">
+            <input type="hidden" name="request_id">
+            <div class="modal-body">
+              <h3 class="title">This Action Cannot Be Undone. Are You Sure You want to cancel this request ?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+              <button type="submit" class="btn btn-primary" >Yes</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  <!-- *********** Cancel Request Modal *********** -->
+
+
+
+
+    <script type="text/javascript">
+      $(document).on("click",".delete_confirmed_",function(){
+        let formurl = $(this).data('formurl');
+        let tableid = $(this).data('tableid');
+        let formData = { 
+          'id': $(this).data('deleteid'),
+          'delete_item': "Confirmed",
+          'tbl_ref': $(this).data('keyword'),
+        };
+        ajax_post(formurl,formData,tableid);
+      });
+    </script>
+
+    <script type="text/javascript">
+      $(document).on("click",".delete_btn",function(){
+        $('#deletename').text($(this).data('displayname'));
+        $('.delete_confirmed').attr('data-user_id',$(this).data('dataid'));
+        $('.delete_confirmed').attr('data-email',$(this).data('email'));
+        $('.delete_confirmed').attr('data-status',$(this).data('state'));
+        $('#delete_modal').modal('show');
+      });
+    </script>
+
+    <div id="delete_modal" class="modal fade">
+      <div class="modal-dialog" style="width: 500px">
+        <div class="modal-content">
+          <div class="modal-header bg-danger">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h6 class="modal-title">Delete Confirmation</h6>
+          </div>
+          <div class="modal-body">
+            Do You Want To Really Delete <?php echo "<strong><em id='deletename'></em></strong>"; ?> .... ?
+            <input type="hidden" id="deleteId" name="deleteid"/> 
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger delete_confirmed" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- *********** Cancel Request Modal *********** -->
   
 <!-- ***************************** Universal In System *********************************** -->
 <?php endif; ?>

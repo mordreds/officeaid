@@ -1,4 +1,10 @@
-   
+<div class="col-6">
+  <?php if($this->session->flashdata('success')) : ?>
+    <div class="alert alert-success" role="alert"><strong>Success!</strong> <?=$this->session->flashdata('success')?></div>
+  <?php elseif($this->session->flashdata('error')) : ?>
+    <div class="alert alert-danger" role="alert"><strong><?=$this->session->flashdata('error')?> !</strong>  </div>
+  <?php endif; ?>
+</div>
         <table id="dt-example-responsive" class="table table-bordered" >
           <thead>
             <tr>
@@ -69,7 +75,7 @@
                     return '<span class="label '+label_class+'">'+row.status+'</span>';}
                   },
                   {render: function(data,type,row,meta) {
-                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"' data-img='"+row.filepath+"'>Details</button> <button class='btn btn-danger btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"'>Cancel</button>"
+                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"' data-img='"+row.filepath+"'>Details</button> <button class='btn btn-danger btn-xs cancel_req' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"'>Cancel</button>"
                   }}
                 ],
               });

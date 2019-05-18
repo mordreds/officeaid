@@ -11,11 +11,12 @@ class Model_update extends CI_Model {
 
     $dbres->where($where_condition);
 
+    //return $dbres->get_compiled_update($tablename);
     $query = $dbres->update($tablename);
 
     /*************** Query check ************/
     if($query)
-      $return_data = $query;
+      $return_data = $dbres->affected_rows();
     else
       $return_data = ['DB_ERR' => $dbres->error()];
     /*************** Query check ************/

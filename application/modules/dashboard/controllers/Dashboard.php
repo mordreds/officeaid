@@ -170,9 +170,9 @@ public function job()
       $tablename = "vw_requests";
       $condition = array(
         'where_condition' => ['type' => "ticket", 'status !=' => "closed"] ,
-        /*'wherein_condition' => [
+        'wherein_condition' => [
           'status' => "pending,processing,resolved,Excalated (APEX)",
-        ],*/
+        ],
         'orderby'=> ['id' => "Desc"]
       );
       $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);

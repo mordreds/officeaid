@@ -163,9 +163,9 @@ class Access extends MX_Controller
       $tablename = "vw_requests";
       $condition = array(
         'where_condition' => array('email' => $_SESSION['user']['username'], 'status !=' => "closed"),
-        /*'wherein_condition' => [
-          'status' => "pending,processing",
-        ],*/
+        'wherein_condition' => [
+          'status' => "pending,processing,resolved",
+        ],
         'orderby'=> ['id' => "Desc"]
       );
 
@@ -752,6 +752,40 @@ class Access extends MX_Controller
           $this->session->set_flashdata('error', "Password Failed");
           redirect($this->input->post('redirect_url'));
         }
+        /******** Insertion Of New Data ***********/
+        
+      }
+    }
+
+    public function cancel_request() {
+      $this->form_validation->set_rules('request_id','Request','trim|required');
+
+      if($this->form_validation->run() === FALSE) {
+        $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+        $this->session->set_flashdata('error', $errors);
+        redirect('access/allrequests');
+      }
+      else {
+        $this->load->model('globals/model_update');
+        
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "requests";
+        $update_data = ['status' => "Cancelled"];
+        $where_condition = ['id' => $this->input->post('request_id')];
+        /***** Data Definition *****/
+        
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+        
+        if($save_data) 
+          $this->session->set_flashdata('success', "Request Cancelled");
+          
+        else 
+          $this->session->set_flashdata('error', "Request Failed");
+
+        redirect('access/allrequests');
+        
         /******** Insertion Of New Data ***********/
         
       }
