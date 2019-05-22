@@ -60,13 +60,7 @@
                                             type: 'doughnut',
                                             data: {
                                                 datasets: [{
-                                                    data: [
-                                                        randomScalingFactorNew(),
-                                                        randomScalingFactorNew(),
-                                                        randomScalingFactorNew(),
-                                                        randomScalingFactorNew(),
-                                                        randomScalingFactorNew()
-                                                    ],
+                                                    data: [ <?=implode(',', $ticket_status)?> ],
                                                     backgroundColor: [
                                                         window.chartColors.primary,
                                                         window.chartColors.success,
@@ -76,13 +70,7 @@
                                                     ],
                                                     label: 'Dataset 1'
                                                 }],
-                                                labels: [
-                                                    "Open",
-                                                    "Pending",
-                                                    "Excalated",
-                                                    "Resolved",
-                                                    "Closed"
-                                                ]
+                                                labels: [<?=implode(',', $ticket_labels)?>]
                                             },
                                             options: {
                                                 responsive: true,
@@ -108,24 +96,16 @@
                                                         randomScalingFactorNew(),
                                                         randomScalingFactorNew(),
                                                         randomScalingFactorNew(),
+                                                        randomScalingFactorNew(),
+                                                        randomScalingFactorNew(),
+                                                        randomScalingFactorNew(),
+                                                        randomScalingFactorNew(),
                                                         randomScalingFactorNew()
                                                     ],
-                                                    backgroundColor: [
-                                                        window.chartColors.primary,
-                                                        window.chartColors.success,
-                                                        window.chartColors.warning,
-                                                        window.chartColors.danger,
-                                                        window.chartColors.info
-                                                    ],
+                                                    backgroundColor: [<?=implode(',', $complain_types_background)?>],
                                                     label: 'Dataset 1'
                                                 }],
-                                                labels: [
-                                                    "T24",
-                                                    "FTP",
-                                                    "Other Apps",
-                                                    "Printer",
-                                                    "Computer/Laptop"
-                                                ]
+                                                labels: [<?=implode(',', $complain_types)?>]
                                             },
                                             options: {                                                
                                                 responsive: true,

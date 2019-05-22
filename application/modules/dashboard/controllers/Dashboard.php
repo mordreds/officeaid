@@ -13,19 +13,68 @@ class Dashboard extends MX_Controller
  /*******************************
       DASHBOAD 
     *******************************/
-    public function index() { $this->home();}
+    public function index() { $this->home(); }
   
     public function home() 
     {
-      if(isset($_SESSION['user'])) : 
+      if(isset($_SESSION['user'])) {
+        # Loading Models
+        $this->load->model("globals/model_retrieval");
+
+        # Retrieving All Departments
+        $dbres = self::$_Default_DB;
+        $tablename = "requests";
+        $where_condition = ['status' => "pending"];
+        $data['ticket_labels'][] = '"Pending"';
+        $data['ticket_status'][] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+
+        $where_condition = ['status' => "processing"];
+        $data['ticket_labels'][] = '"Processing"';
+        $data['ticket_status'][] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+
+        $where_condition = ['status' => "resolved"];
+        $data['ticket_labels'][] = '"Resolved"';
+        $data['ticket_status'][] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+
+        $where_condition = ['status' => "Escalated (APEX)"];
+        $data['ticket_labels'][] = '"Escalated (APEX)"';
+        $data['ticket_status'][] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+
+        # get all complains types
+        $backgrounds = [
+          'window.chartColors.primary',
+          'window.chartColors.secondary',
+          'window.chartColors.success',
+          'window.chartColors.danger',
+          'window.chartColors.warning',
+          'window.chartColors.info',
+          'window.chartColors.light',
+          'window.chartColors.dark',
+          'window.chartColors.link',
+        ];
+        $counter = 0;
+
+        $tablename = "complains";
+        $where_condition = ['status' => "active"];
+        $complain_types = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+        if(!empty($complain_types)) {
+          foreach ($complain_types as $key => $value) {
+            # code...
+            $data['complain_types'][] = '"'.$value->name.'"';
+            $data['complain_types_background'][] = $backgrounds[$counter];
+
+            $counter++;
+          }
+        }
+
         $title['title'] = "OfficeAid| Admin"; 
         $this->load->view('header',$title); 
         $this->load->view('admin_nav',$title); 
-        $this->load->view('dashboard'); 
+        $this->load->view('dashboard',$data); 
         $this->load->view('footer');
-      else : 
+      }
+      else 
         redirect('access');
-      endif;
    } 
 
     public function report() 
@@ -50,6 +99,11 @@ class Dashboard extends MX_Controller
         $data['allassignees'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
 
         # Retrieving All Issue Types
+        $tablename = "complains";
+        $where_condition = ['where_condition' => ['status' => "active"]];
+        $data['allissues'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+
+        # Retrieving Graphical Data
         $tablename = "complains";
         $where_condition = ['where_condition' => ['status' => "active"]];
         $data['allissues'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
