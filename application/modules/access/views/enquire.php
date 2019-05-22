@@ -15,14 +15,14 @@
                 </select>
               </div>
 
-              <div class="form-control-element  margin-bottom-20">
+              <!-- <div class="form-control-element  margin-bottom-20">
                 <select class="select2 form-control custom-select" name="email" required>
                   <option value="" disabled selected>Select Your Email</option>
                   <?php if(!empty($allusers)) : foreach($allusers as $user) : ?>
                     <option value="<?=$user->username?>"> <?=$user->fullname." (".$user->username.")"?> </option>
                    <?php endforeach; endif; ?>
                 </select>
-              </div>
+              </div> -->
               
               <!-- <div class="form-control-element">
                 <input type="email" class="form-control margin-bottom-20" placeholder="Enter Your Email" name="email" required>

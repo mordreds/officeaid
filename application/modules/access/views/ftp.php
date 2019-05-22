@@ -28,7 +28,7 @@
              <?php endforeach; endif; ?>
           </select>
         </div>
-            <p></p>
+           <!--  <p></p>
             <div class="form-control-element ">
               <select class="select2 form-control custom-select" id="rw_settings_layout" name="createdby">
                 <option value="default">Select Your Name</option>
@@ -36,7 +36,7 @@
                   <option value="<?=$user->id?>"><?=$user->fullname?></option>
                 <?php endforeach; endif; ?>
               </select>
-            </div>
+            </div> -->
             <p></p>
             <div class="form-control-element">
               <input type="text" class="form-control" name="subject" placeholder="Enter Subject" />

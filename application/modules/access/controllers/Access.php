@@ -82,6 +82,10 @@ class Access extends MX_Controller
     *******************************/
     public function request() 
     {
+      if(!isset($_SESSION['user']['username']) && !isset($_SESSION['user']['roles']))
+        redirect('access');
+      else
+      {
         # Loading Models
         $this->load->model("globals/model_retrieval");
 
@@ -107,9 +111,9 @@ class Access extends MX_Controller
         $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
 
         # Retrieving Company Details
-        $tablename = VIEW_USER_TABLE;
+        /*$tablename = VIEW_USER_TABLE;
         $where_condition = ['where_condition' => array('status' => "active")];
-        $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+        $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);*/
         
         $title['title'] = "Request | OfficeAid"; 
         $title['pageName'] = "New Request"; 
@@ -117,6 +121,7 @@ class Access extends MX_Controller
         $this->load->view('nav',$title); 
         $this->load->view('enquire',$data); 
         $this->load->view('login_footer'); 
+      }
     }
   /*******************************
       All Requests
@@ -260,72 +265,76 @@ class Access extends MX_Controller
     *******************************/
     public function ftp() 
     {
-      # Loading Models
-      $this->load->model('globals/model_retrieval');
+      if(!isset($_SESSION['user']['username']) && !isset($_SESSION['user']['roles']))
+        redirect('access');
+      else
+      {
+        # Loading Models
+        $this->load->model('globals/model_retrieval');
 
-      # Retrieving Company Details
-      $tablename = "company_info";
-      $dbres = self::$_Default_DB;
-      $where_condition = ['where_condition' => array('id' => 1)];
-      $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+        # Retrieving Company Details
+        $tablename = "company_info";
+        $dbres = self::$_Default_DB;
+        $where_condition = ['where_condition' => array('id' => 1)];
+        $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
 
-      # Retrieving All Departments
-      $tablename = "departments";
-      $where_condition = array('status' => "active");
-      $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
+        # Retrieving All Departments
+        $tablename = "departments";
+        $where_condition = array('status' => "active");
+        $data['departments'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
 
-      # retrieving all departments
-      $tablename = "departments";
-      $condition = array(
-        'where_condition' => ['status' => "active", 'type' => 1],
-        'orderby'=> ['id' => "Desc"]
-      );
-      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
-      if(!empty($query_result)) : 
-        foreach($query_result as $key => $val) : 
-          # retrieving department's count 
-            $tablename = "files";
-            $where_condition = [
-              'department_id' => $val->id
-            ];
-            $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
-        endforeach;
-      endif;
-      $title['alldepartments'] = $query_result;
+        # retrieving all departments
+        $tablename = "departments";
+        $condition = array(
+          'where_condition' => ['status' => "active", 'type' => 1],
+          'orderby'=> ['id' => "Desc"]
+        );
+        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+        if(!empty($query_result)) : 
+          foreach($query_result as $key => $val) : 
+            # retrieving department's count 
+              $tablename = "files";
+              $where_condition = [
+                'department_id' => $val->id
+              ];
+              $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+          endforeach;
+        endif;
+        $title['alldepartments'] = $query_result;
 
-      # retrieving all branches
-      $tablename = "departments";
-      $condition = array(
-        'where_condition' => ['status' => "active", 'type' => 2],
-        'orderby'=> ['id' => "Desc"]
-      );
-      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
-      if(!empty($query_result)) : 
-        foreach($query_result as $key => $val) : 
-          # retrieving department's count 
-            $tablename = "files";
-            $where_condition = [
-              'department_id' => $val->id
-            ];
-            $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
-        endforeach;
-      endif;
-      $title['allbranches'] = $query_result;
+        # retrieving all branches
+        $tablename = "departments";
+        $condition = array(
+          'where_condition' => ['status' => "active", 'type' => 2],
+          'orderby'=> ['id' => "Desc"]
+        );
+        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+        if(!empty($query_result)) : 
+          foreach($query_result as $key => $val) : 
+            # retrieving department's count 
+              $tablename = "files";
+              $where_condition = [
+                'department_id' => $val->id
+              ];
+              $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+          endforeach;
+        endif;
+        $title['allbranches'] = $query_result;
 
-      # Retrieving All Users
-      $tablename = "access_users";
-      $where_condition = array('status' => "active");
-      $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
-      
-      $title['title'] = "Send | OfficeAid"; 
-      $title['pageName'] = "All Files"; 
+        # Retrieving All Users
+        $tablename = "access_users";
+        $where_condition = array('status' => "active");
+        $data['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
+        
+        $title['title'] = "Send | OfficeAid"; 
+        $title['pageName'] = "All Files"; 
 
-      $this->load->view('login_header',$title); 
-      $this->load->view('nav',$title); 
-      $this->load->view('ftp',$data); 
-      $this->load->view('modals'); 
-      $this->load->view('login_footer'); 
-      
+        $this->load->view('login_header',$title); 
+        $this->load->view('nav',$title); 
+        $this->load->view('ftp',$data); 
+        $this->load->view('modals'); 
+        $this->load->view('login_footer'); 
+      }
     }
   /**************** Interface ********************/
 
@@ -334,62 +343,66 @@ class Access extends MX_Controller
     *******************************/
     public function files() 
     {
-      # Loading Models
-      $this->load->model('globals/model_retrieval');
+      if(!isset($_SESSION['user']['username']) && !isset($_SESSION['user']['roles']))
+        redirect('access');
+      else
+      {
+        # Loading Models
+        $this->load->model('globals/model_retrieval');
 
-      # Retrieving Company Details
-      $tablename = "company_info";
-      $dbres = self::$_Default_DB;
-      $where_condition = ['where_condition' => array('id' => 1)];
-      $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
-      
-      # retrieving all departments
-      $tablename = "departments";
-      $condition = array(
-        'where_condition' => ['status' => "active",  'type' => 1],
-        'orderby'=> ['id' => "Desc"]
-      );
-      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
-      if(!empty($query_result)) : 
-        foreach($query_result as $key => $val) : 
-          # retrieving department's count 
-            $tablename = "files";
-            $where_condition = [
-              'department_id' => $val->id
-            ];
-            $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
-        endforeach;
-      endif;
-      $data['alldepartments'] = $query_result;
-      $title['alldepartments'] = $query_result;
+        # Retrieving Company Details
+        $tablename = "company_info";
+        $dbres = self::$_Default_DB;
+        $where_condition = ['where_condition' => array('id' => 1)];
+        $title['companyinfo'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition);
+        
+        # retrieving all departments
+        $tablename = "departments";
+        $condition = array(
+          'where_condition' => ['status' => "active",  'type' => 1],
+          'orderby'=> ['id' => "Desc"]
+        );
+        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+        if(!empty($query_result)) : 
+          foreach($query_result as $key => $val) : 
+            # retrieving department's count 
+              $tablename = "files";
+              $where_condition = [
+                'department_id' => $val->id
+              ];
+              $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+          endforeach;
+        endif;
+        $data['alldepartments'] = $query_result;
+        $title['alldepartments'] = $query_result;
 
-      # retrieving all branches
-      $tablename = "departments";
-      $condition = array(
-        'where_condition' => ['status' => "active", 'type' => 2],
-        'orderby'=> ['id' => "Desc"]
-      );
-      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
-      if(!empty($query_result)) : 
-        foreach($query_result as $key => $val) : 
-          # retrieving department's count 
-            $tablename = "files";
-            $where_condition = [
-              'department_id' => $val->id
-            ];
-            $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
-        endforeach;
-      endif;
-      $title['allbranches'] = $query_result;
+        # retrieving all branches
+        $tablename = "departments";
+        $condition = array(
+          'where_condition' => ['status' => "active", 'type' => 2],
+          'orderby'=> ['id' => "Desc"]
+        );
+        $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+        if(!empty($query_result)) : 
+          foreach($query_result as $key => $val) : 
+            # retrieving department's count 
+              $tablename = "files";
+              $where_condition = [
+                'department_id' => $val->id
+              ];
+              $query_result[$key]->filescount = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
+          endforeach;
+        endif;
+        $title['allbranches'] = $query_result;
 
       
-      $title['title'] = "Send | OfficeAid"; 
-      $title['pageName'] = "All Files"; 
-      $this->load->view('login_header',$title); 
-      $this->load->view('nav',$title); 
-      $this->load->view('files',$data); 
-      $this->load->view('login_footer'); 
-      
+        $title['title'] = "Send | OfficeAid"; 
+        $title['pageName'] = "All Files"; 
+        $this->load->view('login_header',$title); 
+        $this->load->view('nav',$title); 
+        $this->load->view('files',$data); 
+        $this->load->view('login_footer'); 
+      }
     }
   /**************** Interface ********************/
 
@@ -398,7 +411,7 @@ class Access extends MX_Controller
     public function save_request() {
       $this->form_validation->set_rules('subject','Subject','trim|required');
       $this->form_validation->set_rules('description','Description','trim|required');
-      $this->form_validation->set_rules('email','Email','trim|required');
+      /*$this->form_validation->set_rules('email','Email','trim|required');*/
       $this->form_validation->set_rules('creator_contact','Your Contact','trim|required');
       $this->form_validation->set_rules('priority','Priority','trim|required');
       $this->form_validation->set_rules('complain','Complain','trim|required');
@@ -415,7 +428,7 @@ class Access extends MX_Controller
         /***** Data Definition *****/
         $dbres = self::$_Default_DB;
         $request_data = [
-          'email' => $this->input->post('email'),
+          'email' => $_SESSION['user']['username'],
           'sender_contact' => ucwords($this->input->post('creator_contact')),
           'subject' => ucwords($this->input->post('subject')),
           'description' => ucwords($this->input->post('description')),
@@ -509,7 +522,7 @@ class Access extends MX_Controller
       $this->form_validation->set_rules('accesstype','Accesstype','trim|required');
       $this->form_validation->set_rules('filecode','Private Pin','trim');
       $this->form_validation->set_rules('department','Department','trim|required');
-      $this->form_validation->set_rules('createdby','Email','trim|required');
+     /* $this->form_validation->set_rules('createdby','Email','trim|required');*/
       $this->form_validation->set_rules('subject','Your Subject','trim|required');
 
       if($this->form_validation->run() === FALSE) {
@@ -535,7 +548,7 @@ class Access extends MX_Controller
           'status' => $this->input->post('accesstype'),
           'filecode' => $this->input->post('filecode'),
           'department_id' => $this->input->post('department'),
-          'createdby' => $this->input->post('createdby'),
+          'createdby' => $_SESSION['user']['id'],
           'subject' => ucwords($this->input->post('subject'))
         ];
 

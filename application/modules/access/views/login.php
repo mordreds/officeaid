@@ -17,7 +17,7 @@
           </a>-->
       <div class="row margin-bottom-20">
         <div class="col-12 col-lg-6">
-          <a href="<?=base_url()?>access/request" style="text-decoration:white">
+          <a href="#" id="newrequest_btn" style="text-decoration:white">
           <div class="widget">
             <div class="widget__icon_layer widget__icon_layer--right">
               <span class="li-register"></span>
@@ -68,21 +68,26 @@
       <div class="row margin-bottom-20">
       
         <div class="col-12 col-lg-6">
-          <a href="<?=base_url()?>access/files" style="text-decoration:white">          
+          <a href="#" id="directory_btn" style="text-decoration:white">          
             <div class="widget">
             <div class="widget__icon_layer widget__icon_layer--right">
               <span class="li-lan"></span>
             </div>
             <div class="widget__container">
               <div class="widget__line">
-                <div class="widget__icon">
-                  <span class="li-lan"></span>
-                </div>
+                <div class="widget__icon"><span class="li-lan"></span></div>
                 <div class="widget__title">Directory</div>
                 <div class="widget__subtitle">Send or Upload a File</div>
               </div>
               <div class="widget__box widget__box--left">
-                <div class="widget__informer"><?=number_format($totalfiles)?> File(s) Uploaded</div>
+                <div class="widget__informer">
+                  <?php 
+                    if(isset($_SESSION['user']['id']))
+                      print number_format($totalfiles)." File(s) Uploaded";
+                    else
+                      print "Login Required";
+                  ?>
+                </div>
               </div>
             </div>
           </div>
@@ -198,6 +203,32 @@ var x = setInterval(function() {
   $('#report_btn').click(function(){
     let userid = <?php echo ($_SESSION['user']['id']) ?? 0?>;
     let login_url = 'dashboard/home';
+
+    if(userid > 0) {
+      location.href = login_url;
+    }
+    else {
+      $('.bd-example-modal-sm').modal('show');
+      $('#login_redirect').val(login_url);
+    }
+  });
+
+   $('#directory_btn').click(function(){
+    let userid = <?php echo ($_SESSION['user']['id']) ?? 0?>;
+    let login_url = 'access/files';
+
+    if(userid > 0) {
+      location.href = login_url;
+    }
+    else {
+      $('.bd-example-modal-sm').modal('show');
+      $('#login_redirect').val(login_url);
+    }
+  });
+
+   $('#newrequest_btn').click(function(){
+    let userid = <?php echo ($_SESSION['user']['id']) ?? 0?>;
+    let login_url = 'access/request';
 
     if(userid > 0) {
       location.href = login_url;
