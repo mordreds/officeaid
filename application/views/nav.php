@@ -13,7 +13,26 @@
         </div>
         
         <div class="box-fluid"></div>
-
+        <div class="box">
+  <div class="dropdown float-left">
+    <button class="btn btn-light btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="li-clipboard-alert"></span></button>
+      <div class="dropdown-menu dropdown-menu-right">
+        
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item padding-left-5 border-top-0">
+            <div class="user user--bordered user--lg">
+              <div class="user__name">
+                <button type="button" class="btn btn-outline-light btn-block" id="reset_password">Change Password</button>
+              </div>
+              </div>
+            </li>
+            </ul>
+          </div></div>
+          <a class="btn btn-light btn-icon float-left" href="<?=base_url()?>access/logout">
+            <span class="li-power-switch"></span>
+          </a> 
+        </div>
     </header>
     <!-- //END PAGE HEADER --><!-- PAGE CONTENT WRAPPER -->
     <div class="page__content" id="page-content"><!-- PAGE ASIDE PANEL -->
