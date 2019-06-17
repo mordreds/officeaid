@@ -275,6 +275,8 @@ public function job()
 
 
         $query_result[$key]->assigned_to = $users_dropdown;
+        $query_result[$key]->id = str_pad($record->id, 7, 0,STR_PAD_LEFT);
+        $query_result[$key]->date_created = date('Y-m-d',strtotime($record->date_created));
       }
        
       print_r(json_encode($query_result)); 

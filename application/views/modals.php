@@ -78,7 +78,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="New_Request_Form" action="<?=base_url()?>access/updaterequest" method="POST">
+          <form id="" action="<?=base_url()?>access/updaterequest" method="POST">
             <input type="hidden" name="id" id="recordid">
             <input type="hidden" name="redirect_url" value="<?=current_url()?>">
             <div class="row">
@@ -156,7 +156,7 @@
       else
         $('#image').html("");
 
-      $('#image').attr("href", data('img'));
+      $('#image').attr("href", "data('img')");
 
       $('.note-placeholder').attr('style',"display:none");
       $('.note-style').attr('style',"display:none");

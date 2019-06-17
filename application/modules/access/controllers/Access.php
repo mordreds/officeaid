@@ -174,8 +174,17 @@ class Access extends MX_Controller
         'orderby'=> ['id' => "Desc"]
       );
 
-      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition,$return_dataType="json");
-      print_r($query_result); 
+      $query_result = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$condition);
+     
+      if($query_result) {
+        foreach ($query_result as $key => $value) {
+          # code...
+          $query_result[$key]->id = str_pad($value->id, 7, 0,STR_PAD_LEFT);
+          
+        $query_result[$key]->date_created = date('Y-m-d',strtotime($value->date_created));
+        }
+      }
+      print_r(json_encode($query_result)); 
     }
   }
 
@@ -678,7 +687,8 @@ class Access extends MX_Controller
         $dbres = self::$_Default_DB;
         $tablename = "requests";
         $update_data = [ 'description' => ucwords($this->input->post('description')) ];
-        $where_condition = ['id' => $this->input->post('id')];
+        $where_condition = ['id' => (int)$this->input->post('id')];
+        //print_r($where_condition); exit;
         /***** Data Definition *****/
         /******** Insertion Of New Data ***********/
         $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);

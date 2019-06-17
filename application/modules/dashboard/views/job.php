@@ -15,9 +15,24 @@
            </div>
          </div>
    
-   </div></div></div><!-- //END PAGE ASIDE PANEL --><!-- PAGE CONTENT CONTAINER --><div class="content" id="content"><!-- PAGE HEADING --><div class="page-heading"><div class="page-heading__container"><div class="icon"><span class="li-feather3"></span></div>
-  <h1 class="title">Assigned Job</h1><p class="caption">OfficeAid</p></div><div class="page-heading__container float-right d-none d-sm-block"></div>
-  </div><!-- //END PAGE HEADING -->
+   </div></div></div><!-- //END PAGE ASIDE PANEL --><!-- PAGE CONTENT CONTAINER -->
+   <div class="content" id="content">
+    <!-- PAGE HEADING -->
+    <div class="page-heading">
+      <div class="page-heading__container">
+        <div class="icon"><span class="li-feather3"></span></div>
+        <h1 class="title">Assigned Job</h1>
+        <p class="caption">OfficeAid</p>
+        <p >
+          <?php if($this->session->flashdata('success')) : ?>
+            <div class="alert alert-success" role="alert"><strong>Success!</strong> <?=$this->session->flashdata('success')?></div>
+          <?php elseif($this->session->flashdata('error')) : ?>
+            <div class="alert alert-danger" role="alert"><strong><?=$this->session->flashdata('error')?> !</strong>  </div>
+          <?php endif; ?>
+        </p>
+      </div>
+      <div class="page-heading__container float-right d-none d-sm-block"></div>
+    </div><!-- //END PAGE HEADING -->
   <div class="container-fluid">
    <div class="card">
     <div class="card-body">
@@ -28,6 +43,7 @@
               <th>Issue Type</th>
               <th>Subject</th>
               <th>CreatedBy</th>
+              <th>Date Created</th>
               <th>Department</th>
               <th>Priority</th>
               <th>AssignedTo</th>
@@ -76,10 +92,11 @@
                   }
                 },
                 columns: [
-                  {data: "id", visible: false},
+                  {data: "id"},
                   {data: "complain"},
                   {data: "subject"},
                   {data: "email"},
+                  {data: "date_created"},
                   {data: "department"},
                   {data: "priority"},
                   {data: "assigned_to"},

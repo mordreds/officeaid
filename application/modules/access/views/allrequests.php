@@ -13,6 +13,7 @@
               <th>Subject</th>
               <th>Priority</th>
               <th>AssignedTo</th>
+              <th>Date Created</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -56,11 +57,12 @@
                   }
                 },
                 columns: [
-                  {data: "id", visible: false},
+                  {data: "id"},
                   {data: "complain"},
                   {data: "subject"},
                   {data: "priority"},
                   {data: "assignee"},
+                  {data: "date_created"},
                   {data: "status", render: function(data,type,row,meta) { 
                     if(row.status == "resolved") {
                       label_class = "label-success";
