@@ -31,6 +31,7 @@
         <tr>
           <th>ID</th>
           <th>Created By</th>
+          <th>Created At</th>
           <th>Department</th>
           <th>Issue Type</th>
           <th>Subject</th>
@@ -81,8 +82,9 @@
           }
         },
         columns: [
-          {data: "id", visible:false},
+          {data: "id"},
           {data: "created_by"},
+          {data: "date_created"},
           {data: "created_by_department"},
           {data: "complain"},
           {data: "subject"},
@@ -109,7 +111,7 @@
 
             /* checking if is uploaded*/
             if(row.filepath)
-              return '<a href="<?=base_url()?>' + row.filepath + '" style="color: #428c01" data-id="'+window.btoa(row.id)+'"><span class=" '+fileicon+' fa-2x"></span></a>';
+              return '<a target="_blank" href="<?=base_url()?>' + row.filepath + '" style="color: #428c01" data-id="'+window.btoa(row.id)+'"><span class=" '+fileicon+' fa-2x"></span></a>';
             else
               return "<b>No File</b>"
           }},
@@ -121,12 +123,12 @@
             else
             pending = "";
 
-            if(status == 'processing')
+            if(status == 'Processing')
               processing = "selected";
             else
             processing = "";
 
-            if(status == 'resolved')
+            if(status == 'Resolved')
               processed = "selected";
             else
             processed = "";

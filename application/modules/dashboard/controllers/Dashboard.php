@@ -225,7 +225,7 @@ public function job()
       $condition = array(
         'where_condition' => ['type' => "ticket", 'status !=' => "closed"] ,
         'wherein_condition' => [
-          'status' => "pending,processing,resolved,Excalated (APEX)",
+          'status' => "pending,processing,resolved,Escalated (APEX)",
         ],
         'orderby'=> ['id' => "Desc"]
       );
@@ -340,6 +340,8 @@ public function job()
         $query_result[$key]->duedate = ($value->duedate != "0000-00-00") ? date('Y-m-d', strtotime($value->duedate)) : "<b><em>Not Applicable</em></b>";
         $query_result[$key]->subject = ucwords($value->subject);
         $query_result[$key]->priority = ucwords($value->priority);
+        $query_result[$key]->id = str_pad($value->id, 7, 0,STR_PAD_LEFT);
+        $query_result[$key]->date_created = date('Y-m-d',strtotime($value->date_created));
       }
       print_r(json_encode($query_result)); 
     }

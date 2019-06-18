@@ -694,7 +694,7 @@ class Access extends MX_Controller
         $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
 
         if($save_data) 
-          $this->session->set_flashdata('success', "Record Update Successful");
+          $this->session->set_flashdata('success', "Record Updated");
         else
           $this->session->set_flashdata('error', "Record Update Failed");
 

@@ -64,13 +64,13 @@
                   {data: "assignee"},
                   {data: "date_created"},
                   {data: "status", render: function(data,type,row,meta) { 
-                    if(row.status == "resolved") {
+                    if(row.status == "Resolved") {
                       label_class = "label-success";
                     }
                     else if(row.status == "Escalated (APEX)"){
                       label_class = "label-danger";
                     }
-                    else if(row.status == "pending" || row.status == "processing")
+                    else if(row.status == "pending" || row.status == "Processing")
                       label_class = "label-default";
 
                     user_status = row.status;
