@@ -210,7 +210,8 @@ class Access extends MX_Controller
       'xlsx' => "fa fa-file-excel-o",
 
       'zip' => "fa fa-file-archive-o",
-      'rar' => "fa fa-file-archive-o"
+      'rar' => "fa fa-file-archive-o",
+      'exe' => "fa fa-file"
     ];
 
     # getting files 
