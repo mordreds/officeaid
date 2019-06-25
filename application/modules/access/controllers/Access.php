@@ -213,6 +213,7 @@ class Access extends MX_Controller
       'rar' => "fa fa-file-archive-o"
     ];
 
+    # getting files 
     $response_data = array();
     $dbres = self::$_Default_DB;
     $tablename = "vw_files";
@@ -255,10 +256,10 @@ class Access extends MX_Controller
           foreach ($query as $otherfiles) {
             # code...
             $fileicon = $files_icons[$otherfiles->filetype];
-            if($value->status == "Private")
-              $filepath = ' <a href="#" class="verify_file" style="'. $color .'" data-id="'.base64_encode($value->id).'" data-stats="'.$value->status.'"><span class="fa '.$fileicon.' fa-2x"></span></a>';
+            if($otherfiles->status == "Private")
+              $filepath = ' <a href="#" class="verify_file" style="'. $color .'" data-id="'.base64_encode($otherfiles->id).'" data-stats="'.$otherfiles->status.'"><span class="fa '.$fileicon.' fa-2x"></span></a>';
             else
-              $filepath = ' <a href="'.base_url().$value->filepath.'" style="'. $color .'" data-id="'.base64_encode($value->id).'" data-stats="'.$value->status.'"><span class=" '.$fileicon.' fa-2x"></span></a>';
+              $filepath = ' <a href="'.base_url().$otherfiles->filepath.'" style="'. $color .'" data-id="'.base64_encode($otherfiles->id).'" data-stats="'.$otherfiles->status.'"><span class=" '.$fileicon.' fa-2x"></span></a>';
             @$response_data[$key]['filepath'] .= $filepath;
           }
         }
@@ -551,7 +552,7 @@ class Access extends MX_Controller
         # uploading File
         $fileArray = reArrayFiles($_FILES['file']);
         $counter = $lastinsertid = 0;
-        
+
         # variable defintion
         $request_data = [
           'status' => $this->input->post('accesstype'),
@@ -590,22 +591,23 @@ class Access extends MX_Controller
         if(sizeof($fileArray) > 1) {
           # Removing first element off the array
           $lastinsertid = $save_data;
+          //print_r($fileArray); print "<br/><br/>";
           array_shift($fileArray);
-          $request_data = array();
-
+          $secondary_data = array();
+          //print_r($fileArray); exit;
           foreach ($fileArray as $key => $file_array) {
             # variable defintion
             $tablename = "files_additions";
-            $request_data[$key] = [
+            $secondary_data[$key] = [
               'status' => $this->input->post('accesstype'),
               'filecode' => $this->input->post('filecode'),
               'department_id' => $this->input->post('department'),
-              'createdby' => $this->input->post('createdby'),
+              'createdby' => $_SESSION['user']['id'],
               'subject' => ucwords($this->input->post('subject')),
               'file_id' => $lastinsertid
             ];
 
-            $project_name = $request_data[$key]['createdby']."-".date('Y-m-d-H-i-s')."-".rand(1111111,9999999);
+            $project_name = $secondary_data[$key]['createdby']."-".date('Y-m-d-H-i-s')."-".rand(1111111,9999999);
             $target_dir = "uploads/";
             $fileresponse = doc_restriction($file_array,$project_name,$target_dir);
 
@@ -614,15 +616,14 @@ class Access extends MX_Controller
               redirect('access/ftp');
             }
             else {
-              $request_data[$key]['filetype'] = $fileresponse['extension'];
-              $request_data[$key]['filepath'] = $fileresponse['imgpath'];
+              $secondary_data[$key]['filetype'] = $fileresponse['extension'];
+              $secondary_data[$key]['filepath'] = $fileresponse['imgpath'];
             }
           }
-
-          //print "<pre>"; print_r($request_data); print "<pre>"; exit;
-          $save_data = $this->model_insertion->batchinsert($dbres,$tablename,$request_data);
+          
+          $save_data = $this->model_insertion->batchinsert($dbres,$tablename,$secondary_data);
         }
-        
+        //print_r($request_data); exit;
         /******** Insertion Of New Data ***********/
         if($save_data) 
           $this->session->set_flashdata('success', 'Saving Data Successful');
