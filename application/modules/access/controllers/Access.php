@@ -245,7 +245,8 @@ class Access extends MX_Controller
           'createdby' => $value->fullname,
           'filetype' => $value->filetype,
           'filepath' => $filepath,
-          'status' => $value->status
+          'status' => $value->status,
+          'date_created' => date('Y-m-d',strtotime($value->date_created)),
         ];
 
         # Retrieving group files

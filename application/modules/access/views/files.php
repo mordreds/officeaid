@@ -36,6 +36,7 @@
       <th>Status</th>
       <th>File Type</th>
       <th>File</th>
+      <th>Created At</th>
     </tr>
   </thead>
   <tbody></tbody>
@@ -111,7 +112,7 @@
           }
         },
         columns: [
-          {data: "id", visible: false},
+          {data: "id"},
           {data: "createdby"},
           {data: "subject"},
           {data: "status", render: function(data,type,row,meta) { 
@@ -151,7 +152,8 @@
               return '<a href="<?=base_url()?>'+row.filepath+'" style="'+color+'" data-id="'+window.btoa(row.id)+'" data-stats="'+row.status+'"><span class="fa '+fileicon+' fa-2x"></span></a>'
             else
               return '<a href="#" class="verify_file" style="'+color+'" data-id="'+window.btoa(row.id)+'" data-stats="'+row.status+'"><span class="fa '+fileicon+' fa-2x"></span></a>'
-          }*/}
+          }*/},
+          {data: "date_created"},
         ],
       });
     }
