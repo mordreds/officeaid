@@ -6,7 +6,6 @@
             <strong>About Us</strong><br>
             <ul class="nav navigation" style="color: #fff">
                     <!-- <li>Incooperation Date:<span class="text-muted text-regular "><b>21-10-2015</b> </span></li> -->
-
                     <li>Postal Address:<span class="text-muted text-regular"><br><b>MARKSBON SYSTEMS</b></BR><b>BOX TA353, TAIFA - ACCRA</b></span></li>
                     <li>Website Address:<span class="text-muted text-regular"><br><b>www.markcbon.com</b></span></li>
                     <div class="divider"></div>
@@ -159,8 +158,8 @@
                   button = '<a href="<?=base_url()?>dashboard/userstatus/inactive/'+row.id+'" class="btn btn-warning btn-xs">Suspend</a> ';
                 else if(row.status == "inactive")
                   button = '<a href="<?=base_url()?>dashboard/userstatus/active/'+row.id+'" class="btn btn-success btn-xs">Activate</a> ';
-
-                button += ' <a href="<?=base_url()?>dashboard/userstatus/deleted/'+row.id+'" class="btn btn-danger btn-xs">Delete</a>';
+                  /* <?=base_url()?>dashboard/userstatus/deleted/'+row.id+'*/
+                button += ' <a href="#" class="btn btn-danger btn-xs delete_button" data-id='+row.id+' data-name="'+row.fullname+'">Delete</a>';
 
                 button += ' <a href="#" data-user="'+row.id+'" class="btn btn-primary btn-xs reset_submit">Reset Password</a>'
 
@@ -203,6 +202,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <script type="text/javascript">
     $('table').on('click', ".reset_submit",function() {
@@ -210,3 +210,34 @@
       $('.bd-example-modal-sm').modal('show');
     });
   </script>
+
+  <!-- *********** Delete Modal *********** -->
+  <script type="text/javascript">
+      $(document).on("click",".delete_button",function(){
+        $('#deletename_').text($(this).data('name'));
+        let delete_id = $(this).data('id');
+        $('#formaction').attr('action',"<?=base_url()?>dashboard/deleteuser/"+delete_id);
+        $('#delete_modal_').modal('show');
+      });
+    </script>
+    <div id="delete_modal_" class="modal fade">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            </div>
+            <form id="formaction" method="post">
+              <input id="delete_id" type="hidden" name="delete_id" value="" />
+              <div class="modal-body">
+                Do You Want To Really Delete <?php echo "<strong><em id='deletename_'></em></strong>"; ?> .... ?        
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="submit" class="btn btn-primary">Delete</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- *********** Delete Modal *********** -->

@@ -347,101 +347,101 @@ public function job()
     }
   }
 
-public function task()
-    {
-      #loadming model 
-      $this->load->model('globals/model_retrieval');
+  public function task()
+      {
+        #loadming model 
+        $this->load->model('globals/model_retrieval');
 
-      # Getting All Users
+        # Getting All Users
+        $dbres = self::$_Default_DB;
+        $tablename = "access_users";
+        $where_condition = array('status' => "active");
+        
+        $title['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
+        $title['title'] = "OfficeAid| Assigned Jobs"; 
+
+        $this->load->view('header',$title); 
+        $this->load->view('admin_nav',$title);
+        $this->load->view('stationary'); 
+        $this->load->view('footer'); 
+        
+      
+    /**************** Interface ********************/
+  }
+
+  public function updaterequest() {
+    $this->form_validation->set_rules('ticketid','Ticket ID','trim|required');
+    $this->form_validation->set_rules('status','Description','trim|required');
+
+    if($this->form_validation->run() === FALSE) {
+      $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+      $result = json_encode(array('status' => ERROR,'error' => $errors));
+      print_r($result); exit;
+    }
+    else {
+      $this->load->model('globals/model_update');
+      /***** Data Definition *****/
       $dbres = self::$_Default_DB;
-      $tablename = "access_users";
-      $where_condition = array('status' => "active");
+      $tablename = "requests";
+      $update_data = [ 'status' => $this->input->post('status') ];
+      if($update_data['status'] == "Resolved")
+        $update_data['date_solved'] = date('Y-m-d H:i:s');
+      $where_condition = ['id' => base64_decode($this->input->post('ticketid'))];
+      /***** Data Definition *****/
+      /******** Insertion Of New Data ***********/
+      $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+      if($save_data) 
+        $reponseData = [
+          'status' => SUCCESSFUL,
+          'message' => "Successful"
+        ];
+      else
+        $reponseData = [
+          'status' => ERROR,
+          'error' => "Update Failed"
+        ];
+
+        print_r(json_encode($reponseData));
+      /******** Insertion Of New Data ***********/
       
-      $title['allusers'] = $this->model_retrieval->retrieve_allinfo($dbres,$tablename,$where_condition); 
-      $title['title'] = "OfficeAid| Assigned Jobs"; 
+    }
+  }
 
-      $this->load->view('header',$title); 
-      $this->load->view('admin_nav',$title);
-      $this->load->view('stationary'); 
-      $this->load->view('footer'); 
+  public function assignedto() {
+    $this->form_validation->set_rules('ticketid','Ticket ID','trim|required');
+    $this->form_validation->set_rules('assignedto','Assigned To','trim|required');
+
+    if($this->form_validation->run() === FALSE) {
+      $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
+      $result = json_encode(array('status' => ERROR,'error' => $errors));
+      print_r($result); exit;
+    }
+    else {
+      $this->load->model('globals/model_update');
+      /***** Data Definition *****/
+      $dbres = self::$_Default_DB;
+      $tablename = "requests";
+      $update_data = ['assigned_to' => base64_decode($this->input->post('assignedto')) ];
+      $where_condition = ['id' => base64_decode($this->input->post('ticketid'))];
+      /***** Data Definition *****/
+      /******** Insertion Of New Data ***********/
+      $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+      if($save_data) 
+        $reponseData = [
+          'status' => SUCCESSFUL,
+          'message' => "Successful"
+        ];
+      else
+        $reponseData = [
+          'status' => ERROR,
+          'error' => "Assignment Failed"
+        ];
+
+        print_r(json_encode($reponseData));
+      /******** Insertion Of New Data ***********/
       
-    
-  /**************** Interface ********************/
-}
-
-public function updaterequest() {
-  $this->form_validation->set_rules('ticketid','Ticket ID','trim|required');
-  $this->form_validation->set_rules('status','Description','trim|required');
-
-  if($this->form_validation->run() === FALSE) {
-    $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
-    $result = json_encode(array('status' => ERROR,'error' => $errors));
-    print_r($result); exit;
+    }
   }
-  else {
-    $this->load->model('globals/model_update');
-    /***** Data Definition *****/
-    $dbres = self::$_Default_DB;
-    $tablename = "requests";
-    $update_data = [ 'status' => $this->input->post('status') ];
-    if($update_data['status'] == "Resolved")
-      $update_data['date_solved'] = date('Y-m-d H:i:s');
-    $where_condition = ['id' => base64_decode($this->input->post('ticketid'))];
-    /***** Data Definition *****/
-    /******** Insertion Of New Data ***********/
-    $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
-    if($save_data) 
-      $reponseData = [
-        'status' => SUCCESSFUL,
-        'message' => "Successful"
-      ];
-    else
-      $reponseData = [
-        'status' => ERROR,
-        'error' => "Update Failed"
-      ];
-
-      print_r(json_encode($reponseData));
-    /******** Insertion Of New Data ***********/
-    
-  }
-}
-
-public function assignedto() {
-  $this->form_validation->set_rules('ticketid','Ticket ID','trim|required');
-  $this->form_validation->set_rules('assignedto','Assigned To','trim|required');
-
-  if($this->form_validation->run() === FALSE) {
-    $errors = str_replace(array("\r","\n","<p>","</p>"),array("<br/>","<br/>","",""),validation_errors());
-    $result = json_encode(array('status' => ERROR,'error' => $errors));
-    print_r($result); exit;
-  }
-  else {
-    $this->load->model('globals/model_update');
-    /***** Data Definition *****/
-    $dbres = self::$_Default_DB;
-    $tablename = "requests";
-    $update_data = ['assigned_to' => base64_decode($this->input->post('assignedto')) ];
-    $where_condition = ['id' => base64_decode($this->input->post('ticketid'))];
-    /***** Data Definition *****/
-    /******** Insertion Of New Data ***********/
-    $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
-    if($save_data) 
-      $reponseData = [
-        'status' => SUCCESSFUL,
-        'message' => "Successful"
-      ];
-    else
-      $reponseData = [
-        'status' => ERROR,
-        'error' => "Assignment Failed"
-      ];
-
-      print_r(json_encode($reponseData));
-    /******** Insertion Of New Data ***********/
-    
-  }
-}
 
 /********** User Management **********/
   /**************************
@@ -574,6 +574,36 @@ public function assignedto() {
       endif;
   }
 
+  public function deleteuser($userid) {
+    if(in_array('Users',$_SESSION['user']['roles'])) :
+        # Loading Models 
+        $this->load->model('globals/model_update');
+
+        /***** Data Definition *****/
+        $dbres = self::$_Default_DB;
+        $tablename = "access_users";
+        $where_condition = ['id' => $userid];
+        $update_data = [ 'status'  => "deleted" ];
+        /***** Data Definition *****/
+
+        /******** Insertion Of New Data ***********/
+        $save_data = $this->model_update->update_info($dbres,$tablename,$return_dataType="php_object",$update_data,$where_condition);
+
+        if($save_data) 
+          $this->session->set_flashdata('success', " User Deleted");
+        else
+          $this->session->set_flashdata('error', "Delete Failed");
+
+        redirect('dashboard/users');
+        /******** Insertion Of New Data ***********/
+      
+      else :
+        $this->session->set_flashdata('error', 'Updating User Failed');
+        redirect('dashboard/');
+
+      endif;
+  }
+
   /**************************
     Get All Users => Datatable
   **************************/
@@ -598,8 +628,6 @@ public function assignedto() {
     }
   }
   /********** User Management **********/
-
-
 
   # Generating Invoice
   public function generatereport() 
@@ -664,10 +692,5 @@ public function assignedto() {
     else 
       print_r(json_encode($returndata = ['status' => ERROR, 'error' => "Permission Denied"]));
   }
-
-
-
-
-
 
 }//End of Class
