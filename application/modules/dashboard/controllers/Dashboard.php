@@ -40,6 +40,8 @@ class Dashboard extends MX_Controller
         $data['ticket_labels'][] = '"Escalated (APEX)"';
         $data['ticket_status'][] = $this->model_retrieval->return_count($dbres,$tablename,$where_condition);
 
+        //print "<pre>"; print_r($data); exit;
+
         # get all complains types
         $backgrounds = [
           'window.chartColors.primary',

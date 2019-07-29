@@ -16,7 +16,7 @@
          </div>
    
    </div></div></div><!-- //END PAGE ASIDE PANEL --><!-- PAGE CONTENT CONTAINER --><div class="content" id="content"><!-- PAGE HEADING --><div class="page-heading"><div class="page-heading__container"><div class="icon"><span class="li-chart-growth"></span></div>
-  <h1 class="title">Indicators</h1><p class="caption">OfficeAid</p></div><div class="page-heading__container float-right d-none d-sm-block"></div>
+  <h1 class="title">Indicators</h1><p class="caption">OfficeAid</p></div>
   <nav aria-label="breadcrumb" role="navigation">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="">Dashboard</a></li>
@@ -62,11 +62,10 @@
                                                 datasets: [{
                                                     data: [ <?=implode(',', $ticket_status)?> ],
                                                     backgroundColor: [
-                                                        window.chartColors.primary,
-                                                        window.chartColors.success,
+                                                        window.chartColors.info,
                                                         window.chartColors.warning,
+                                                        window.chartColors.success,
                                                         window.chartColors.danger,
-                                                        window.chartColors.info
                                                     ],
                                                     label: 'Dataset 1'
                                                 }],
