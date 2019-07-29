@@ -64,6 +64,8 @@
                   {data: "assignee"},
                   {data: "date_created"},
                   {data: "status", render: function(data,type,row,meta) { 
+                    button = "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"' data-img='"+row.filepath+"'>Details</button> <button class='btn btn-danger btn-xs cancel_req' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"'>Cancel</button>";
+
                     if(row.status == "Resolved") {
                       label_class = "label-success";
                     }
@@ -72,12 +74,16 @@
                     }
                     else if(row.status == "pending" || row.status == "Processing")
                       label_class = "label-default";
+                    else if(row.status == "Cancelled") {
+                      button = "";
+                      label_class = "label-danger";
+                    }
 
                     user_status = row.status;
-                    return '<span class="label '+label_class+'">'+row.status+'</span>';}
+                    return '<span class="btn btn-block disabled btn-sm '+label_class+'" style="padding: 0px;font-size: 16px;">'+row.status+'</span>';}
                   },
                   {render: function(data,type,row,meta) {
-                    return "<button class='btn btn-primary btn-xs view_req_det' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"' data-s_contact='"+row.sender_contact+"' data-sub='"+row.subject+"' data-desc='"+row.description+"' data-priority='"+row.priority+"' data-dept='"+row.complain+"' data-assigned_to='"+row.assigned_to+"' data-img='"+row.filepath+"'>Details</button> <button class='btn btn-danger btn-xs cancel_req' data-t_id='"+row.id+"' data-s_name='"+row.created_by+"'>Cancel</button>"
+                    return button;
                   }}
                 ],
               });

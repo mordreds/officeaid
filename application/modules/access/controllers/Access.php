@@ -169,7 +169,7 @@ class Access extends MX_Controller
       $condition = array(
         'where_condition' => array('email' => $_SESSION['user']['username'], 'status !=' => "closed"),
         'wherein_condition' => [
-          'status' => "pending,processing,resolved",
+          'status' => "pending,processing,resolved,cancelled",
         ],
         'orderby'=> ['id' => "Desc"]
       );

@@ -252,8 +252,8 @@
     <div id="cancelrequest"  class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
-          <div class="modal-header  bg-danger">
-            <h5 class="modal-title" id="exampleModalLabel">Cancel Confirmation </h5>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirmation </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -261,11 +261,14 @@
           <form action="<?=base_url()?>access/cancel_request" method="POST">
             <input type="hidden" name="request_id">
             <div class="modal-body">
-              <h3 class="title">This Action Cannot Be Undone. Are You Sure You want to cancel this request ?</h3>
+              <h4 class="title">
+                <p class="text-danger">This Action Cannot Be Undone.</p> 
+                <p>Are You Sure You want to cancel this request ?</p>
+              </h4>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
-              <button type="submit" class="btn btn-primary" >Yes</button>
+              <button type="submit" class="btn btn-danger" >Yes</button>
             </div>
           </form>
       </div>
